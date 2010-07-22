@@ -1,0 +1,7 @@
+C:\Users\cnwtp2\Desktop\XBMC Remote\XbmcJson\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\cnwtp2\Desktop\XBMC Remote\XbmcJson\bin\Debug\XbmcJson.dll
+C:\Users\cnwtp2\Desktop\XBMC Remote\XbmcJson\bin\Debug\XbmcJson.pdb
+C:\Users\cnwtp2\Desktop\XBMC Remote\XbmcJson\bin\Debug\Jayrock.dll
+C:\Users\cnwtp2\Desktop\XBMC Remote\XbmcJson\bin\Debug\Jayrock.Json.dll
+C:\Users\cnwtp2\Desktop\XBMC Remote\XbmcJson\obj\Debug\XbmcJson.dll
+C:\Users\cnwtp2\Desktop\XBMC Remote\XbmcJson\obj\Debug\XbmcJson.pdb
