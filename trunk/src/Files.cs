@@ -5,6 +5,7 @@ using System.Text;
 using System.Drawing;
 using System.Net;
 using System.IO;
+using Jayrock.Json;
 
 namespace XbmcJson
 {
@@ -23,6 +24,11 @@ namespace XbmcJson
             XbmcPort = xbmcPort;
             XbmcUser = xbmcUser;
             XbmcPass = xbmcPass;
+        }
+
+        public JsonObject GetSources()
+        {
+            return (JsonObject)Client.Invoke("Files.GetSources");
         }
 
         public Image GetImageFromThumbnail(String Thumbnail)
