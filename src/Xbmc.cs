@@ -22,6 +22,10 @@ namespace XbmcJson
        public XbmcSystem XSystem;
        public XbmcJsonRpc JsonRpc;
        public XbmcPlayer Player;
+       public XbmcVideoPlaylist VideoPlaylist;
+       public XbmcAudioPlaylist AudioPlaylist;
+       public XbmcPlaylist Playlist;
+       public XbmcFiles Files;
 
         public Xbmc(String xbmcIp, Int32 xbmcPort, String xbmcUser, String xbmcPass)
         {
@@ -30,7 +34,7 @@ namespace XbmcJson
             XbmcUser = xbmcUser;
             XbmcPass = xbmcPass;
             XbmcUri = new Uri("http://" + XbmcIp + ":" + XbmcPort + "/jsonrpc");
-            Client = new JsonRpcClient(XbmcUri, XbmcUser, XbmcPass);
+            Client = new JsonRpcClient(XbmcUri, XbmcUser, XbmcPass,true);
             AudioPlayer = new XbmcAudioPlayer(Client);
             AudioLibrary = new XbmcAudioLibrary(Client);
             VideoLibrary = new XbmcVideoLibrary(Client);
@@ -39,6 +43,10 @@ namespace XbmcJson
             XSystem = new XbmcSystem(Client);
             JsonRpc = new XbmcJsonRpc(Client);
             Player = new XbmcPlayer(Client);
+            VideoPlaylist = new XbmcVideoPlaylist(Client);
+            AudioPlaylist = new XbmcAudioPlaylist(Client);
+            Playlist = new XbmcPlaylist(Client);
+            Files = new XbmcFiles(Client, XbmcIp, XbmcPort, XbmcUser, XbmcPass);
         }
     }
 }

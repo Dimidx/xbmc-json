@@ -30,9 +30,9 @@ namespace XbmcJson
             return (JsonObject)Client.Invoke("JSONRPC.Permission");
         }
 
-        public JsonObject Ping()
+        public string Ping()
         {
-            return (JsonObject)Client.Invoke("JSONRPC.Ping");
+            return Client.Invoke("JSONRPC.Ping").ToString();
         }
 
      /*   public void Announce()

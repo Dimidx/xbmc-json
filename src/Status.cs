@@ -20,7 +20,7 @@ namespace XbmcJson
         {
             get
             {
-                if (Client.Invoke("JSONRPC.Ping").ToString() == "pong")
+                if ((string)Client.Invoke("JSONRPC.Ping") == "pong")
                 {
                     isConnected = true;
                 }
