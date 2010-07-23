@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Net;
 using System.IO;
-using System.Drawing;
+using Jayrock.Json;
 
 namespace XbmcJson
 {
@@ -67,17 +64,29 @@ namespace XbmcJson
             Client.Invoke("AudioPlayer.Forward");
         }
 
-        public string GetTime()
+        public int GetTimePlayed()
         {
-           return Client.Invoke("AudioPlayer.GetTime").ToString();
+            JsonObject result = (JsonObject)Client.Invoke("AudioPlayer.GetTime");
+            return Convert.ToInt32(result["time"]);
         }
 
-        public int GetTimeMs()
+        public int GetTimeTotal()
+        {
+            JsonObject result = (JsonObject)Client.Invoke("AudioPlayer.GetTime");
+            return Convert.ToInt32(result["total"]);
+        }
+        /// <summary>
+        /// Returns the time played in millseconds of the current song
+        /// </summary>
+        public int GetTimePlayedMs()
         {
             return Convert.ToInt32(Client.Invoke("AudioPlayer.GetTimeMS"));
         }
 
-        public float GetPercentage()
+        /// <summary>
+        /// Returns the percentage played of the current song
+        /// </summary>
+        public float GetPercentagePlayed()
         {
            return (float)Convert.ToDecimal(Client.Invoke("AudioPlayer.GetPercentage"));
         }

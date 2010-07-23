@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
 using System.Net;
 using System.IO;
@@ -26,9 +23,28 @@ namespace XbmcJson
             XbmcPass = xbmcPass;
         }
 
-        public JsonObject GetSources()
+        public JsonObject GetSources(string media)
         {
-            return (JsonObject)Client.Invoke("Files.GetSources");
+            var args = new JsonObject();
+
+            args["media"] = media;
+
+            return (JsonObject)Client.Invoke("Files.GetSources", args);
+        }
+
+        public JsonObject Download(string file)
+        {
+            return (JsonObject)Client.Invoke("Files.Download", file);
+        }
+
+        public JsonObject GetDirectory(string directory, string media)
+        {
+            var args = new JsonObject();
+
+            args["directory"] = directory;
+            args["media"] = media;
+
+            return (JsonObject)Client.Invoke("Files.GetDirectory", args);
         }
 
         public Image GetImageFromThumbnail(String Thumbnail)

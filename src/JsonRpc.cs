@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Jayrock.Json;
+﻿using Jayrock.Json;
 
 namespace XbmcJson
 {
@@ -15,9 +11,15 @@ namespace XbmcJson
             Client = client;
         }
 
-        public JsonObject Introspect()
+        public JsonObject Introspect(bool getDescriptions = true, bool getPermissions = true, bool filterByTransport = true)
         {
-            return (JsonObject)Client.Invoke("JSONRPC.Introspect");
+            var args = new JsonObject();
+
+            args["getdescriptions"] = getDescriptions;
+            args["getpermissions"] = getPermissions;
+            args["filterbytransport"] = filterByTransport;
+
+            return (JsonObject)Client.Invoke("JSONRPC.Introspect", args);
         }
 
         public JsonObject Version()
@@ -35,9 +37,16 @@ namespace XbmcJson
             return Client.Invoke("JSONRPC.Ping").ToString();
         }
 
-     /*   public void Announce()
+        public void Announce(string sender, string message, object data = null)
         {
-            return Client.Invoke("JSONRPC.Ping");
-        } */
+            var args = new JsonObject();
+
+            args["sender"] = sender;
+            args["message"] = message;
+            if (data != null)
+                args["data"] = data;
+
+            Client.Invoke("JSONRPC.Announce", args);
+        }
     }
 }

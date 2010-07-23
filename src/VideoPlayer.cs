@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Jayrock.Json;
 
 namespace XbmcJson
 {
@@ -64,9 +62,16 @@ namespace XbmcJson
             Client.Invoke("VideoPlayer.Forward");
         }
 
-        public string GetTime()
+        public int GetTimePlayed()
         {
-            return Client.Invoke("VideoPlayer.GetTime").ToString();
+            JsonObject result = (JsonObject)Client.Invoke("VideoPlayer.GetTime");
+            return Convert.ToInt32(result["time"]);
+        }
+
+        public int GetTimeTotal()
+        {
+            JsonObject result = (JsonObject)Client.Invoke("VideoPlayer.GetTime");
+            return Convert.ToInt32(result["total"]);
         }
 
         public int GetTimeMs()

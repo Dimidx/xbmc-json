@@ -1,22 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Jayrock.Json;
+﻿using Jayrock.Json;
 
 namespace XbmcJson
 {
     public class XbmcPlaylist
     {
-        /*
-Playlist.Create	true	ReadData	Creates a virtual playlist from a given one from a file
-Playlist.Destroy	true	ReadData	Destroys a virtual playlist
-Playlist.GetItems	true	ReadData	Retrieve items in the playlist. Parameter example {"playlist": "music" }. playlist optional.
-Playlist.Add	true	ControlPlayback	Add items to the playlist. Parameter example {"playlist": "music", "file": "/foo/bar.mp3" }. playlist optional.
-Playlist.Remove	true	ControlPlayback	Remove items in the playlist. Parameter example {"playlist": "music", "item": 0 }. playlist optional.
-Playlist.Swap	true	ControlPlayback	Swap items in the playlist. Parameter example {"playlist": "music", "item1": 0, "item2": 1 }. playlist optional.
-Playlist.Shuffle	true	ControlPlayback	Shuffle playlist       
-      */
         private JsonRpcClient Client;
 
         public XbmcPlaylist(JsonRpcClient client)
@@ -24,72 +11,77 @@ Playlist.Shuffle	true	ControlPlayback	Shuffle playlist
             Client = client;
         }
 
-        public void Create()
-        {
-            Client.Invoke("Playlist.Create");
-        }
-
-        public void Destroy()
-        {
-            Client.Invoke("Playlist.Destroy");
-        }
-
-        public JsonObject GetItems(string playlistName)
+        public void Create(string playlist)
         {
             var args = new JsonObject();
 
-            args["playlist"] = playlistName;
+            args["playlist"] = playlist;
+
+            Client.Invoke("Playlist.Create", args);
+        }
+
+        public void Destroy(string playlist)
+        {
+            var args = new JsonObject();
+
+            args["playlist"] = playlist;
+
+            Client.Invoke("Playlist.Destroy", args);
+        }
+
+        public JsonObject GetItems(string playlist)
+        {
+            var args = new JsonObject();
+
+            args["playlist"] = playlist;
+
             return (JsonObject)Client.Invoke("Playlist.GetItems", args);
         }
 
-        public void AddByFile(string playlistName, string playlistFile)
+        public void Add(string playlist, string file = null, int? songId = null, int? artistId = null, int? albumId = null)
         {
             var args = new JsonObject();
 
-            args["playlist"] = playlistName;
-            args["file"] = playlistFile;
+            args["playlist"] = playlist;
+            if(file != null)
+                args["file"] = file;
+            if (songId != null)
+                args["songid"] = songId;
+            if (artistId != null)
+                args["artistid"] = artistId;
+            if (albumId != null)
+                args["albumid"] = albumId;
 
             Client.Invoke("Playlist.Add", args);
         }
 
-        public void AddBySong(string playlistName, int songId)
+        public void Remove(string playlist, int itemIndex)
         {
             var args = new JsonObject();
 
-            args["playlist"] = playlistName;
-            args["songid"] = songId;
-
-            Client.Invoke("Playlist.Add", args);
-        }
-
-        public void AddByArtist(string playlistName, int artistId)
-        {
-            var args = new JsonObject();
-
-            args["playlist"] = playlistName;
-            args["artistid"] = artistId;
-
-            Client.Invoke("Playlist.Add", args);
-        }
-
-        public void AddByAlbum(string playlistName, int albumId)
-        {
-            var args = new JsonObject();
-
-            args["playlist"] = playlistName;
-            args["albumid"] = albumId;
-
-            Client.Invoke("Playlist.Add", args);
-        }
-
-        public void Remove(string playlistName, int itemIndex)
-        {
-            var args = new JsonObject();
-
-            args["playlist"] = playlistName;
+            args["playlist"] = playlist;
             args["item"] = itemIndex;
 
             Client.Invoke("Playlist.Remove", args);
+        }
+
+        public void Swap(string playlist, int item1, int item2)
+        {
+            var args = new JsonObject();
+
+            args["item1"] = item1;
+            args["item2"] = item2;
+
+            Client.Invoke("Playlist.Swap", args);
+        }
+
+        public void Shuffle(string playlist)
+        {
+            var args = new JsonObject();
+
+            args["playlist"] = playlist;
+
+            Client.Invoke("Playlist.Shuffle", args);
         }
     }
 }

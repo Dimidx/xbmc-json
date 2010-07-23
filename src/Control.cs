@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Jayrock.Json;
 
 namespace XbmcJson
@@ -46,9 +43,25 @@ namespace XbmcJson
             Client.Invoke("XBMC.Quit");
         }
 
-        public void Log(string message)
+        public void StartSlideShow(string directory, bool random = true, bool recursive = true)
         {
-            Client.Invoke("XBMC.Log", message);
+            var args = new JsonObject();
+
+            args["directory"] = directory;
+            args["random"] = random;
+            args["recursive"] = recursive;
+
+            Client.Invoke("XBMC.StartSlideShow", args);
+        }
+
+        public void Log(string message, string level = "info")
+        {
+            var args = new JsonObject();
+
+            args["message"] = message;
+            args["level"] = level;
+
+            Client.Invoke("XBMC.Log", args);
         }
     }
 }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Jayrock.Json;
 
 namespace XbmcJson
 {
@@ -11,7 +7,7 @@ namespace XbmcJson
        
        public Uri XbmcUri;
        public string XbmcIp;
-       public Int32 XbmcPort;
+       public int XbmcPort;
        public string XbmcUser;
        public string XbmcPass;
        private JsonRpcClient Client;
@@ -31,7 +27,7 @@ namespace XbmcJson
        public XbmcVideoPlayer VideoPlayer;
        public XbmcVideoPlaylist VideoPlaylist;
 
-        public Xbmc(String xbmcIp, Int32 xbmcPort, String xbmcUser, String xbmcPass)
+        public Xbmc(string xbmcIp, int xbmcPort, string xbmcUser, string xbmcPass)
         {
             XbmcIp = xbmcIp;
             XbmcPort = xbmcPort;

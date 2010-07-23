@@ -10,3 +10,8 @@ C:\Users\Tyler\Desktop\x\bin\Debug\XbmcJson.pdb
 C:\Users\Tyler\Desktop\x\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Tyler\Desktop\x\obj\Debug\XbmcJson.dll
 C:\Users\Tyler\Desktop\x\obj\Debug\XbmcJson.pdb
+C:\Users\cnwtp2\Desktop\xbmc-json\bin\Debug\XbmcJson.dll
+C:\Users\cnwtp2\Desktop\xbmc-json\bin\Debug\XbmcJson.pdb
+C:\Users\cnwtp2\Desktop\xbmc-json\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\cnwtp2\Desktop\xbmc-json\obj\Debug\XbmcJson.dll
+C:\Users\cnwtp2\Desktop\xbmc-json\obj\Debug\XbmcJson.pdb
