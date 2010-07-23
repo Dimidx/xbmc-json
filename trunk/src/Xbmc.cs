@@ -2,7 +2,7 @@
 
 namespace XbmcJson
 {
-    public class Xbmc
+    public class XbmcConnection
     {
        
        public Uri XbmcUri;
@@ -27,7 +27,7 @@ namespace XbmcJson
        public XbmcVideoPlayer VideoPlayer;
        public XbmcVideoPlaylist VideoPlaylist;
 
-        public Xbmc(string xbmcIp, int xbmcPort, string xbmcUser, string xbmcPass)
+        public XbmcConnection(string xbmcIp, int xbmcPort, string xbmcUser, string xbmcPass)
         {
             XbmcIp = xbmcIp;
             XbmcPort = xbmcPort;
