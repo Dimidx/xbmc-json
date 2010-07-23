@@ -8,24 +8,28 @@ namespace XbmcJson
 {
     public class Xbmc
     {
-       private JsonRpcClient Client;
+       
        public Uri XbmcUri;
        public string XbmcIp;
        public Int32 XbmcPort;
        public string XbmcUser;
        public string XbmcPass;
-       public XbmcAudioPlayer AudioPlayer;
-       public XbmcVideoLibrary VideoLibrary;
+       private JsonRpcClient Client;
+
        public XbmcAudioLibrary AudioLibrary;
-       public XbmcStatus Status;
-       public XbmcControl Control;
-       public XbmcSystem XSystem;
-       public XbmcJsonRpc JsonRpc;
-       public XbmcPlayer Player;
-       public XbmcVideoPlaylist VideoPlaylist;
+       public XbmcAudioPlayer AudioPlayer;
        public XbmcAudioPlaylist AudioPlaylist;
-       public XbmcPlaylist Playlist;
+       public XbmcControl Control;
        public XbmcFiles Files;
+       public XbmcJsonRpc JsonRpc;
+       public XbmcPicturePlayer PicturePlayer;
+       public XbmcPlayer Player;
+       public XbmcPlaylist Playlist;
+       public XbmcStatus Status;
+       public XbmcSystem System_;
+       public XbmcVideoLibrary VideoLibrary;
+       public XbmcVideoPlayer VideoPlayer;
+       public XbmcVideoPlaylist VideoPlaylist;
 
         public Xbmc(String xbmcIp, Int32 xbmcPort, String xbmcUser, String xbmcPass)
         {
@@ -35,18 +39,21 @@ namespace XbmcJson
             XbmcPass = xbmcPass;
             XbmcUri = new Uri("http://" + XbmcIp + ":" + XbmcPort + "/jsonrpc");
             Client = new JsonRpcClient(XbmcUri, XbmcUser, XbmcPass,true);
-            AudioPlayer = new XbmcAudioPlayer(Client);
+
             AudioLibrary = new XbmcAudioLibrary(Client);
-            VideoLibrary = new XbmcVideoLibrary(Client);
-            Status = new XbmcStatus(Client);
-            Control = new XbmcControl(Client);
-            XSystem = new XbmcSystem(Client);
-            JsonRpc = new XbmcJsonRpc(Client);
-            Player = new XbmcPlayer(Client);
-            VideoPlaylist = new XbmcVideoPlaylist(Client);
+            AudioPlayer = new XbmcAudioPlayer(Client);
             AudioPlaylist = new XbmcAudioPlaylist(Client);
-            Playlist = new XbmcPlaylist(Client);
+            Control = new XbmcControl(Client);
             Files = new XbmcFiles(Client, XbmcIp, XbmcPort, XbmcUser, XbmcPass);
+            JsonRpc = new XbmcJsonRpc(Client);
+            PicturePlayer = new XbmcPicturePlayer(Client);
+            Player = new XbmcPlayer(Client);
+            Playlist = new XbmcPlaylist(Client);
+            Status = new XbmcStatus(Client);
+            System_ = new XbmcSystem(Client);
+            VideoLibrary = new XbmcVideoLibrary(Client);
+            VideoPlayer = new XbmcVideoPlayer(Client);
+            VideoPlaylist = new XbmcVideoPlaylist(Client);
         }
     }
 }

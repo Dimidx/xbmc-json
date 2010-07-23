@@ -77,19 +77,19 @@ namespace XbmcJson
             return Convert.ToInt32(Client.Invoke("AudioPlayer.GetTimeMS"));
         }
 
-        public int GetPercentage()
+        public float GetPercentage()
         {
-           return Convert.ToInt32(Client.Invoke("AudioPlayer.GetPercentage"));
+           return (float)Convert.ToDecimal(Client.Invoke("AudioPlayer.GetPercentage"));
         }
 
-        public void SeekTime()
+        public void SeekTime(int timeInSeconds)
         {
-            Client.Invoke("AudioPlayer.SeekTime");
+            Client.Invoke("AudioPlayer.SeekTime", timeInSeconds);
         }
 
-        public void SeekPercentage()
+        public void SeekPercentage(float percentage)
         {
-            Client.Invoke("AudioPlayer.SeekPercentage");
+            Client.Invoke("AudioPlayer.SeekPercentage", percentage);
         }
 
         public void Record()
