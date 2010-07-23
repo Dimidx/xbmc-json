@@ -8,8 +8,12 @@ namespace XbmcJson
 {
     public class Xbmc
     {
-       private Settings Settings;
        private JsonRpcClient Client;
+       public Uri XbmcUri;
+       public string XbmcIp;
+       public Int32 XbmcPort;
+       public string XbmcUser;
+       public string XbmcPass;
        public XbmcAudioPlayer AudioPlayer;
        public XbmcVideoLibrary VideoLibrary;
        public XbmcAudioLibrary AudioLibrary;
@@ -19,18 +23,22 @@ namespace XbmcJson
        public XbmcJsonRpc JsonRpc;
        public XbmcPlayer Player;
 
-        public Xbmc(Settings settings)
+        public Xbmc(String xbmcIp, Int32 xbmcPort, String xbmcUser, String xbmcPass)
         {
-            Settings = settings;
-            Client = new JsonRpcClient(Settings.XbmcUri);
-            AudioPlayer = new XbmcAudioPlayer(Settings, Client);
-            AudioLibrary = new XbmcAudioLibrary(Settings, Client);
-            VideoLibrary = new XbmcVideoLibrary(Settings, Client);
-            Status = new XbmcStatus(Settings, Client);
-            Control = new XbmcControl(Settings, Client);
-            XSystem = new XbmcSystem(Settings, Client);
-            JsonRpc = new XbmcJsonRpc(Settings, Client);
-            Player = new XbmcPlayer(Settings, Client);
+            XbmcIp = xbmcIp;
+            XbmcPort = xbmcPort;
+            XbmcUser = xbmcUser;
+            XbmcPass = xbmcPass;
+            XbmcUri = new Uri("http://" + XbmcIp + ":" + XbmcPort + "/jsonrpc");
+            Client = new JsonRpcClient(XbmcUri, XbmcUser, XbmcPass);
+            AudioPlayer = new XbmcAudioPlayer(Client);
+            AudioLibrary = new XbmcAudioLibrary(Client);
+            VideoLibrary = new XbmcVideoLibrary(Client);
+            Status = new XbmcStatus(Client);
+            Control = new XbmcControl(Client);
+            XSystem = new XbmcSystem(Client);
+            JsonRpc = new XbmcJsonRpc(Client);
+            Player = new XbmcPlayer(Client);
         }
     }
 }

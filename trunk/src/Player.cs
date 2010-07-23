@@ -8,18 +8,16 @@ namespace XbmcJson
 {
     public class XbmcPlayer
     {
-        private Settings Settings;
         private JsonRpcClient Client;
 
-        public XbmcPlayer(Settings settings, JsonRpcClient client)
+        public XbmcPlayer(JsonRpcClient client)
         {
-            this.Settings = settings;
             Client = client;
         }
 
-        public object GetActivePlayers()
+        public JsonObject GetActivePlayers()
         {
-            return Client.Invoke("Player.GetActivePlayers");
+            return (JsonObject)Client.Invoke("Player.GetActivePlayers");
         }
 
         public bool IsAudioPlayerActive()

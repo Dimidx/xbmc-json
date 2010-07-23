@@ -8,13 +8,11 @@ namespace XbmcJson
 {
     public class XbmcStatus
     {
-        private Settings Settings;
         private JsonRpcClient Client;
         private bool isConnected;
 
-        public XbmcStatus(Settings settings, JsonRpcClient client)
+        public XbmcStatus(JsonRpcClient client)
         {
-            Settings = settings;
             Client = client;
         }
 

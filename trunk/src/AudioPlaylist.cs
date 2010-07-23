@@ -7,12 +7,10 @@ namespace XbmcJson
 {
     public class XbmcAudioPlaylist
     {
-        private Settings Settings;
         private JsonRpcClient Client;
 
-        public XbmcAudioPlaylist(Settings Settings, JsonRpcClient client)
+        public XbmcAudioPlaylist(JsonRpcClient client)
         {
-            this.Settings = Settings;
             Client = client;
         }
 

@@ -2,38 +2,37 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Jayrock.Json;
 
 namespace XbmcJson
 {
     public class XbmcJsonRpc
     {
-        private Settings Settings;
         private JsonRpcClient Client;
 
-        public XbmcJsonRpc(Settings Settings, JsonRpcClient client)
+        public XbmcJsonRpc(JsonRpcClient client)
         {
-            this.Settings = Settings;
             Client = client;
         }
 
-        public object Introspect()
+        public JsonObject Introspect()
         {
-            return Client.Invoke("JSONRPC.Introspect");
+            return (JsonObject)Client.Invoke("JSONRPC.Introspect");
         }
 
-        public object Version()
+        public JsonObject Version()
         {
-            return Client.Invoke("JSONRPC.Version");
+            return (JsonObject)Client.Invoke("JSONRPC.Version");
         }
 
-        public object Permission()
+        public JsonObject Permission()
         {
-            return Client.Invoke("JSONRPC.Permission");
+            return (JsonObject)Client.Invoke("JSONRPC.Permission");
         }
 
-        public object Ping()
+        public JsonObject Ping()
         {
-            return Client.Invoke("JSONRPC.Ping");
+            return (JsonObject)Client.Invoke("JSONRPC.Ping");
         }
 
      /*   public void Announce()

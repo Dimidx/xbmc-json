@@ -35,15 +35,21 @@ namespace XbmcJson
         private int _id;
         private Uri ClientUri;
         private bool DebugEnabled = false;
+        public string XbmcUser;
+        public string XbmcPass;
 
-        public JsonRpcClient(Uri uri)
+        public JsonRpcClient(Uri uri, string xbmcUser, string xbmcPass)
         {
             ClientUri = uri;
+            XbmcUser = xbmcUser;
+            XbmcPass = xbmcPass;
         }
 
-        public JsonRpcClient(Uri uri, bool debugEnabled)
+        public JsonRpcClient(Uri uri, string xbmcUser, string xbmcPass, bool debugEnabled)
         {
             ClientUri = uri;
+            XbmcUser = xbmcUser;
+            XbmcPass = xbmcPass;
             DebugEnabled = debugEnabled;
         }
 
@@ -102,6 +108,7 @@ namespace XbmcJson
                 throw new ArgumentNullException("returnType");
 
             var request = GetWebRequest(ClientUri);
+            request.Credentials = new System.Net.NetworkCredential(XbmcUser, XbmcPass);
             request.Method = "POST";
             using (var stream = request.GetRequestStream())
             using (var writer = new StreamWriter(stream, Encoding.ASCII))
