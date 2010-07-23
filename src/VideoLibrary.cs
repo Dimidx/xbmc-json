@@ -1,4 +1,6 @@
 ﻿using Jayrock.Json;
+using System;
+using System.Collections.Generic;
 
 namespace XbmcJson
 {
@@ -11,7 +13,7 @@ namespace XbmcJson
             Client = client;
         }
 
-        public JsonObject GetMovies(string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
+        public List<Movie> GetMovies(string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
         {
             var args = new JsonObject();
 
@@ -26,10 +28,18 @@ namespace XbmcJson
             if (end != null)
                 args["end"] = end;
 
-            return (JsonObject)Client.Invoke("VideoLibrary.GetMovies", args);
+            List<Movie> list = new List<Movie>();
+            JsonObject query = (JsonObject)Client.Invoke("VideoLibrary.GetMovies", args);
+
+            foreach (JsonObject item in (JsonArray)query["movies"])
+            {
+                list.Add(Movie.MovieFromJsonObject(item));
+            }
+
+            return list;
         }
 
-        public JsonObject GetTvShows(string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
+        public List<TvShow> GetTvShows(string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
         {
             var args = new JsonObject();
 
@@ -44,10 +54,18 @@ namespace XbmcJson
             if (end != null)
                 args["end"] = end;
 
-            return (JsonObject)Client.Invoke("VideoLibrary.GetTvShows", args);
+            List<TvShow> list = new List<TvShow>();
+            JsonObject query = (JsonObject)Client.Invoke("VideoLibrary.GetTvShows", args);
+            DebugLogger.WriteLog(query.ToString());
+            foreach (JsonObject item in (JsonArray)query["tvshows"])
+            {
+                list.Add(TvShow.TvShowFromJsonObject(item));
+            }
+
+            return list;
         }
 
-        public JsonObject GetSeasons(int tvShowId, string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
+        public List<Season> GetSeasons(int tvShowId, string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
         {
             var args = new JsonObject();
 
@@ -63,10 +81,18 @@ namespace XbmcJson
             if (end != null)
                 args["end"] = end;
 
-            return (JsonObject)Client.Invoke("VideoLibrary.GetSeasons", args);
+            List<Season> list = new List<Season>();
+            JsonObject query = (JsonObject)Client.Invoke("VideoLibrary.GetSeasons", args);
+
+            foreach (JsonObject item in (JsonArray)query["seasons"])
+            {
+                list.Add(Season.SeasonFromJsonObject(item));
+            }
+
+            return list;
         }
 
-        public JsonObject GetEpisodes(int tvShowId, int season, string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
+        public List<Episode> GetEpisodes(int tvShowId, int season, string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
         {
             var args = new JsonObject();
 
@@ -83,10 +109,18 @@ namespace XbmcJson
             if (end != null)
                 args["end"] = end;
 
-            return (JsonObject)Client.Invoke("VideoLibrary.GetEpisodes", args);
+            List<Episode> list = new List<Episode>();
+            JsonObject query = (JsonObject)Client.Invoke("VideoLibrary.GetEpisodes", args);
+            
+            foreach(JsonObject item in (JsonArray)query["episodes"])
+            {
+                list.Add(Episode.EpisodeFromJsonObject(item));
+            }
+
+            return list;
         }
 
-        public JsonObject GetMusicVideos(int artistId, int albumId, string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
+   /*     public JsonObject GetMusicVideos(int artistId, int albumId, string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
         {
             var args = new JsonObject();
 
@@ -105,8 +139,9 @@ namespace XbmcJson
 
             return (JsonObject)Client.Invoke("VideoLibrary.GetMusicVideos", args);
         }
+    */
 
-        public JsonObject GetRecentlyAddedMovies(string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
+        public List<Movie> GetRecentlyAddedMovies(string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
         {
             var args = new JsonObject();
 
@@ -121,10 +156,18 @@ namespace XbmcJson
             if (end != null)
                 args["end"] = end;
 
-            return (JsonObject)Client.Invoke("VideoLibrary.GetRecentlyAddedMovies", args);
+            List<Movie> list = new List<Movie>();
+            JsonObject query = (JsonObject)Client.Invoke("VideoLibrary.GetRecentlyAddedMovies", args);
+
+            foreach (JsonObject item in (JsonArray)query["movies"])
+            {
+                list.Add(Movie.MovieFromJsonObject(item));
+            }
+
+            return list;
         }
 
-        public JsonObject GetRecentlyAddedEpisodes(string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
+        public List<Episode> GetRecentlyAddedEpisodes(string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
         {
             var args = new JsonObject();
 
@@ -139,10 +182,18 @@ namespace XbmcJson
             if (end != null)
                 args["end"] = end;
 
-            return (JsonObject)Client.Invoke("VideoLibrary.GetRecentlyAddedEpisodes", args);
+            List<Episode> list = new List<Episode>();
+            JsonObject query = (JsonObject)Client.Invoke("VideoLibrary.GetRecentlyAddedEpisodes", args);
+
+            foreach (JsonObject item in (JsonArray)query["episodes"])
+            {
+                list.Add(Episode.EpisodeFromJsonObject(item));
+            }
+
+            return list;
         }
 
-        public JsonObject GetRecentlyAddedMusicVideos(string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
+  /*      public JsonObject GetRecentlyAddedMusicVideos(string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
         {
             var args = new JsonObject();
 
@@ -158,7 +209,7 @@ namespace XbmcJson
                 args["end"] = end;
 
             return (JsonObject)Client.Invoke("VideoLibrary.GetRecentlyAddedMusicVideos", args);
-        }
+        } */
 
         public void ScanForContent()
         {
