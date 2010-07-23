@@ -7,13 +7,10 @@ namespace XbmcJson
 {
     public class XbmcVideoPlayer
     {
-
-        private Settings Settings;
         private JsonRpcClient Client;
 
-        public XbmcVideoPlayer(Settings Settings, JsonRpcClient client)
+        public XbmcVideoPlayer(JsonRpcClient client)
         {
-            this.Settings = Settings;
             Client = client;
         }
 
@@ -72,14 +69,14 @@ namespace XbmcJson
             return Client.Invoke("VideoPlayer.GetTime").ToString();
         }
 
-        public string GetTimeMs()
+        public int GetTimeMs()
         {
-            return Client.Invoke("VideoPlayer.GetTimeMS").ToString();
+            return Convert.ToInt32(Client.Invoke("VideoPlayer.GetTimeMS"));
         }
 
-        public void GetPercentage()
+        public int GetPercentage()
         {
-            Client.Invoke("VideoPlayer.GetPercentage");
+            return Convert.ToInt32(Client.Invoke("VideoPlayer.GetPercentage"));
         }
 
         public void SeekTime()

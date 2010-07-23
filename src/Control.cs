@@ -8,12 +8,10 @@ namespace XbmcJson
 {
     public class XbmcControl
     {
-        private Settings Settings;
         private JsonRpcClient Client;
 
-        public XbmcControl(Settings Settings, JsonRpcClient client)
+        public XbmcControl(JsonRpcClient client)
         {
-            this.Settings = Settings;
             Client = client;
         }
 

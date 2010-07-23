@@ -10,12 +10,10 @@ namespace XbmcJson
 {
     public class XbmcAudioPlayer
     {
-        private Settings Settings;
         private JsonRpcClient Client; 
 
-        public XbmcAudioPlayer(Settings Settings, JsonRpcClient client)
+        public XbmcAudioPlayer(JsonRpcClient client)
         {
-            this.Settings = Settings;
             Client = client;
         }
 
@@ -74,14 +72,14 @@ namespace XbmcJson
            return Client.Invoke("AudioPlayer.GetTime").ToString();
         }
 
-        public string GetTimeMs()
+        public int GetTimeMs()
         {
-            return Client.Invoke("AudioPlayer.GetTimeMS").ToString();
+            return Convert.ToInt32(Client.Invoke("AudioPlayer.GetTimeMS"));
         }
 
-        public void GetPercentage()
+        public int GetPercentage()
         {
-            Client.Invoke("AudioPlayer.GetPercentage");
+           return Convert.ToInt32(Client.Invoke("AudioPlayer.GetPercentage"));
         }
 
         public void SeekTime()
@@ -98,15 +96,5 @@ namespace XbmcJson
         {
             Client.Invoke("AudioPlayer.Record");
         }
-
-        public Image GetSongAlbumArt(String Thumbnail)
-        {
-           String ImageLocation = "http://" + Settings.XbmcIp + ":" + Settings.XbmcPort + "/vfs/" + Thumbnail;
-           WebClient ImageGetter = new WebClient();
-           Stream stream = ImageGetter.OpenRead(ImageLocation);
-           Image RetreievedImage = Image.FromStream(stream);
-           stream.Close();
-           return RetreievedImage;
-        } 
     }
 }

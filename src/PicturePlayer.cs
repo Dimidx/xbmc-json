@@ -8,12 +8,10 @@ namespace XbmcJson
     public class XbmcPicturePlayer
     {
 
-        private Settings Settings;
         private JsonRpcClient Client;
 
-        public XbmcPicturePlayer(Settings Settings, JsonRpcClient client)
+        public XbmcPicturePlayer(JsonRpcClient client)
         {
-            this.Settings = Settings;
             Client = client;
         }
 
