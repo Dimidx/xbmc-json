@@ -1,4 +1,6 @@
-﻿namespace XbmcJson
+﻿using Jayrock.Json;
+
+namespace XbmcJson
 {
     public class XbmcAudioPlaylist
     {
@@ -29,9 +31,20 @@
             return Client.Invoke("AudioPlaylist.GetItems");
         }
 
-        public void Add()
+        public void Add(string file = null, int? songId = null, int? artistId = null, int? albumId = null)
         {
-            Client.Invoke("AudioPlaylist.Add");
+            var args = new JsonObject();
+
+            if (file != null)
+                args["file"] = file;
+            if (songId != null)
+                args["songid"] = songId;
+            if (artistId != null)
+                args["artistid"] = artistId;
+            if (albumId != null)
+                args["albumid"] = albumId;
+
+            Client.Invoke("AudioPlaylist.Add", args);
         }
 
         public void Clear()
