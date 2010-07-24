@@ -11,11 +11,6 @@ namespace XbmcJson
             Client = client;
         }
 
-        public JsonObject GetActivePlayers()
-        {
-            return (JsonObject)Client.Invoke("Player.GetActivePlayers");
-        }
-
         public bool IsAudioPlayerActive()
         {
            JsonObject result = (JsonObject)Client.Invoke("Player.GetActivePlayers");

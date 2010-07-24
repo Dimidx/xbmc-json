@@ -17,8 +17,10 @@ namespace XbmcJson
         {
             var args = new JsonObject();
 
-            if(fields !=null)
+            if (fields != null)
                 args["fields"] = fields;
+            else
+                args["fields"] = new string[] {"plot", "director", "writer", "studio", "genre", "year", "runtime", "rating", "tagline", "plotoutline"};
             if (sortMethod != null)
                 args["sortmethod"] = sortMethod;
             if (sortOrder != null)
@@ -27,7 +29,7 @@ namespace XbmcJson
                 args["start"] = start;
             if (end != null)
                 args["end"] = end;
-
+            
             List<Movie> list = new List<Movie>();
             JsonObject query = (JsonObject)Client.Invoke("VideoLibrary.GetMovies", args);
 
@@ -45,6 +47,8 @@ namespace XbmcJson
 
             if (fields != null)
                 args["fields"] = fields;
+            else
+                args["fields"] = new string[] { "plot", "genre", "year", "runtime", "rating"};
             if (sortMethod != null)
                 args["sortmethod"] = sortMethod;
             if (sortOrder != null)
@@ -56,7 +60,7 @@ namespace XbmcJson
 
             List<TvShow> list = new List<TvShow>();
             JsonObject query = (JsonObject)Client.Invoke("VideoLibrary.GetTvShows", args);
-            DebugLogger.WriteLog(query.ToString());
+
             foreach (JsonObject item in (JsonArray)query["tvshows"])
             {
                 list.Add(TvShow.TvShowFromJsonObject(item));
@@ -72,6 +76,8 @@ namespace XbmcJson
             args["tvshowid"] = tvShowId;
             if (fields != null)
                 args["fields"] = fields;
+            else
+                args["fields"] = new string[] {"genre", "year", "runtime", "rating"};
             if (sortMethod != null)
                 args["sortmethod"] = sortMethod;
             if (sortOrder != null)
@@ -83,7 +89,6 @@ namespace XbmcJson
 
             List<Season> list = new List<Season>();
             JsonObject query = (JsonObject)Client.Invoke("VideoLibrary.GetSeasons", args);
-
             foreach (JsonObject item in (JsonArray)query["seasons"])
             {
                 list.Add(Season.SeasonFromJsonObject(item));
@@ -100,6 +105,8 @@ namespace XbmcJson
             args["season"] = season;
             if (fields != null)
                 args["fields"] = fields;
+            else
+                args["fields"] = new string[] { "season", "episode", "runtime", "year", "plot" };
             if (sortMethod != null)
                 args["sortmethod"] = sortMethod;
             if (sortOrder != null)
@@ -111,7 +118,7 @@ namespace XbmcJson
 
             List<Episode> list = new List<Episode>();
             JsonObject query = (JsonObject)Client.Invoke("VideoLibrary.GetEpisodes", args);
-            
+            DebugLogger.WriteLog(query.ToString());
             foreach(JsonObject item in (JsonArray)query["episodes"])
             {
                 list.Add(Episode.EpisodeFromJsonObject(item));
@@ -120,33 +127,14 @@ namespace XbmcJson
             return list;
         }
 
-   /*     public JsonObject GetMusicVideos(int artistId, int albumId, string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
-        {
-            var args = new JsonObject();
-
-            args["artistid"] = artistId;
-            args["albumId"] = albumId;
-            if (fields != null)
-                args["fields"] = fields;
-            if (sortMethod != null)
-                args["sortmethod"] = sortMethod;
-            if (sortOrder != null)
-                args["sortorder"] = sortOrder;
-            if (start != null)
-                args["start"] = start;
-            if (end != null)
-                args["end"] = end;
-
-            return (JsonObject)Client.Invoke("VideoLibrary.GetMusicVideos", args);
-        }
-    */
-
         public List<Movie> GetRecentlyAddedMovies(string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
         {
             var args = new JsonObject();
 
             if (fields != null)
                 args["fields"] = fields;
+            else
+                args["fields"] = new string[] { "plot", "director", "writer", "studio", "genre", "year", "runtime", "rating", "tagline", "plotoutline" };
             if (sortMethod != null)
                 args["sortmethod"] = sortMethod;
             if (sortOrder != null)
@@ -173,6 +161,8 @@ namespace XbmcJson
 
             if (fields != null)
                 args["fields"] = fields;
+            else
+                args["fields"] = new string[] { "season", "episode", "runtime", "year", "plot" };
             if (sortMethod != null)
                 args["sortmethod"] = sortMethod;
             if (sortOrder != null)
@@ -184,7 +174,7 @@ namespace XbmcJson
 
             List<Episode> list = new List<Episode>();
             JsonObject query = (JsonObject)Client.Invoke("VideoLibrary.GetRecentlyAddedEpisodes", args);
-
+            DebugLogger.WriteLog(query.ToString());
             foreach (JsonObject item in (JsonArray)query["episodes"])
             {
                 list.Add(Episode.EpisodeFromJsonObject(item));
@@ -192,6 +182,27 @@ namespace XbmcJson
 
             return list;
         }
+
+        /*     public JsonObject GetMusicVideos(int artistId, int albumId, string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
+        {
+            var args = new JsonObject();
+
+            args["artistid"] = artistId;
+            args["albumId"] = albumId;
+            if (fields != null)
+                args["fields"] = fields;
+            if (sortMethod != null)
+                args["sortmethod"] = sortMethod;
+            if (sortOrder != null)
+                args["sortorder"] = sortOrder;
+            if (start != null)
+                args["start"] = start;
+            if (end != null)
+                args["end"] = end;
+
+            return (JsonObject)Client.Invoke("VideoLibrary.GetMusicVideos", args);
+        }
+    */
 
   /*      public JsonObject GetRecentlyAddedMusicVideos(string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
         {

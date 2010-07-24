@@ -75,17 +75,12 @@ namespace XbmcJson
             JsonObject result = (JsonObject)Client.Invoke("AudioPlayer.GetTime");
             return Convert.ToInt32(result["total"]);
         }
-        /// <summary>
-        /// Returns the time played in millseconds of the current song
-        /// </summary>
+
         public int GetTimePlayedMs()
         {
             return Convert.ToInt32(Client.Invoke("AudioPlayer.GetTimeMS"));
         }
 
-        /// <summary>
-        /// Returns the percentage played of the current song
-        /// </summary>
         public float GetPercentagePlayed()
         {
            return (float)Convert.ToDecimal(Client.Invoke("AudioPlayer.GetPercentage"));

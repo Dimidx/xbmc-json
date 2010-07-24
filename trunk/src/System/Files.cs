@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Net;
 using System.IO;
 using Jayrock.Json;
+using System.Collections.Generic;
 
 namespace XbmcJson
 {
@@ -23,28 +24,45 @@ namespace XbmcJson
             XbmcPass = xbmcPass;
         }
 
-        public JsonObject GetSources(string media)
+        public List<Share> GetSources(string media)
         {
             var args = new JsonObject();
-
             args["media"] = media;
 
-            return (JsonObject)Client.Invoke("Files.GetSources", args);
+            JsonObject query = (JsonObject)Client.Invoke("Files.GetSources", args);
+            List<Share> list = new List<Share>();
+
+            foreach(JsonObject item in (JsonArray)query["shares"])
+            {
+                list.Add(Share.ShareFromJsonObject(item));
+            }
+
+            return list;
         }
 
-        public JsonObject Download(string file)
+        public string Download(string file)
         {
-            return (JsonObject)Client.Invoke("Files.Download", file);
+            JsonObject query = (JsonObject)Client.Invoke("Files.Download", file);
+            return query["path"].ToString();
         }
 
-        public JsonObject GetDirectory(string directory, string media)
+        public List<string> GetDirectory(string directory, string media)
         {
             var args = new JsonObject();
 
             args["directory"] = directory;
             args["media"] = media;
 
-            return (JsonObject)Client.Invoke("Files.GetDirectory", args);
+            JsonObject query = (JsonObject)Client.Invoke("Files.GetDirectory", args);
+
+            List<string> list = new List<string>();
+
+            foreach (JsonObject item in (JsonArray)query["directories"])
+            {
+                list.Add(item["file"].ToString());
+            }
+
+            return list;
         }
 
         public Image GetImageFromThumbnail(String Thumbnail)
