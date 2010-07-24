@@ -64,26 +64,54 @@ namespace XbmcJson
             Client.Invoke("AudioPlayer.Forward");
         }
 
-        public int GetTimePlayed()
+        public int GetTimePlayedSeconds()
         {
-            JsonObject result = (JsonObject)Client.Invoke("AudioPlayer.GetTime");
-            return Convert.ToInt32(result["time"]);
+            JsonObject query = (JsonObject)Client.Invoke("AudioPlayer.GetTime");
+
+            if(query["time"] != null)
+                return Convert.ToInt32(query["time"]);
+            else
+                return -1;
         }
 
-        public int GetTimeTotal()
+        public int GetTimeTotalSeconds()
         {
-            JsonObject result = (JsonObject)Client.Invoke("AudioPlayer.GetTime");
-            return Convert.ToInt32(result["total"]);
+            JsonObject query = (JsonObject)Client.Invoke("AudioPlayer.GetTime");
+
+            if (query["total"] != null)
+                return Convert.ToInt32(query["total"]);
+            else
+                return -1;
         }
 
         public int GetTimePlayedMs()
         {
-            return Convert.ToInt32(Client.Invoke("AudioPlayer.GetTimeMS"));
+            JsonObject query = (JsonObject)Client.Invoke("AudioPlayer.GetTimeMs");
+
+            if (query["time"] != null)
+                return Convert.ToInt32(query["time"]);
+            else
+                return -1;
+        }
+
+        public int GetTimeTotalMs()
+        {
+            JsonObject query = (JsonObject)Client.Invoke("AudioPlayer.GetTimeMs");
+
+            if (query["total"] != null)
+                return Convert.ToInt32(query["total"]);
+            else
+                return -1;
         }
 
         public float GetPercentagePlayed()
         {
-           return (float)Convert.ToDecimal(Client.Invoke("AudioPlayer.GetPercentage"));
+           JsonObject query = (JsonObject)Client.Invoke("AudioPlayer.GetPercentage");
+
+           if (query != null)
+               return (float)Convert.ToDouble(query);
+           else
+               return -1;
         }
 
         public void SeekTime(int timeInSeconds)
@@ -93,6 +121,12 @@ namespace XbmcJson
 
         public void SeekPercentage(float percentage)
         {
+            if (percentage < 0)
+                percentage = 0;
+
+            if (percentage > 100)
+                percentage = 100;
+
             Client.Invoke("AudioPlayer.SeekPercentage", percentage);
         }
 

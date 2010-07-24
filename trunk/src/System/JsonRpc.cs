@@ -24,9 +24,12 @@ namespace XbmcJson
             JsonObject query = (JsonObject)Client.Invoke("JSONRPC.Introspect", args);
             List<JsonMethod> list = new List<JsonMethod>();
 
-            foreach (JsonObject item in (JsonArray)query["commands"])
+            if (query["commands"] != null)
             {
-                list.Add(JsonMethod.JsonMethodFromJsonObject(item));
+                foreach (JsonObject item in (JsonArray)query["commands"])
+                {
+                    list.Add(JsonMethod.JsonMethodFromJsonObject(item));
+                }
             }
 
             return list;
@@ -35,18 +38,24 @@ namespace XbmcJson
         public int GetVersion()
         {
             JsonObject query = (JsonObject)Client.Invoke("JSONRPC.Version");
-            return Convert.ToInt32(query["version"]);
+
+            if (query["version"] != null)
+                return Convert.ToInt32(query["version"]);
+            else
+                return -1;
         }
 
         public List<string> GetPermissions()
         {
             JsonObject query = (JsonObject)Client.Invoke("JSONRPC.Permission");
-
             List<string> list = new List<string>();
 
-            foreach (string item in ((JsonArray)query["permission"]))
+            if (query["permission"] != null)
             {
-                list.Add(item);
+                foreach (string item in ((JsonArray)query["permission"]))
+                {
+                    list.Add(item);
+                }
             }
 
             return list;

@@ -1,4 +1,6 @@
-﻿namespace XbmcJson
+﻿using Jayrock.Json;
+
+namespace XbmcJson
 {
     public class XbmcStatus
     {
@@ -14,14 +16,21 @@
         {
             get
             {
-                if ((string)Client.Invoke("JSONRPC.Ping") == "pong")
+                JsonObject query = (JsonObject)Client.Invoke("JSONRPC.Ping");
+
+                if (query != null)
                 {
-                    isConnected = true;
+                    if ((string)Client.Invoke("JSONRPC.Ping") == "pong")
+                    {
+                        isConnected = true;
+                    }
+                    else
+                    {
+                        isConnected = false;
+                    }
                 }
                 else
-                {
                     isConnected = false;
-                }
 
                 return isConnected;
             }
