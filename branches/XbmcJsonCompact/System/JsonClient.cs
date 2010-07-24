@@ -127,14 +127,19 @@ namespace XbmcJson
                 call["id"] = ++_id;
 
                 if(DebugEnabled)
-                    DebugLogger.WriteLog("Invoke: " + call.ToString());
+                    DebugLog.WriteLog("Invoke: " + call.ToString());
 
                 writer.Write(call.ToString());
             }
             using (var response = request.GetResponse())
             using (var stream2 = response.GetResponseStream())
             using (var reader = new StreamReader(stream2, Encoding.UTF8))
-                return OnResponse(reader, returnType);
+            {
+                object res = OnResponse(reader, returnType);
+                if (DebugEnabled)
+                    DebugLog.WriteLog("Response: " + res.ToString());
+                return res;
+            } 
         }
 
         private object OnResponse(StreamReader reader, Type returnType)

@@ -7,7 +7,7 @@
     <ProjectGuid>{C0BECD49-D131-4AC2-BCEC-09CB11247A8B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>XbmcJsonCompact</RootNamespace>
+    <RootNamespace>XbmcJson</RootNamespace>
     <AssemblyName>XbmcJsonCompact</AssemblyName>
     <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PlatformFamilyName>PocketPC</PlatformFamilyName>
@@ -72,6 +72,7 @@
     <Compile Include="Media\Song.cs" />
     <Compile Include="Media\TvShow.cs" />
     <Compile Include="Player\AudioPlayer.cs" />
+    <Compile Include="Player\NowPlaying.cs" />
     <Compile Include="Player\PicturePlayer.cs" />
     <Compile Include="Player\Player.cs" />
     <Compile Include="Player\VideoPlayer.cs" />
@@ -80,7 +81,7 @@
     <Compile Include="Playlist\VideoPlaylist.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="System\Control.cs" />
-    <Compile Include="System\DebugLogger.cs" />
+    <Compile Include="System\DebugLog.cs" />
     <Compile Include="System\Files.cs" />
     <Compile Include="System\JsonClient.cs" />
     <Compile Include="System\JsonRpc.cs" />

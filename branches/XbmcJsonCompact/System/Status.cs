@@ -17,11 +17,11 @@ namespace XbmcJson
         {
             get
             {
-                JObject query = (JObject)Client.Invoke("JSONRPC.Ping");
+                string query = (string)Client.Invoke("JSONRPC.Ping");
 
                 if (query != null)
                 {
-                    if ((string)Client.Invoke("JSONRPC.Ping") == "pong")
+                    if (query == "pong")
                     {
                         isConnected = true;
                     }
