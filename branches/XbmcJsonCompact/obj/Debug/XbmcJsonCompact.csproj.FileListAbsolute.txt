@@ -1,1 +1,6 @@
 C:\Users\Johnny\Documents\XbmcJson\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Johnny\Documents\XbmcJson\bin\Debug\XbmcJsonCompact.dll
+C:\Users\Johnny\Documents\XbmcJson\bin\Debug\XbmcJsonCompact.pdb
+C:\Users\Johnny\Documents\XbmcJson\bin\Debug\Newtonsoft.Json.Compact.dll
+C:\Users\Johnny\Documents\XbmcJson\obj\Debug\XbmcJsonCompact.dll
+C:\Users\Johnny\Documents\XbmcJson\obj\Debug\XbmcJsonCompact.pdb
