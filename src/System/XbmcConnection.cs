@@ -3,8 +3,7 @@
 namespace XbmcJson
 {
     public class XbmcConnection
-    {
-       
+    {   
        public Uri XbmcUri;
        public string XbmcIp;
        public int XbmcPort;
