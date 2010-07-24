@@ -32,9 +32,12 @@ namespace XbmcJson
             JsonObject query = (JsonObject)Client.Invoke("Files.GetSources", args);
             List<Share> list = new List<Share>();
 
-            foreach(JsonObject item in (JsonArray)query["shares"])
+            if (query["shares"] != null)
             {
-                list.Add(Share.ShareFromJsonObject(item));
+                foreach (JsonObject item in (JsonArray)query["shares"])
+                {
+                    list.Add(Share.ShareFromJsonObject(item));
+                }
             }
 
             return list;
@@ -43,7 +46,11 @@ namespace XbmcJson
         public string Download(string file)
         {
             JsonObject query = (JsonObject)Client.Invoke("Files.Download", file);
-            return query["path"].ToString();
+
+            if (query["path"] != null)
+                return query["path"].ToString();
+            else
+                return "";
         }
 
         public List<string> GetDirectory(string directory, string media)
@@ -54,12 +61,14 @@ namespace XbmcJson
             args["media"] = media;
 
             JsonObject query = (JsonObject)Client.Invoke("Files.GetDirectory", args);
-
             List<string> list = new List<string>();
 
-            foreach (JsonObject item in (JsonArray)query["directories"])
+            if (query["directories"] != null)
             {
-                list.Add(item["file"].ToString());
+                foreach (JsonObject item in (JsonArray)query["directories"])
+                {
+                    list.Add(item["file"].ToString());
+                }
             }
 
             return list;

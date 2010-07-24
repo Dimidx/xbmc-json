@@ -17,9 +17,12 @@ namespace XbmcJson
             JsonObject query = (JsonObject)Client.Invoke("AudioLibrary.GetArtists");
             List<Artist> list = new List<Artist>();
 
-            foreach (JsonObject item in (JsonArray)query["artists"])
+            if (query["artists"] != null)
             {
-                list.Add(Artist.ArtistFromJsonObject(item));
+                foreach (JsonObject item in (JsonArray)query["artists"])
+                {
+                    list.Add(Artist.ArtistFromJsonObject(item));
+                }
             }
 
             return list;
@@ -30,9 +33,12 @@ namespace XbmcJson
             JsonObject query = (JsonObject)Client.Invoke("AudioLibrary.GetAlbums");
             List<Album> list = new List<Album>();
 
-            foreach (JsonObject item in (JsonArray)query["albums"])
+            if (query["albums"] != null)
             {
-                list.Add(Album.AlbumFromJsonObject(item));
+                foreach (JsonObject item in (JsonArray)query["albums"])
+                {
+                    list.Add(Album.AlbumFromJsonObject(item));
+                }
             }
 
             return list;
@@ -46,15 +52,18 @@ namespace XbmcJson
             JsonObject query = (JsonObject)Client.Invoke("AudioLibrary.GetAlbums", args);
             List<Album> list = new List<Album>();
 
-            foreach (JsonObject item in (JsonArray)query["albums"])
+            if (query["albums"] != null)
             {
-                list.Add(Album.AlbumFromJsonObject(item));
+                foreach (JsonObject item in (JsonArray)query["albums"])
+                {
+                    list.Add(Album.AlbumFromJsonObject(item));
+                }
             }
 
             return list;
         }
 
-        public List<Album> GetAlbumsByGenre(string genre)
+       public List<Album> GetAlbumsByGenre(string genre)
        {
            var args = new JsonObject();
            args["genre"] = genre;
@@ -62,9 +71,12 @@ namespace XbmcJson
            JsonObject query = (JsonObject)Client.Invoke("AudioLibrary.GetAlbums", args);
            List<Album> list = new List<Album>();
 
-           foreach (JsonObject item in (JsonArray)query["albums"])
+           if (query["albums"] != null)
            {
-               list.Add(Album.AlbumFromJsonObject(item));
+               foreach (JsonObject item in (JsonArray)query["albums"])
+               {
+                   list.Add(Album.AlbumFromJsonObject(item));
+               }
            }
 
            return list;
@@ -74,10 +86,13 @@ namespace XbmcJson
        {
            JsonObject query = (JsonObject)Client.Invoke("AudioLibrary.GetSongs");
            List<Song> list = new List<Song>();
-           DebugLogger.WriteLog(query.ToString());
-           foreach (JsonObject item in (JsonArray)query["songs"])
+
+           if (query["songs"] != null)
            {
-               list.Add(Song.SongFromJsonObject(item));
+               foreach (JsonObject item in (JsonArray)query["songs"])
+               {
+                   list.Add(Song.SongFromJsonObject(item));
+               }
            }
 
            return list;
@@ -91,9 +106,12 @@ namespace XbmcJson
             JsonObject query = (JsonObject)Client.Invoke("AudioLibrary.GetSongs", args);
             List<Song> list = new List<Song>();
 
-            foreach (JsonObject item in (JsonArray)query["songs"])
+            if (query["songs"] != null)
             {
-                list.Add(Song.SongFromJsonObject(item));
+                foreach (JsonObject item in (JsonArray)query["songs"])
+                {
+                    list.Add(Song.SongFromJsonObject(item));
+                }
             }
 
             return list;
@@ -107,9 +125,12 @@ namespace XbmcJson
             JsonObject query = (JsonObject)Client.Invoke("AudioLibrary.GetSongs", args);
             List<Song> list = new List<Song>();
 
-            foreach (JsonObject item in (JsonArray)query["songs"])
+            if (query["songs"] != null)
             {
-                list.Add(Song.SongFromJsonObject(item));
+                foreach (JsonObject item in (JsonArray)query["songs"])
+                {
+                    list.Add(Song.SongFromJsonObject(item));
+                }
             }
 
             return list;
@@ -123,9 +144,12 @@ namespace XbmcJson
             JsonObject query = (JsonObject)Client.Invoke("AudioLibrary.GetSongs", args);
             List<Song> list = new List<Song>();
 
-            foreach (JsonObject item in (JsonArray)query["songs"])
+            if (query["songs"] != null)
             {
-                list.Add(Song.SongFromJsonObject(item));
+                foreach (JsonObject item in (JsonArray)query["songs"])
+                {
+                    list.Add(Song.SongFromJsonObject(item));
+                }
             }
 
             return list;
