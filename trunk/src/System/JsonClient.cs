@@ -109,7 +109,12 @@ namespace XbmcJson
             using (var response = GetWebResponse(request))
             using (var stream2 = response.GetResponseStream())
             using (var reader = new StreamReader(stream2, Encoding.UTF8))
-                return OnResponse(JsonText.CreateReader(reader), returnType);
+            {
+                object res = OnResponse(JsonText.CreateReader(reader), returnType);
+                if (DebugEnabled)
+                    DebugLogger.WriteLog("Response: " + res.ToString());
+                return res;
+            }
         }
 
         private object OnResponse(JsonReader reader, Type returnType)
