@@ -1,4 +1,5 @@
 ﻿using Jayrock.Json;
+using System.Collections.Generic;
 
 namespace XbmcJson
 {
@@ -29,13 +30,20 @@ namespace XbmcJson
             Client.Invoke("Playlist.Destroy", args);
         }
 
-        public JsonObject GetItems(string playlist)
+        public List<PlaylistItem> GetItems(string playlist)
         {
             var args = new JsonObject();
-
             args["playlist"] = playlist;
 
-            return (JsonObject)Client.Invoke("Playlist.GetItems", args);
+            JsonObject query = (JsonObject)Client.Invoke("Playlist.GetItems", args);
+            List<PlaylistItem> list = new List<PlaylistItem>();
+
+            foreach (JsonObject item in (JsonArray)query["items"])
+            {
+                list.Add(PlaylistItem.PlaylistItemFromJsonObject(item));
+            }
+
+            return list;
         }
 
         public void Add(string playlist, string file = null, int? songId = null, int? artistId = null, int? albumId = null)

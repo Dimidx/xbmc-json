@@ -74,7 +74,7 @@ namespace XbmcJson
        {
            JsonObject query = (JsonObject)Client.Invoke("AudioLibrary.GetSongs");
            List<Song> list = new List<Song>();
-
+           DebugLogger.WriteLog(query.ToString());
            foreach (JsonObject item in (JsonArray)query["songs"])
            {
                list.Add(Song.SongFromJsonObject(item));

@@ -1,4 +1,6 @@
 ﻿using Jayrock.Json;
+using System.Collections.Generic;
+using System;
 
 namespace XbmcJson
 {
@@ -11,25 +13,43 @@ namespace XbmcJson
             Client = client;
         }
 
-        public JsonObject Introspect(bool getDescriptions = true, bool getPermissions = true, bool filterByTransport = true)
+        public List<JsonMethod> Introspect()
         {
             var args = new JsonObject();
 
-            args["getdescriptions"] = getDescriptions;
-            args["getpermissions"] = getPermissions;
-            args["filterbytransport"] = filterByTransport;
+            args["getdescriptions"] = true;
+            args["getpermissions"] = true;
+            args["filterbytransport"] = true;
 
-            return (JsonObject)Client.Invoke("JSONRPC.Introspect", args);
+            JsonObject query = (JsonObject)Client.Invoke("JSONRPC.Introspect", args);
+            List<JsonMethod> list = new List<JsonMethod>();
+
+            foreach (JsonObject item in (JsonArray)query["commands"])
+            {
+                list.Add(JsonMethod.JsonMethodFromJsonObject(item));
+            }
+
+            return list;
         }
 
-        public JsonObject Version()
+        public int GetVersion()
         {
-            return (JsonObject)Client.Invoke("JSONRPC.Version");
+            JsonObject query = (JsonObject)Client.Invoke("JSONRPC.Version");
+            return Convert.ToInt32(query["version"]);
         }
 
-        public JsonObject Permission()
+        public List<string> GetPermissions()
         {
-            return (JsonObject)Client.Invoke("JSONRPC.Permission");
+            JsonObject query = (JsonObject)Client.Invoke("JSONRPC.Permission");
+
+            List<string> list = new List<string>();
+
+            foreach (string item in ((JsonArray)query["permission"]))
+            {
+                list.Add(item);
+            }
+
+            return list;
         }
 
         public string Ping()

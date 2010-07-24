@@ -54,6 +54,8 @@
     <Compile Include="Media\Album.cs" />
     <Compile Include="Media\Artist.cs" />
     <Compile Include="Library\AudioLibrary.cs" />
+    <Compile Include="Media\JsonMethod.cs" />
+    <Compile Include="Media\PlaylistItem.cs" />
     <Compile Include="Player\AudioPlayer.cs" />
     <Compile Include="Playlist\AudioPlaylist.cs" />
     <Compile Include="System\Control.cs" />

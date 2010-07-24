@@ -16,7 +16,7 @@ namespace XbmcJson
 
         public static void WriteLog(String logContent)
         {
-            using (StreamWriter logWriter = new StreamWriter(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\xbmc remote.log", true))
+            using (StreamWriter logWriter = new StreamWriter(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\xbmcjson debug.log", true))
             {
                 DateTime dateTime = DateTime.Now;
                 logWriter.WriteLine("{0:G}", dateTime + " - " + logContent);
