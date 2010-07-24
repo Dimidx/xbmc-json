@@ -48,7 +48,7 @@ namespace XbmcJson
             if (fields != null)
                 args["fields"] = fields;
             else
-                args["fields"] = new string[] { "plot", "genre", "year", "runtime", "rating"};
+                args["fields"] = new string[] { "plot", "genre", "year", "rating"};
             if (sortMethod != null)
                 args["sortmethod"] = sortMethod;
             if (sortOrder != null)
