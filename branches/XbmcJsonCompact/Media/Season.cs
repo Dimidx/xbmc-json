@@ -21,7 +21,12 @@ namespace XbmcJson
 
         public static Season SeasonFromJsonObject(JObject item)
         {
-            Season e = new Season(item["label"].Value<JValue>().Value.ToString(), (item["thumbnail"].HasValues == true) ? item["thumbnail"].Value<JValue>().Value.ToString() : "", (item["genre"].HasValues == true) ? item["genre"].Value<JValue>().Value.ToString() : "", (item["year"].HasValues == true) ? Convert.ToInt32(item["year"].Value<JValue>().Value) : 0, (item["rating"].HasValues == true) ? (float)Convert.ToDouble(item["rating"].Value<JValue>().Value) : 0);
+            Season e = new Season(
+                item["label"].Value<JValue>().Value.ToString(), 
+                (item["thumbnail"] != null) ? item["thumbnail"].Value<JValue>().Value.ToString() : "", 
+                (item["genre"] != null) ? item["genre"].Value<JValue>().Value.ToString() : "", 
+                (item["year"] != null) ? Convert.ToInt32(item["year"].Value<JValue>().Value) : 0, 
+                (item["rating"] != null) ? (float)Convert.ToDouble(item["rating"].Value<JValue>().Value) : 0);
             return e;
         }
     }

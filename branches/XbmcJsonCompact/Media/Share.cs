@@ -16,7 +16,9 @@ namespace XbmcJson
 
         public static Share ShareFromJsonObject(JObject item)
         {
-            Share e = new Share(item["file"].Value<JValue>().Value.ToString(), (item["label"].HasValues == true) ? item["label"].Value<JValue>().Value.ToString() : "");
+            Share e = new Share(
+                item["file"].Value<JValue>().Value.ToString(),
+                (item["label"] != null) ? item["label"].Value<JValue>().Value.ToString() : "");
             return e;
         }
     }

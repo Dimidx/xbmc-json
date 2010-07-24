@@ -25,9 +25,12 @@ namespace XbmcJson
             JObject query = (JObject)Client.Invoke("JSONRPC.Introspect", args);
             List<JsonMethod> list = new List<JsonMethod>();
 
-            foreach (JObject item in (JArray)query["commands"])
+            if (query["commands"] != null)
             {
-                list.Add(JsonMethod.JsonMethodFromJsonObject(item));
+                foreach (JObject item in (JArray)query["commands"])
+                {
+                    list.Add(JsonMethod.JsonMethodFromJsonObject(item));
+                }
             }
 
             return list;
@@ -45,9 +48,12 @@ namespace XbmcJson
 
             List<string> list = new List<string>();
 
-            foreach (string item in ((JArray)query["permission"]))
+            if (query["permission"] != null)
             {
-                list.Add(item);
+                foreach (string item in ((JArray)query["permission"]))
+                {
+                    list.Add(item);
+                }
             }
 
             return list;

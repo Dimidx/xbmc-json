@@ -30,7 +30,21 @@ namespace XbmcJson
 
         public static Movie MovieFromJsonObject(JObject item)
         {
-            Movie e = new Movie(Convert.ToInt32(item["movieid"].Value<JValue>().Value), item["file"].Value<JValue>().Value.ToString(), item["label"].Value<JValue>().Value.ToString(), (item["thumbnail"].HasValues == true) ? item["thumbnail"].Value<JValue>().Value.ToString() : "", (item["plot"].HasValues == true) ? item["plot"].Value<JValue>().Value.ToString() : "", (item["director"].HasValues == true) ? item["director"].Value<JValue>().Value.ToString() : "", (item["writer"].HasValues == true) ? item["writer"].Value<JValue>().Value.ToString() : "", (item["studio"].HasValues == true) ? item["studio"].Value<JValue>().Value.ToString() : "", (item["genre"].HasValues == true) ? item["genre"].Value<JValue>().Value.ToString() : "", (item["year"].HasValues == true) ? Convert.ToInt32(item["year"].Value<JValue>().Value) : 0, (item["runtime"].HasValues == true) ? item["runtime"].Value<JValue>().Value.ToString() : "", (item["rating"].HasValues == true) ? (float)Convert.ToDouble(item["rating"].Value<JValue>().Value) : 0, (item["tagline"].HasValues == true) ? item["tagline"].Value<JValue>().Value.ToString() : "", (item["plotoutline"].HasValues == true) ? item["plotoutline"].Value<JValue>().Value.ToString() : "");
+            Movie e = new Movie(
+                Convert.ToInt32(item["movieid"].Value<JValue>().Value), 
+                item["file"].Value<JValue>().Value.ToString(), 
+                item["label"].Value<JValue>().Value.ToString(), 
+                (item["thumbnail"] != null) ? item["thumbnail"].Value<JValue>().Value.ToString() : "", 
+                (item["plot"] != null) ? item["plot"].Value<JValue>().Value.ToString() : "", 
+                (item["director"] != null) ? item["director"].Value<JValue>().Value.ToString() : "", 
+                (item["writer"] != null) ? item["writer"].Value<JValue>().Value.ToString() : "", 
+                (item["studio"] != null) ? item["studio"].Value<JValue>().Value.ToString() : "", 
+                (item["genre"] != null) ? item["genre"].Value<JValue>().Value.ToString() : "", 
+                (item["year"] != null) ? Convert.ToInt32(item["year"].Value<JValue>().Value) : 0, 
+                (item["runtime"] != null) ? item["runtime"].Value<JValue>().Value.ToString() : "", 
+                (item["rating"] != null) ? (float)Convert.ToDouble(item["rating"].Value<JValue>().Value) : 0, 
+                (item["tagline"] != null) ? item["tagline"].Value<JValue>().Value.ToString() : "", 
+                (item["plotoutline"] != null) ? item["plotoutline"].Value<JValue>().Value.ToString() : "");
             return e;
         }
     }

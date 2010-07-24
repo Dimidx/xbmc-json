@@ -17,7 +17,10 @@ namespace XbmcJson
 
         public static JsonMethod JsonMethodFromJsonObject(JObject item)
         {
-            JsonMethod e = new JsonMethod(item["command"].Value<JValue>().Value.ToString(), item["description"].Value<JValue>().Value.ToString(), item["permission"].Value<JValue>().Value.ToString());
+            JsonMethod e = new JsonMethod(
+                item["command"].Value<JValue>().Value.ToString(), 
+                item["description"].Value<JValue>().Value.ToString(), 
+                item["permission"].Value<JValue>().Value.ToString());
             return e;
         }
     }

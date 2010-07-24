@@ -33,9 +33,12 @@ namespace XbmcJson
             JObject query = (JObject)Client.Invoke("Files.GetSources", args);
             List<Share> list = new List<Share>();
 
-            foreach(JObject item in (JArray)query["shares"])
+            if (query["shares"] != null)
             {
-                list.Add(Share.ShareFromJsonObject(item));
+                foreach (JObject item in (JArray)query["shares"])
+                {
+                    list.Add(Share.ShareFromJsonObject(item));
+                }
             }
 
             return list;
@@ -58,9 +61,12 @@ namespace XbmcJson
 
             List<string> list = new List<string>();
 
-            foreach (JObject item in (JArray)query["directories"])
+            if (query["directories"] != null)
             {
-                list.Add(item["file"].ToString());
+                foreach (JObject item in (JArray)query["directories"])
+                {
+                    list.Add(item["file"].ToString());
+                }
             }
 
             return list;

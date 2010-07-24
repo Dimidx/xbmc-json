@@ -147,7 +147,7 @@ namespace XbmcJson
             {
                 if (string.CompareOrdinal(member.Name, "error") == 0)
                 {
-                    var errorObject = member.Value<JObject>();
+                    var errorObject = (JObject)member.Value;
                     if (errorObject != null)
                         OnError(errorObject);
                 }
@@ -166,12 +166,12 @@ namespace XbmcJson
             throw new Exception("Invalid JSON-RPC response. It contains neither a result nor error.");
         }
 
-        protected virtual void OnError(object errorValue)
+        protected virtual void OnError(JObject errorValue)
         {
-            var error = errorValue as IDictionary;
-            if (error != null)
-                throw new Exception(error["message"] as string);
-            throw new Exception(errorValue as string);
+            if (errorValue != null)
+                throw new Exception(errorValue["code"].Value<JValue>().Value.ToString() + ": " + errorValue["message"].Value<JValue>().Value.ToString());
+            else
+            throw new Exception("Unknown error occured");
         }
     }
 

@@ -19,7 +19,11 @@ namespace XbmcJson
 
         public static Song SongFromJsonObject(JObject item)
         {
-            Song e = new Song(Convert.ToInt32(item["artistid"].Value<JValue>().Value), item["file"].Value<JValue>().Value.ToString(), item["label"].Value<JValue>().Value.ToString(), (item["thumbnail"].HasValues == true) ? item["thumbnail"].Value<JValue>().Value.ToString() : "");
+            Song e = new Song(
+                Convert.ToInt32(item["songid"].Value<JValue>().Value), 
+                item["file"].Value<JValue>().Value.ToString(), 
+                item["label"].Value<JValue>().Value.ToString(), 
+                (item["thumbnail"] != null) ? item["thumbnail"].Value<JValue>().Value.ToString() : "");
             return e;
         }
     }

@@ -23,7 +23,15 @@ namespace XbmcJson
 
         public static Episode EpisodeFromJsonObject(JObject item)
         {
-            Episode e = new Episode(Convert.ToInt32(item["episodeid"].Value<JValue>().Value.ToString()), item["file"].Value<JValue>().Value.ToString(), item["label"].Value<JValue>().Value.ToString(), (item["thumbnail"].HasValues == true) ? item["thumbnail"].Value<JValue>().Value.ToString() : "", (item["plot"].HasValues == true) ? item["plot"].Value<JValue>().Value.ToString() : "", (item["episode"].HasValues == true) ? Convert.ToInt32(item["episode"].Value<JValue>().Value.ToString()) : 0, (item["season"].HasValues == true) ? Convert.ToInt32(item["season"].Value<JValue>().Value.ToString()) : 0, (item["episode"].HasValues == true) ? Convert.ToInt32(item["year"].Value<JValue>().Value.ToString().ToString()) : 0);
+            Episode e = new Episode(
+                Convert.ToInt32(item["episodeid"].Value<JValue>().Value.ToString()), 
+                item["file"].Value<JValue>().Value.ToString(), 
+                item["label"].Value<JValue>().Value.ToString(), 
+                (item["thumbnail"] != null) ? item["thumbnail"].Value<JValue>().Value.ToString() : "",
+                (item["plot"] != null) ? item["plot"].Value<JValue>().Value.ToString() : "",
+                (item["episode"] != null) ? Convert.ToInt32(item["episode"].Value<JValue>().Value.ToString()) : 0,
+                (item["season"] != null) ? Convert.ToInt32(item["season"].Value<JValue>().Value.ToString()) : 0,
+                (item["episode"] != null) ? Convert.ToInt32(item["year"].Value<JValue>().Value.ToString().ToString()) : 0);
             return e;
         }
     }

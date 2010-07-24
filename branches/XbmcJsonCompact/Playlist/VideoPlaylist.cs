@@ -33,9 +33,12 @@ namespace XbmcJson
             JObject query = (JObject)Client.Invoke("VideoPlaylist.GetItems");
             List<PlaylistItem> list = new List<PlaylistItem>();
 
-            foreach (JObject item in (JArray)query["items"])
+            if (query["items"] != null)
             {
-                list.Add(PlaylistItem.PlaylistItemFromJsonObject(item));
+                foreach (JObject item in (JArray)query["items"])
+                {
+                    list.Add(PlaylistItem.PlaylistItemFromJsonObject(item));
+                }
             }
 
             return list;

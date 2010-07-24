@@ -33,10 +33,13 @@ namespace XbmcJson
             
             List<Movie> list = new List<Movie>();
             JObject query = (JObject)Client.Invoke("VideoLibrary.GetMovies", args);
-
-            foreach (JObject item in (JArray)query.Value<JProperty>("movies").Value)
+            
+            if (query["movies"] != null)
             {
-                list.Add(Movie.MovieFromJsonObject(item));
+                foreach (JObject item in (JArray)query["movies"])
+                {
+                    list.Add(Movie.MovieFromJsonObject(item));
+                }
             }
 
             return list;
@@ -49,7 +52,7 @@ namespace XbmcJson
             if (fields != null)
                 args.Add(new JProperty("fields", fields));
             else
-                args.Add(new JProperty("fields", new string[] { "plot", "genre", "year", "runtime", "rating"}));
+                args.Add(new JProperty("fields", new string[] { "plot", "genre", "year", "rating"} ));
             if (sortMethod != null)
                 args.Add(new JProperty("sortmethod", sortMethod));
             if (sortOrder != null)
@@ -63,9 +66,12 @@ namespace XbmcJson
             List<TvShow> list = new List<TvShow>();
             JObject query = (JObject)Client.Invoke("VideoLibrary.GetTvShows", args);
 
-            foreach (JObject item in (JArray)query.Value<JProperty>("tvshows").Value)
+            if (query["tvshows"] != null)
             {
-                list.Add(TvShow.TvShowFromJsonObject(item));
+                foreach (JObject item in (JArray)query["tvshows"])
+                {
+                    list.Add(TvShow.TvShowFromJsonObject(item));
+                }
             }
 
             return list;
@@ -92,9 +98,13 @@ namespace XbmcJson
 
             List<Season> list = new List<Season>();
             JObject query = (JObject)Client.Invoke("VideoLibrary.GetSeasons", args);
-            foreach (JObject item in (JArray)query.Value<JProperty>("seasons").Value)
+
+            if (query["seasons"] != null)
             {
-                list.Add(Season.SeasonFromJsonObject(item));
+                foreach (JObject item in (JArray)query["seasons"])
+                {
+                    list.Add(Season.SeasonFromJsonObject(item));
+                }
             }
 
             return list;
@@ -122,10 +132,13 @@ namespace XbmcJson
 
             List<Episode> list = new List<Episode>();
             JObject query = (JObject)Client.Invoke("VideoLibrary.GetEpisodes", args);
-            DebugLogger.WriteLog(query.ToString());
-            foreach (JObject item in (JArray)query.Value<JProperty>("episodes").Value)
+
+            if (query["episodes"] != null)
             {
-                list.Add(Episode.EpisodeFromJsonObject(item));
+                foreach (JObject item in (JArray)query["episodes"])
+                {
+                    list.Add(Episode.EpisodeFromJsonObject(item));
+                }
             }
 
             return list;
@@ -151,9 +164,12 @@ namespace XbmcJson
             List<Movie> list = new List<Movie>();
             JObject query = (JObject)Client.Invoke("VideoLibrary.GetRecentlyAddedMovies", args);
 
-            foreach (JObject item in (JArray)query.Value<JProperty>("movies").Value)
+            if (query["movies"] != null)
             {
-                list.Add(Movie.MovieFromJsonObject(item));
+                foreach (JObject item in (JArray)query["movies"])
+                {
+                    list.Add(Movie.MovieFromJsonObject(item));
+                }
             }
 
             return list;
@@ -178,10 +194,13 @@ namespace XbmcJson
 
             List<Episode> list = new List<Episode>();
             JObject query = (JObject)Client.Invoke("VideoLibrary.GetRecentlyAddedEpisodes", args);
-            DebugLogger.WriteLog(query.ToString());
-            foreach (JObject item in (JArray)query.Value<JProperty>("episodes").Value)
+
+            if (query["movies"] != null)
             {
-                list.Add(Episode.EpisodeFromJsonObject(item));
+                foreach (JObject item in (JArray)query["movies"])
+                {
+                    list.Add(Episode.EpisodeFromJsonObject(item));
+                }
             }
 
             return list;

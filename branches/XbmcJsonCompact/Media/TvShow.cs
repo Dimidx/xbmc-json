@@ -23,7 +23,14 @@ namespace XbmcJson
 
         public static TvShow TvShowFromJsonObject(JObject item)
         {
-            TvShow e = new TvShow(Convert.ToInt32(item["tvshowid"]), item["label"].ToString(), (item["thumbnail"].HasValues == true) ? item["thumbnail"].ToString() : "", (item["plot"].HasValues == true) ? item["plot"].ToString() : "", (item["genre"].HasValues == true) ? item["genre"].ToString() : "", (item["year"].HasValues == true) ? Convert.ToInt32(item["year"]) : 0, (item["rating"].HasValues == true) ? (float)Convert.ToDouble(item["rating"]) : 0);
+            TvShow e = new TvShow(
+                Convert.ToInt32(item["tvshowid"]), 
+                item["label"].Value<JValue>().Value.ToString(),
+                (item["thumbnail"] != null) ? item["thumbnail"].Value<JValue>().Value.ToString() : "", 
+                (item["plot"] != null) ? item["plot"].Value<JValue>().Value.ToString() : "", 
+                (item["genre"] != null) ? item["genre"].Value<JValue>().Value.ToString() : "", 
+                (item["year"] != null) ? Convert.ToInt32(item["year"]) : 0, 
+                (item["rating"] != null) ? (float)Convert.ToDouble(item["rating"]) : 0);
             return e;
         }
     }
