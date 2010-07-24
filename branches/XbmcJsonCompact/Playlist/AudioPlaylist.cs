@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic; 
 
 namespace XbmcJson
@@ -27,6 +28,26 @@ namespace XbmcJson
         {
             Client.Invoke("AudioPlaylist.SkipNext");
         }
+
+        /*
+         * This should reheaallyy return a song instead
+         */
+        public PlaylistItem GetCurrentItem()
+        {
+            int currentId;
+            PlaylistItem currentItem = null;
+
+            JObject query = (JObject)Client.Invoke("AudioPlaylist.GetItems");
+            List<PlaylistItem> list = new List<PlaylistItem>();
+
+            if (query["items"] != null)
+            {
+                currentId = Convert.ToInt32(query["current"].Value<JValue>().Value);
+                currentItem = PlaylistItem.PlaylistItemFromJsonObject(query["items"].Value<JObject>(currentId));
+            }
+
+            return currentItem;
+        } 
 
         public List<PlaylistItem> GetItems()
         {
