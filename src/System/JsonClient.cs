@@ -102,7 +102,7 @@ namespace XbmcJson
                 call["id"] = ++_id;
 
                 if(DebugEnabled)
-                    DebugLogger.WriteLog("Invoke: " + call.ToString());
+                    DebugLog.WriteLog("Invoke: " + call.ToString());
 
                 JsonConvert.Export(call, writer);
             }
@@ -112,7 +112,7 @@ namespace XbmcJson
             {
                 object res = OnResponse(JsonText.CreateReader(reader), returnType);
                 if (DebugEnabled)
-                    DebugLogger.WriteLog("Response: " + res.ToString());
+                    DebugLog.WriteLog("Response: " + res.ToString());
                 return res;
             }
         }

@@ -57,9 +57,10 @@
     <Compile Include="Media\JsonMethod.cs" />
     <Compile Include="Media\PlaylistItem.cs" />
     <Compile Include="Player\AudioPlayer.cs" />
+    <Compile Include="Player\NowPlaying.cs" />
     <Compile Include="Playlist\AudioPlaylist.cs" />
     <Compile Include="System\Control.cs" />
-    <Compile Include="System\DebugLogger.cs" />
+    <Compile Include="System\DebugLog.cs" />
     <Compile Include="Media\Episode.cs" />
     <Compile Include="System\Files.cs" />
     <Compile Include="System\JsonClient.cs">
