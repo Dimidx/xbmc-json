@@ -63,26 +63,54 @@ namespace XbmcJson
             Client.Invoke("VideoPlayer.Forward");
         }
 
-        public int GetTimePlayed()
+        public int GetTimePlayedSeconds()
         {
-            JObject result = (JObject)Client.Invoke("VideoPlayer.GetTime");
-            return Convert.ToInt32(result["time"].Value<JValue>().Value);
+            JObject query = (JObject)Client.Invoke("VideoPlayer.GetTime");
+
+            if (query["time"] != null)
+                return Convert.ToInt32(query["time"].Value<JValue>().Value);
+            else
+                return -1;
         }
 
-        public int GetTimeTotal()
+        public int GetTimeTotalSeconds()
         {
-            JObject result = (JObject)Client.Invoke("VideoPlayer.GetTime");
-            return Convert.ToInt32(result["total"].Value<JValue>().Value);
+            JObject query = (JObject)Client.Invoke("VideoPlayer.GetTime");
+
+            if (query["total"] != null)
+                return Convert.ToInt32(query["total"].Value<JValue>().Value);
+            else
+                return -1;
         }
 
-        public int GetTimeMs()
+        public int GetTimePlayedMs()
         {
-            return Convert.ToInt32(Client.Invoke("VideoPlayer.GetTimeMS"));
+            JObject query = (JObject)Client.Invoke("VideoPlayer.GetTimeMs");
+
+            if (query["time"] != null)
+                return Convert.ToInt32(query["time"].Value<JValue>().Value);
+            else
+                return -1;
         }
 
-        public float GetPercentage()
+        public int GetTimeTotalMs()
         {
-            return (float)Convert.ToDecimal(Client.Invoke("VideoPlayer.GetPercentage"));
+            JObject query = (JObject)Client.Invoke("VideoPlayer.GetTimeMs");
+
+            if (query["total"] != null)
+                return Convert.ToInt32(query["total"].Value<JValue>().Value);
+            else
+                return -1;
+        }
+
+        public float GetPercentagePlayed()
+        {
+            JObject query = (JObject)Client.Invoke("VideoPlayer.GetPercentage");
+
+            if (query != null)
+                return (float)Convert.ToDouble(query.Value<JValue>().Value);
+            else
+                return -1;
         }
 
         public void SeekTime(int timeInSeconds)
@@ -92,7 +120,13 @@ namespace XbmcJson
 
         public void SeekPercentage(float percentage)
         {
+            if (percentage < 0)
+                percentage = 0;
+
+            if (percentage > 100)
+                percentage = 100;
+
             Client.Invoke("VideoPlayer.SeekPercentage", percentage);
-        }
+        } 
     }
 }

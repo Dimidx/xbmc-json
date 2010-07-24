@@ -47,7 +47,11 @@ namespace XbmcJson
         public string Download(string file)
         {
             JObject query = (JObject)Client.Invoke("Files.Download", file);
-            return query["path"].Value<JValue>().Value.ToString();
+
+            if (query["path"] != null)
+                return query["path"].Value<JValue>().Value.ToString();
+            else
+                return "";
         }
 
         public List<string> GetDirectory(string directory, string media)

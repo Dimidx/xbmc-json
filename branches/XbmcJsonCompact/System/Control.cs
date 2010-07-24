@@ -15,7 +15,12 @@ namespace XbmcJson
 
         public int GetVolume()
         {
-           return Convert.ToInt32(Client.Invoke("XBMC.GetVolume"));
+            JObject query = (JObject)Client.Invoke("XBMC.GetVolume");
+
+            if (query != null)
+                return Convert.ToInt32(query.Value<JValue>().Value);
+            else
+                return -1; 
         }
 
         public void SetVolume(int volume)

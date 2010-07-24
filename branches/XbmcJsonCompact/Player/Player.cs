@@ -12,31 +12,49 @@ namespace XbmcJson
             Client = client;
         }
 
-        public bool IsAudioPlayerActive()
-        {
-            JObject result = (JObject)Client.Invoke("Player.GetActivePlayers");
-            if (result["audio"].Value<JValue>().Value.ToString() == "True")
-                return true;
-            else
-                return false;
-        }
-
-        public bool IsVideoPlayerActive()
-        {
-            JObject result = (JObject)Client.Invoke("Player.GetActivePlayers");
-            if (result["video"].Value<JValue>().Value.ToString() == "True")
-                return true;
-            else
-                return false;
-        }
-
-        public bool IsPicturePlayerActive()
-        {
-            JObject result = (JObject)Client.Invoke("Player.GetActivePlayers");
-            if (result["picture"].Value<JValue>().Value.ToString() == "True")
-                return true;
-            else
-                return false;
-        }
+        public bool IsAudioPlayerActive() 
+         { 
+            JObject query = (JObject)Client.Invoke("Player.GetActivePlayers"); 
+  
+            if (query["audio"] != null) 
+            { 
+                if (query["audio"].Value<JValue>().Value.ToString() == "True") 
+                    return true; 
+                else 
+                    return false; 
+            } 
+  
+            return false; 
+         } 
+  
+         public bool IsVideoPlayerActive() 
+         { 
+             JObject query = (JObject)Client.Invoke("Player.GetActivePlayers"); 
+  
+             if (query["video"] != null) 
+             {
+                 if (query["video"].Value<JValue>().Value.ToString() == "True") 
+                     return true; 
+                 else 
+                     return false; 
+             } 
+  
+             return false; 
+         } 
+  
+         public bool IsPicturePlayerActive() 
+         { 
+             JObject query = (JObject)Client.Invoke("Player.GetActivePlayers"); 
+  
+             if (query["picture"] != null) 
+             {
+                 if (query["picture"].Value<JValue>().Value.ToString() == "True") 
+                     return true; 
+                 else 
+                     return false; 
+             } 
+  
+             return false; 
+         } 
     }
 }

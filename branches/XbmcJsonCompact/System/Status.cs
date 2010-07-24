@@ -1,4 +1,7 @@
-﻿namespace XbmcJson
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
+namespace XbmcJson
 {
     public class XbmcStatus
     {
@@ -14,16 +17,23 @@
         {
             get
             {
-                if ((string)Client.Invoke("JSONRPC.Ping") == "pong")
+                JObject query = (JObject)Client.Invoke("JSONRPC.Ping");
+
+                if (query != null)
                 {
-                    isConnected = true;
+                    if ((string)Client.Invoke("JSONRPC.Ping") == "pong")
+                    {
+                        isConnected = true;
+                    }
+                    else
+                    {
+                        isConnected = false;
+                    }
                 }
                 else
-                {
                     isConnected = false;
-                }
 
-                return isConnected;
+                return isConnected; 
             }
         }
      }

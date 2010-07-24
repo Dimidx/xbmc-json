@@ -39,7 +39,11 @@ namespace XbmcJson
         public int GetVersion()
         {
             JObject query = (JObject)Client.Invoke("JSONRPC.Version");
-            return Convert.ToInt32(query["version"].Value<JValue>().Value.ToString());
+
+            if (query["version"] != null)
+                return Convert.ToInt32(query["version"].Value<JValue>().Value);
+            else
+                return -1;
         }
 
         public List<string> GetPermissions()

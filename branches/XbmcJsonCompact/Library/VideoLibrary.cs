@@ -14,14 +14,19 @@ namespace XbmcJson
             Client = client;
         }
 
+        public List<Movie> GetMoviesAllFields(string sortMethod, string sortOrder, int? start, int? end) 
+        { 
+            string[] fields = new string[] { "plot", "director", "writer", "studio", "genre", "year", "runtime", "rating", "tagline", "plotoutline" }; 
+            return GetMovies(fields, sortMethod, sortOrder, start, end); 
+        }
+ 
+
         public List<Movie> GetMovies(string[] fields, string sortMethod, string sortOrder, int? start, int? end)
         {
             var args = new JObject();
 
             if (fields != null)
                 args.Add(new JProperty("fields", fields));
-            else
-                args.Add(new JProperty("fields", new string[] { "plot", "director", "writer", "studio", "genre", "year", "runtime", "rating", "tagline", "plotoutline" }));
             if (sortMethod != null)
                 args.Add(new JProperty("sortmethod", sortMethod));
             if (sortOrder != null)
@@ -45,14 +50,19 @@ namespace XbmcJson
             return list;
         }
 
+        public List<TvShow> GetTvShowsAllFields(string sortMethod, string sortOrder, int? start, int? end) 
+        { 
+            string[] fields = new string[] { "plot", "genre", "year", "rating"}; 
+            return GetTvShows(fields, sortMethod, sortOrder, start, end); 
+        } 
+ 
+
         public List<TvShow> GetTvShows(string[] fields, string sortMethod, string sortOrder, int? start, int? end)
         {
             var args = new JObject();
 
             if (fields != null)
                 args.Add(new JProperty("fields", fields));
-            else
-                args.Add(new JProperty("fields", new string[] { "plot", "genre", "year", "rating"} ));
             if (sortMethod != null)
                 args.Add(new JProperty("sortmethod", sortMethod));
             if (sortOrder != null)
@@ -75,6 +85,12 @@ namespace XbmcJson
             }
 
             return list;
+        }
+
+        public List<Season> GetSeasonsAllFields(int tvShowId, string sortMethod, string sortOrder, int? start, int? end) 
+        { 
+            string[] fields = new string[] { "genre", "year", "runtime", "rating" }; 
+            return GetSeasons(tvShowId, fields, sortMethod, sortOrder, start, end); 
         }
 
         public List<Season> GetSeasons(int tvShowId, string[] fields, string sortMethod, string sortOrder, int? start, int? end)
@@ -110,6 +126,12 @@ namespace XbmcJson
             return list;
         }
 
+        public List<Episode> GetEpisodesAllFields(int tvShowId, int season, string sortMethod, string sortOrder, int? start, int? end) 
+        { 
+            string[] fields = new string[] { "season", "episode", "runtime", "year", "plot" }; 
+            return GetEpisodes(tvShowId, season, fields, sortMethod, sortOrder, start, end); 
+        } 
+
         public List<Episode> GetEpisodes(int tvShowId, int season, string[] fields, string sortMethod, string sortOrder, int? start, int? end)
         {
             var args = new JObject();
@@ -144,6 +166,12 @@ namespace XbmcJson
             return list;
         }
 
+        public List<Movie> GetRecentlyAddedMoviesAllFields(string sortMethod, string sortOrder, int? start, int? end) 
+         { 
+             string[] fields = new string[] { "plot", "director", "writer", "studio", "genre", "year", "runtime", "rating", "tagline", "plotoutline" }; 
+             return GetMovies(fields, sortMethod, sortOrder, start, end); 
+         } 
+
         public List<Movie> GetRecentlyAddedMovies(string[] fields, string sortMethod, string sortOrder, int? start, int? end)
         {
             var args = new JObject();
@@ -173,6 +201,12 @@ namespace XbmcJson
             }
 
             return list;
+        }
+
+        public List<Episode> GetRecentlyAddedEpisodesAllFields(string sortMethod, string sortOrder, int? start, int? end) 
+        { 
+            string[] fields = new string[] { "season", "episode", "runtime", "year", "plot" }; 
+            return GetRecentlyAddedEpisodes(fields, sortMethod, sortOrder, start, end); 
         }
 
         public List<Episode> GetRecentlyAddedEpisodes(string[] fields, string sortMethod, string sortOrder, int? start, int? end)

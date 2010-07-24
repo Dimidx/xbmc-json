@@ -65,26 +65,54 @@ namespace XbmcJson
             Client.Invoke("AudioPlayer.Forward");
         }
 
-        public int GetTimePlayed()
+        public int GetTimePlayedSeconds()
         {
-            JObject result = (JObject)Client.Invoke("AudioPlayer.GetTime");
-            return Convert.ToInt32(result["time"].Value<JValue>().Value);
+            JObject query = (JObject)Client.Invoke("AudioPlayer.GetTime");
+
+            if (query["time"] != null)
+                return Convert.ToInt32(query["time"].Value<JValue>().Value);
+            else
+                return -1;
         }
 
-        public int GetTimeTotal()
+        public int GetTimeTotalSeconds()
         {
-            JObject result = (JObject)Client.Invoke("AudioPlayer.GetTime");
-            return Convert.ToInt32(result["total"].Value<JValue>().Value);
+            JObject query = (JObject)Client.Invoke("AudioPlayer.GetTime");
+
+            if (query["total"] != null)
+                return Convert.ToInt32(query["total"].Value<JValue>().Value);
+            else
+                return -1;
         }
 
         public int GetTimePlayedMs()
         {
-            return Convert.ToInt32(((JObject)Client.Invoke("AudioPlayer.GetTimeMS")).Value<JValue>().Value);
+            JObject query = (JObject)Client.Invoke("AudioPlayer.GetTimeMs");
+
+            if (query["time"] != null)
+                return Convert.ToInt32(query["time"].Value<JValue>().Value);
+            else
+                return -1;
+        }
+
+        public int GetTimeTotalMs()
+        {
+            JObject query = (JObject)Client.Invoke("AudioPlayer.GetTimeMs");
+
+            if (query["total"] != null)
+                return Convert.ToInt32(query["total"].Value<JValue>().Value);
+            else
+                return -1;
         }
 
         public float GetPercentagePlayed()
         {
-            return (float)Convert.ToDecimal(((JObject)Client.Invoke("AudioPlayer.GetPercentage")).Value<JValue>().Value);
+            JObject query = (JObject)Client.Invoke("AudioPlayer.GetPercentage");
+
+            if (query != null)
+                return (float)Convert.ToDouble(query.Value<JValue>().Value);
+            else
+                return -1;
         }
 
         public void SeekTime(int timeInSeconds)
@@ -94,9 +122,15 @@ namespace XbmcJson
 
         public void SeekPercentage(float percentage)
         {
-            Client.Invoke("AudioPlayer.SeekPercentage", percentage);
-        }
+            if (percentage < 0)
+                percentage = 0;
 
+            if (percentage > 100)
+                percentage = 100;
+
+            Client.Invoke("AudioPlayer.SeekPercentage", percentage);
+        } 
+ 
         public void Record()
         {
             Client.Invoke("AudioPlayer.Record");
