@@ -8,7 +8,7 @@ namespace XbmcJson
         public int _id;
         public string Label, Thumbnail;
 
-        public Artist(int id, string label, string thumbnail = "")
+        public Artist(int id, string label, string thumbnail)
         {
             _id = id;
             Label = label;

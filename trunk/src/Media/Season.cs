@@ -9,13 +9,13 @@ namespace XbmcJson
         public float Rating;
         public string Label, Thumbnail,  Genre;
 
-        public Season(string label, string thumbnail = "", string genre = "", int? year = 0, float? rating = 0)
+        public Season(string label, string thumbnail, string genre, int year, float rating)
         {
             Label = label;
             Thumbnail = thumbnail;
             Genre = genre;
-            Year = (int)year;
-            Rating = (float)rating;
+            Year = year;
+            Rating = rating;
         }
 
         public static Season SeasonFromJsonObject(JsonObject item)
@@ -24,8 +24,8 @@ namespace XbmcJson
                 item["label"].ToString(), 
                 (item["thumbnail"] != null) ? item["thumbnail"].ToString() : "", 
                 (item["genre"] != null) ? item["genre"].ToString() : "", 
-                (item["year"] != null) ? Convert.ToInt32(item["year"]) : 0, 
-                (item["rating"] != null) ? (float)Convert.ToDouble(item["rating"]) : 0
+                (item["year"] != null) ? Convert.ToInt32(item["year"]) : -1, 
+                (item["rating"] != null) ? (float)Convert.ToDouble(item["rating"]) : -1
                 );
 
             return e;

@@ -1,11 +1,13 @@
 ﻿using Jayrock.Json;
 using System.Collections.Generic;
+using System;
 
 namespace XbmcJson
 {
     public class XbmcAudioPlaylist
     {
         private JsonRpcClient Client;
+        private string[] AllAudioFields  = new string[] { "songid", "title", "artist", "genre", "year", "rating", "album" };
 
         public XbmcAudioPlaylist(JsonRpcClient client)
         {
@@ -27,11 +29,44 @@ namespace XbmcJson
             Client.Invoke("AudioPlaylist.SkipNext");
         }
 
-        public List<Song> GetItems()
+        public List<Song> GetItemsAllFields()
         {
-            //These fields aren't parsed by xbmc, always returns file, label and thumbnail only.
+            return GetItems(AllAudioFields);
+        }
+
+        public Song GetCurrentItemAllFields()
+        {
+            return GetCurrentItem(AllAudioFields);
+        }
+
+        public Song GetCurrentItem(string[] fields = null)
+        {
+            var args = new JsonObject();
+
+            if(fields !=null)
+               args["fields"] = fields;
+
+            int currentId;
+            Song currentSong = null;
+
+            JsonObject query = (JsonObject)Client.Invoke("AudioPlaylist.GetItems", args);
+            List<Song> list = new List<Song>();
+
+            if (query["items"] != null)
+            {
+                currentId = Convert.ToInt32(query["current"]);
+                currentSong = Song.SongFromJsonObject((JsonObject)((JsonArray)query["items"])[currentId]);
+            }
+
+            return currentSong;
+        } 
+
+        public List<Song> GetItems(string[] fields = null)
+        {
             JsonObject args = new JsonObject();
-            args["fields"] = new string[] { "songid", "title", "artist", "genre", "year", "rating" };
+
+            if (fields != null)
+                args["fields"] = fields;
 
             JsonObject query =  (JsonObject)Client.Invoke("AudioPlaylist.GetItems", args);
             List<Song> list = new List<Song>();

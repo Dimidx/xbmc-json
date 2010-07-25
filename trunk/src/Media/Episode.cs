@@ -8,16 +8,16 @@ namespace XbmcJson
         public int _id, EpisodeNum, Season, Year;
         public string File, Label, Thumbnail, Plot;
 
-        public Episode(int id, string file, string label, string thumbnail = "", string plot = "", int? episodeNum = 0, int? season = 0, int? year = 0)
+        public Episode(int id, string file, string label, string thumbnail, string plot, int episodeNum, int season, int year)
         {
             _id = id;
             File = file;
             Label = label;
             Thumbnail = thumbnail;
             Plot = plot;
-            EpisodeNum = (int)episodeNum;
-            Season = (int)season;
-            Year = (int)year;
+            EpisodeNum = episodeNum;
+            Season = season;
+            Year = year;
         }
 
         public static Episode EpisodeFromJsonObject(JsonObject item)
@@ -27,9 +27,9 @@ namespace XbmcJson
                 item["file"].ToString(), item["label"].ToString(), 
                 (item["thumbnail"] != null) ? item["thumbnail"].ToString() : "", 
                 (item["plot"] != null) ? item["plot"].ToString() : "", 
-                (item["episode"] != null) ? Convert.ToInt32(item["episode"]) : 0, 
-                (item["season"] != null) ? Convert.ToInt32(item["season"]) : 0, 
-                (item["episode"] != null) ? Convert.ToInt32(item["year"]) : 0
+                (item["episode"] != null) ? Convert.ToInt32(item["episode"]) : -1, 
+                (item["season"] != null) ? Convert.ToInt32(item["season"]) : -1, 
+                (item["year"] != null) ? Convert.ToInt32(item["year"]) : -1
                 );
 
             return e;
