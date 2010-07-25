@@ -5,7 +5,7 @@ namespace XbmcJson
 {
     public class DebugLog
     {
-        private static string LogName = "xbmc-json-debug";          
+        private static string LogName = "xbmc-json-debug.log";          
 
         public static void WriteLog(String logFile, String logContent)
         {
@@ -18,15 +18,7 @@ namespace XbmcJson
 
         public static void WriteLog(String logContent)
         {
-            string LogFile = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\" + LogName + ".log";
-            FileInfo f = new FileInfo(LogFile);
-
-            /* if (f.Length > 52428800)
-             {
-                 DateTime Now = DateTime.Now;
-                 string StrNow = Now.ToShortTimeString();
-                 File.Move(LogFile, Path.GetFileNameWithoutExtension(LogFile) + "-" + StrNow + ".log");
-             } */
+            string LogFile = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\" + LogName;
 
             using (StreamWriter logWriter = new StreamWriter(LogFile, true))
             {

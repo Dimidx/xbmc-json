@@ -94,6 +94,15 @@ namespace XbmcJson
             return list;
         }
 
+        public void Add(string file)
+        {
+            var args = new JObject();
+
+            args["file"] = file;
+
+            Client.Invoke("VideoPlaylist.Add", args);
+        }
+
         public void Add(string file, int? songId, int? artistId, int? albumId)
         {
             var args = new JObject();

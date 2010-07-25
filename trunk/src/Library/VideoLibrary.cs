@@ -18,12 +18,17 @@ namespace XbmcJson
             Client = client;
         }
 
-        public List<Movie> GetMoviesAllFields(string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
+        public List<Movie> GetMoviesAllFields(string sortMethod, string sortOrder, int? start, int? end)
         {
             return GetMovies(AllMovieFields, sortMethod, sortOrder, start, end);
         }
 
-        public List<Movie> GetMovies(string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
+        public List<Movie> GetMovies()
+        {
+            return GetMovies(null, null, null, null, null);
+        }
+
+        public List<Movie> GetMovies(string[] fields, string sortMethod, string sortOrder, int? start, int? end)
         {
             var args = new JObject();
 
@@ -52,12 +57,18 @@ namespace XbmcJson
             return list;
         }
 
-        public List<TvShow> GetTvShowsAllFields(string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
+        public List<TvShow> GetTvShowsAllFields(string sortMethod, string sortOrder, int? start, int? end)
         {
             return GetTvShows(AllTvShowFields, sortMethod, sortOrder, start, end);
         }
 
-        public List<TvShow> GetTvShows(string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
+        public List<TvShow> GetTvShows()
+        {
+            return GetTvShows(null, null, null, null, null);
+        }
+
+
+        public List<TvShow> GetTvShows(string[] fields, string sortMethod, string sortOrder, int? start, int? end)
         {
             var args = new JObject();
 
@@ -87,12 +98,17 @@ namespace XbmcJson
             return list;
         }
 
-        public List<Season> GetSeasonsAllFields(int tvShowId, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
+        public List<Season> GetSeasonsAllFields(int tvShowId, string sortMethod, string sortOrder, int? start, int? end)
         {
             return GetSeasons(tvShowId, AllSeasonFields, sortMethod, sortOrder, start, end);
         }
 
-        public List<Season> GetSeasons(int tvShowId, string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
+        public List<Season> GetSeasons(int tvShowId)
+        {
+            return GetSeasons(tvShowId, null, null, null, null, null);
+        }
+
+        public List<Season> GetSeasons(int tvShowId, string[] fields, string sortMethod, string sortOrder, int? start, int? end)
         {
             var args = new JObject();
 
@@ -123,12 +139,17 @@ namespace XbmcJson
             return list;
         }
 
-        public List<Episode> GetEpisodesAllFields(int tvShowId, int season, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
+        public List<Episode> GetEpisodesAllFields(int tvShowId, int season, string sortMethod, string sortOrder, int? start, int? end)
         {
             return GetEpisodes(tvShowId, season, AllEpsiodeFields, sortMethod, sortOrder, start, end);
         }
 
-        public List<Episode> GetEpisodes(int tvShowId, int season, string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
+        public List<Episode> GetEpisodes(int tvShowId, int season)
+        {
+            return GetEpisodes(tvShowId, season, null, null, null, null, null);
+        }
+
+        public List<Episode> GetEpisodes(int tvShowId, int season, string[] fields, string sortMethod, string sortOrder, int? start, int? end)
         {
             var args = new JObject();
 
@@ -160,12 +181,17 @@ namespace XbmcJson
             return list;
         }
 
-        public List<Movie> GetRecentlyAddedMoviesAllFields(string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
+        public List<Movie> GetRecentlyAddedMoviesAllFields(string sortMethod, string sortOrder, int? start, int? end)
         {
             return GetMovies(AllMovieFields, sortMethod, sortOrder, start, end);
         }
 
-        public List<Movie> GetRecentlyAddedMovies(string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
+        public List<Movie> GetRecentlyAddedMovies()
+        {
+            return GetRecentlyAddedMovies(null, null, null, null, null);
+        }
+
+        public List<Movie> GetRecentlyAddedMovies(string[] fields, string sortMethod, string sortOrder, int? start, int? end)
         {
             var args = new JObject();
 
@@ -194,12 +220,17 @@ namespace XbmcJson
             return list;
         }
 
-        public List<Episode> GetRecentlyAddedEpisodesAllFields(string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
+        public List<Episode> GetRecentlyAddedEpisodesAllFields(string sortMethod, string sortOrder, int? start, int? end)
         {
             return GetRecentlyAddedEpisodes(AllEpsiodeFields, sortMethod, sortOrder, start, end);
         }
 
-        public List<Episode> GetRecentlyAddedEpisodes(string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
+        public List<Episode> GetRecentlyAddedEpisodes()
+        {
+            return GetRecentlyAddedEpisodes(null, null, null, null, null);
+        }
+
+        public List<Episode> GetRecentlyAddedEpisodes(string[] fields, string sortMethod, string sortOrder, int? start, int? end)
         {
             var args = new JObject();
 
@@ -228,45 +259,7 @@ namespace XbmcJson
             return list;
         }
 
-        /* I need to get some music videos before I can code and test this >.<
-        public JObject GetMusicVideos(int artistId, int albumId, string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
-        {
-            var args = new JObject();
-
-            args["artistid"] = artistId;
-            args["albumId"] = albumId;
-            if (fields != null)
-                args["fields"] = fields;
-            if (sortMethod != null)
-                args["sortmethod"] = sortMethod;
-            if (sortOrder != null)
-                args["sortorder"] = sortOrder;
-            if (start != null)
-                args["start"] = start;
-            if (end != null)
-                args["end"] = end;
-
-            return (JObject)Client.Invoke("VideoLibrary.GetMusicVideos", args);
-        }
-
-        public JObject GetRecentlyAddedMusicVideos(string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
-        {
-            var args = new JObject();
-
-            if (fields != null)
-                args["fields"] = fields;
-            if (sortMethod != null)
-                args["sortmethod"] = sortMethod;
-            if (sortOrder != null)
-                args["sortorder"] = sortOrder;
-            if (start != null)
-                args["start"] = start;
-            if (end != null)
-                args["end"] = end;
-
-            return (JObject)Client.Invoke("VideoLibrary.GetRecentlyAddedMusicVideos", args);
-        } 
-        */
+        //Need to add music videos
 
         public void ScanForContent()
         {

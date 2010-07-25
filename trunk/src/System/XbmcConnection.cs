@@ -33,7 +33,7 @@ namespace XbmcJson
             XbmcUser = xbmcUser;
             XbmcPass = xbmcPass;
             XbmcUri = new Uri("http://" + XbmcIp + ":" + XbmcPort + "/jsonrpc");
-            Client = new JsonRpcClient(XbmcUri, XbmcUser, XbmcPass, true);
+            Client = new JsonRpcClient(XbmcUri, XbmcUser, XbmcPass);
 
             AudioLibrary = new XbmcAudioLibrary(Client);
             AudioPlayer = new XbmcAudioPlayer(Client);

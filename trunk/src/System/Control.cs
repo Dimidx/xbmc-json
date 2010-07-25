@@ -49,7 +49,7 @@ namespace XbmcJson
             Client.Invoke("XBMC.Quit");
         }
 
-        public void StartSlideShow(string directory, bool random = true, bool recursive = true)
+        public void StartSlideShow(string directory, bool random, bool recursive)
         {
             var args = new JObject();
 
@@ -60,7 +60,7 @@ namespace XbmcJson
             Client.Invoke("XBMC.StartSlideShow", args);
         }
 
-        public void Log(string message, string level = "info")
+        public void Log(string message, string level)
         {
             var args = new JObject();
 
