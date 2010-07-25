@@ -18,7 +18,11 @@ namespace XbmcJson
 
         public static void WriteLog(String logContent)
         {
+            #if PocketPC
+            string LogFile = (System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase) + "\\" + LogName).Replace("file:\\", "");
+            #else
             string LogFile = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\" + LogName;
+            #endif
 
             using (StreamWriter logWriter = new StreamWriter(LogFile, true))
             {
