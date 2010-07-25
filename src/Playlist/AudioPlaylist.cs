@@ -93,7 +93,16 @@ namespace XbmcJson
             return list;
         }
 
-        public void Add(string file = null, int? songId = null, int? artistId = null, int? albumId = null)
+        public void Add(string file)
+        {
+            var args = new JObject();
+
+            args.Add(new JProperty("file", file));
+
+            Client.Invoke("AudioPlaylist.Add", args);
+        }
+
+        public void Add(string file, int? songId, int? artistId, int? albumId)
         {
             var args = new JObject();
 

@@ -50,6 +50,16 @@ namespace XbmcJson
             return list;
         }
 
+        public void Add(string playlist, string file)
+        {
+            var args = new JObject();
+
+            args.Add(new JProperty("playlist", playlist));
+            args.Add(new JProperty("file", file));
+
+            Client.Invoke("Playlist.Add", args);
+        }
+
         public void Add(string playlist, string file, int? songId, int? artistId, int? albumId)
         {
             var args = new JObject();
