@@ -1,5 +1,6 @@
 ﻿using System;
-using Jayrock.Json;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace XbmcJson
 {
@@ -20,16 +21,16 @@ namespace XbmcJson
             Rating = rating;
         }
 
-        public static Album AlbumFromJsonObject(JsonObject item)
+        public static Album AlbumFromJsonObject(JObject item)
         {
             Album e = new Album(
-                Convert.ToInt32(item["albumid"]), 
-                item["label"].ToString(), 
-                (item["thumbnail"] != null) ? item["thumbnail"].ToString() : "",
-                (item["artist"] != null) ? item["artist"].ToString() : "",
-                (item["genre"] != null) ? item["genre"].ToString() : "",
-                (item["year"] != null) ? Convert.ToInt32(item["year"]) : -1,
-                (item["rating"] != null) ? (float)Convert.ToDouble(item["rating"]) : -1
+                Convert.ToInt32(item["albumid"].Value<JValue>().Value.ToString()),
+                item["label"].Value<JValue>().Value.ToString(),
+                (item["thumbnail"] != null) ? item["thumbnail"].Value<JValue>().Value.ToString() : "",
+                (item["artist"] != null) ? item["artist"].Value<JValue>().Value.ToString() : "",
+                (item["genre"] != null) ? item["genre"].Value<JValue>().Value.ToString() : "",
+                (item["year"] != null) ? Convert.ToInt32(item["year"].Value<JValue>().Value) : -1,
+                (item["rating"] != null) ? (float)Convert.ToDouble(item["rating"].Value<JValue>().Value) : -1
                 );
 
             return e;

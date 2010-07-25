@@ -1,4 +1,5 @@
-﻿using Jayrock.Json;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System;
 
@@ -15,18 +16,18 @@ namespace XbmcJson
 
         public List<JsonMethod> Introspect()
         {
-            var args = new JsonObject();
+            var args = new JObject();
 
-            args["getdescriptions"] = true;
-            args["getpermissions"] = true;
-            args["filterbytransport"] = true;
+            args.Add(new JProperty("getdescriptions", true));
+            args.Add(new JProperty("getpermissions", true));
+            args.Add(new JProperty("filterbytransport", true));
 
-            JsonObject query = (JsonObject)Client.Invoke("JSONRPC.Introspect", args);
+            JObject query = (JObject)Client.Invoke("JSONRPC.Introspect", args);
             List<JsonMethod> list = new List<JsonMethod>();
 
             if (query["commands"] != null)
             {
-                foreach (JsonObject item in (JsonArray)query["commands"])
+                foreach (JObject item in (JArray)query["commands"])
                 {
                     list.Add(JsonMethod.JsonMethodFromJsonObject(item));
                 }
@@ -37,22 +38,23 @@ namespace XbmcJson
 
         public int GetVersion()
         {
-            JsonObject query = (JsonObject)Client.Invoke("JSONRPC.Version");
+            JObject query = (JObject)Client.Invoke("JSONRPC.Version");
 
             if (query["version"] != null)
-                return Convert.ToInt32(query["version"]);
+                return Convert.ToInt32(query["version"].Value<JValue>().Value);
             else
                 return -1;
         }
 
         public List<string> GetPermissions()
         {
-            JsonObject query = (JsonObject)Client.Invoke("JSONRPC.Permission");
+            JObject query = (JObject)Client.Invoke("JSONRPC.Permission");
+
             List<string> list = new List<string>();
 
             if (query["permission"] != null)
             {
-                foreach (string item in ((JsonArray)query["permission"]))
+                foreach (string item in ((JArray)query["permission"]))
                 {
                     list.Add(item);
                 }
@@ -63,17 +65,17 @@ namespace XbmcJson
 
         public string Ping()
         {
-            return Client.Invoke("JSONRPC.Ping").ToString();
+            return ((JObject)Client.Invoke("JSONRPC.Ping")).Value<JValue>().Value.ToString();
         }
 
         public void Announce(string sender, string message, object data = null)
         {
-            var args = new JsonObject();
+            var args = new JObject();
 
-            args["sender"] = sender;
-            args["message"] = message;
+            args.Add(new JProperty("sender", sender));
+            args.Add(new JProperty("message", message));
             if (data != null)
-                args["data"] = data;
+                args.Add(new JProperty("data", data));
 
             Client.Invoke("JSONRPC.Announce", args);
         }

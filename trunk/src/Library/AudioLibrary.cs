@@ -1,4 +1,5 @@
-﻿using Jayrock.Json;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 
 namespace XbmcJson
@@ -16,12 +17,12 @@ namespace XbmcJson
 
         public List<Artist> GetArtists()
         {
-            JsonObject query = (JsonObject)Client.Invoke("AudioLibrary.GetArtists");
+            JObject query = (JObject)Client.Invoke("AudioLibrary.GetArtists");
             List<Artist> list = new List<Artist>();
 
             if (query["artists"] != null)
             {
-                foreach (JsonObject item in (JsonArray)query["artists"])
+                foreach (JObject item in (JArray)query["artists"])
                 {
                     list.Add(Artist.ArtistFromJsonObject(item));
                 }
@@ -35,19 +36,24 @@ namespace XbmcJson
             return GetAlbums(AllAlbumFields);
         }
 
-        public List<Album> GetAlbums(string[] fields = null)
+        public List<Album> GetAlbums()
         {
-            var args = new JsonObject();
+            return GetAlbums(null);
+        }
+
+        public List<Album> GetAlbums(string[] fields)
+        {
+            var args = new JObject();
 
             if (fields != null)
-                args["fields"] = fields;
+                args.Add(new JProperty("fields", fields));
 
-            JsonObject query = (JsonObject)Client.Invoke("AudioLibrary.GetAlbums", args);
+            JObject query = (JObject)Client.Invoke("AudioLibrary.GetAlbums", args);
             List<Album> list = new List<Album>();
 
             if (query["albums"] != null)
             {
-                foreach (JsonObject item in (JsonArray)query["albums"])
+                foreach (JObject item in (JArray)query["albums"])
                 {
                     list.Add(Album.AlbumFromJsonObject(item));
                 }
@@ -61,20 +67,25 @@ namespace XbmcJson
             return GetAlbumsByArtist(artistId, AllAlbumFields);
         }
 
-        public List<Album> GetAlbumsByArtist(int artistId, string[] fields = null)
+        public List<Album> GetAlbumsByArtist(int artistId)
         {
-            var args = new JsonObject();
+            return GetAlbumsByArtist(artistId, null);
+        }
 
-            args["artistid"] = artistId;
+        public List<Album> GetAlbumsByArtist(int artistId, string[] fields)
+        {
+            var args = new JObject();
+
+            args.Add(new JProperty("artistid", artistId));
             if (fields != null)
-                args["fields"] = fields;
+                args.Add(new JProperty("fields", fields));
 
-            JsonObject query = (JsonObject)Client.Invoke("AudioLibrary.GetAlbums", args);
+            JObject query = (JObject)Client.Invoke("AudioLibrary.GetAlbums", args);
             List<Album> list = new List<Album>();
 
             if (query["albums"] != null)
             {
-                foreach (JsonObject item in (JsonArray)query["albums"])
+                foreach (JObject item in (JArray)query["albums"])
                 {
                     list.Add(Album.AlbumFromJsonObject(item));
                 }
@@ -88,20 +99,26 @@ namespace XbmcJson
             return GetAlbumsByGenre(genre, AllAlbumFields);
         }
 
-        public List<Album> GetAlbumsByGenre(string genre, string[] fields = null)
+        public List<Album> GetAlbumsByGenre(string genre)
+        {
+            return GetAlbumsByGenre(genre, null);
+        }
+
+       public List<Album> GetAlbumsByGenre(string genre, string[] fields)
        {
-           var args = new JsonObject();
+           var args = new JObject();
 
-           args["genre"] = genre;
+           args.Add(new JProperty("genre", genre));
+
            if (fields != null)
-               args["fields"] = fields;
+               args.Add(new JProperty("fields", fields));
 
-           JsonObject query = (JsonObject)Client.Invoke("AudioLibrary.GetAlbums", args);
+           JObject query = (JObject)Client.Invoke("AudioLibrary.GetAlbums", args);
            List<Album> list = new List<Album>();
 
            if (query["albums"] != null)
            {
-               foreach (JsonObject item in (JsonArray)query["albums"])
+               foreach (JObject item in (JArray)query["albums"])
                {
                    list.Add(Album.AlbumFromJsonObject(item));
                }
@@ -115,19 +132,23 @@ namespace XbmcJson
            return GetSongs(AllSongFields);
        }
 
-       public List<Song> GetSongs(string[] fields = null)
+       public List<Song> GetSongs()
        {
-           JsonObject args = new JsonObject();
+           return GetSongs(null);
+       }
+       public List<Song> GetSongs(string[] fields)
+       {
+           var args = new JObject();
 
            if (fields != null)
-               args["fields"] = fields;
+               args.Add(new JProperty("fields", fields));
 
-           JsonObject query = (JsonObject)Client.Invoke("AudioLibrary.GetSongs", args);
+           JObject query = (JObject)Client.Invoke("AudioLibrary.GetSongs", args);
            List<Song> list = new List<Song>();
 
            if (query["songs"] != null)
            {
-               foreach (JsonObject item in (JsonArray)query["songs"])
+               foreach (JObject item in (JArray)query["songs"])
                {
                    list.Add(Song.SongFromJsonObject(item));
                }
@@ -141,20 +162,25 @@ namespace XbmcJson
             return GetSongsByAlbum(albumId, AllSongFields);
        }
 
-       public List<Song> GetSongsByAlbum(int albumId, string[] fields = null)
+       public List<Song> GetSongsByAlbum(int albumId)
        {
-            var args = new JsonObject();
+           return GetSongsByAlbum(albumId, null);
+       }
 
-            args["albumid"] = albumId;
-            if (fields != null)
-                args["fields"] = fields;
+       public List<Song> GetSongsByAlbum(int albumId, string[] fields)
+       {
+           var args = new JObject();
 
-            JsonObject query = (JsonObject)Client.Invoke("AudioLibrary.GetSongs", args);
+           args.Add(new JProperty("albumid", albumId));
+           if (fields != null)
+               args.Add(new JProperty("fields", fields));
+
+            JObject query = (JObject)Client.Invoke("AudioLibrary.GetSongs", args);
             List<Song> list = new List<Song>();
 
             if (query["songs"] != null)
             {
-                foreach (JsonObject item in (JsonArray)query["songs"])
+                foreach (JObject item in (JArray)query["songs"])
                 {
                     list.Add(Song.SongFromJsonObject(item));
                 }
@@ -168,20 +194,25 @@ namespace XbmcJson
            return GetSongsByArtist(artistId, AllSongFields);
        }
 
-       public List<Song> GetSongsByArtist(int artistId, string[] fields = null)
+       public List<Song> GetSongsByArtist(int artistId)
+       {
+           return GetSongsByArtist(artistId, null);
+       }
+
+       public List<Song> GetSongsByArtist(int artistId, string[] fields)
         {
-            var args = new JsonObject();
+            var args = new JObject();
 
-            args["artistid"] = artistId;
+            args.Add(new JProperty("artistid", artistId));
             if (fields != null)
-                args["fields"] = fields;
+                args.Add(new JProperty("fields", fields));
 
-            JsonObject query = (JsonObject)Client.Invoke("AudioLibrary.GetSongs", args);
+            JObject query = (JObject)Client.Invoke("AudioLibrary.GetSongs", args);
             List<Song> list = new List<Song>();
 
             if (query["songs"] != null)
             {
-                foreach (JsonObject item in (JsonArray)query["songs"])
+                foreach (JObject item in (JArray)query["songs"])
                 {
                     list.Add(Song.SongFromJsonObject(item));
                 }
@@ -195,26 +226,31 @@ namespace XbmcJson
            return GetSongsByGenre(genre, AllSongFields);
        }
 
-       public List<Song> GetSongsByGenre(string genre, string[] fields = null)
-        {
-            var args = new JsonObject();
+       public List<Song> GetSongsByGenre(string genre)
+       {
+           return GetSongsByGenre(genre, null);
+       }
 
-            args["genre"] = genre;
-            if (fields != null)
-                args["fields"] = fields;
+       public List<Song> GetSongsByGenre(string genre, string[] fields)
+       {
+           var args = new JObject();
 
-            JsonObject query = (JsonObject)Client.Invoke("AudioLibrary.GetSongs", args);
-            List<Song> list = new List<Song>();
+           args.Add(new JProperty("genre", genre));
+           if (fields != null)
+               args.Add(new JProperty("fields", fields));
 
-            if (query["songs"] != null)
-            {
-                foreach (JsonObject item in (JsonArray)query["songs"])
-                {
-                    list.Add(Song.SongFromJsonObject(item));
-                }
-            }
+           JObject query = (JObject)Client.Invoke("AudioLibrary.GetSongs", args);
+           List<Song> list = new List<Song>();
 
-            return list;
+           if (query["songs"] != null)
+           {
+               foreach (JObject item in (JArray)query["songs"])
+               {
+                   list.Add(Song.SongFromJsonObject(item));
+               }
+           }
+
+           return list;
         }
 
         public void ScanForContent()

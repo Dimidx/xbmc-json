@@ -1,5 +1,5 @@
-﻿using System;
-using Jayrock.Json;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace XbmcJson
 {
@@ -13,11 +13,11 @@ namespace XbmcJson
             Label = label;
         }
 
-        public static Share ShareFromJsonObject(JsonObject item)
+        public static Share ShareFromJsonObject(JObject item)
         {
             Share e = new Share(
-                item["file"].ToString(), 
-                (item["label"] != null) ? item["label"].ToString() : ""
+                item["file"].Value<JValue>().Value.ToString(),
+                (item["label"] != null) ? item["label"].Value<JValue>().Value.ToString() : ""
                 );
 
             return e;

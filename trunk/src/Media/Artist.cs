@@ -1,5 +1,6 @@
 ﻿using System;
-using Jayrock.Json;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace XbmcJson
 {
@@ -15,12 +16,12 @@ namespace XbmcJson
             Thumbnail = thumbnail;
         }
 
-        public static Artist ArtistFromJsonObject(JsonObject item)
+        public static Artist ArtistFromJsonObject(JObject item)
         {
             Artist e = new Artist(
-                Convert.ToInt32(item["artistid"]), 
-                item["label"].ToString(), 
-                (item["thumbnail"] != null) ? item["thumbnail"].ToString() : ""
+                Convert.ToInt32(item["artistid"].Value<JValue>().Value),
+                item["label"].Value<JValue>().Value.ToString(),
+                (item["thumbnail"] != null) ? item["thumbnail"].Value<JValue>().Value.ToString() : ""
                 );
 
             return e;

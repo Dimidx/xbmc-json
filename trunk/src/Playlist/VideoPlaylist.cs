@@ -1,4 +1,5 @@
-﻿using Jayrock.Json;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System;
 
@@ -35,23 +36,28 @@ namespace XbmcJson
             return GetCurrentItem(AllPlaylistFields);
         }
 
-        public PlaylistItem GetCurrentItem(string[] fields = null)
+        public PlaylistItem GetCurrentItem()
         {
-            JsonObject args = new JsonObject();
+            return GetCurrentItem(null);
+        }
+
+        public PlaylistItem GetCurrentItem(string[] fields)
+        {
+            JObject args = new JObject();
 
             if (fields != null)
-                args["fields"] = fields;
+                args.Add(new JProperty("fields", fields));
 
             int currentId;
             PlaylistItem currentItem = null;
 
-            JsonObject query = (JsonObject)Client.Invoke("VideoPlaylist.GetItems", args);
+            JObject query = (JObject)Client.Invoke("VideoPlaylist.GetItems", args);
             List<PlaylistItem> list = new List<PlaylistItem>();
 
             if (query["items"] != null)
             {
-                currentId = Convert.ToInt32(query["current"]);
-                currentItem = PlaylistItem.PlaylistItemFromJsonObject((JsonObject)((JsonArray)query["items"])[currentId]);
+                currentId = Convert.ToInt32(query["current"].Value<JValue>().Value);
+                currentItem = PlaylistItem.PlaylistItemFromJsonObject(query["items"].Value<JObject>(currentId));
             }
 
             return currentItem;
@@ -62,19 +68,24 @@ namespace XbmcJson
             return GetItems(AllPlaylistFields);
         }
 
-        public List<PlaylistItem> GetItems(string[] fields = null)
+        public List<PlaylistItem> GetItems()
         {
-            JsonObject args = new JsonObject();
+            return GetItems(null);
+        }
 
-            if(fields != null)
-                args["fields"] =  fields;
-            
-            JsonObject query = (JsonObject)Client.Invoke("VideoPlaylist.GetItems", args);
+        public List<PlaylistItem> GetItems(string[] fields)
+        {
+            JObject args = new JObject();
+
+            if (fields != null)
+                args.Add(new JProperty("fields", fields));
+
+            JObject query = (JObject)Client.Invoke("VideoPlaylist.GetItems", args);
             List<PlaylistItem> list = new List<PlaylistItem>();
 
             if (query["items"] != null)
             {
-                foreach (JsonObject item in (JsonArray)query["items"])
+                foreach (JObject item in (JArray)query["items"])
                 {
                     list.Add(PlaylistItem.PlaylistItemFromJsonObject(item));
                 }
@@ -83,9 +94,9 @@ namespace XbmcJson
             return list;
         }
 
-        public void Add(string file = null, int? songId = null, int? artistId = null, int? albumId = null)
+        public void Add(string file, int? songId, int? artistId, int? albumId)
         {
-            var args = new JsonObject();
+            var args = new JObject();
 
             if (file != null)
                 args["file"] = file;

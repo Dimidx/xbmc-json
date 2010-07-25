@@ -1,5 +1,6 @@
 ﻿using System;
-using Jayrock.Json;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace XbmcJson
 {
@@ -14,12 +15,12 @@ namespace XbmcJson
             Permission = permission;
         }
 
-        public static JsonMethod JsonMethodFromJsonObject(JsonObject item)
+        public static JsonMethod JsonMethodFromJsonObject(JObject item)
         {
             JsonMethod e = new JsonMethod(
-                item["command"].ToString(), 
-                item["description"].ToString(), 
-                item["permission"].ToString()
+                item["command"].Value<JValue>().Value.ToString(),
+                item["description"].Value<JValue>().Value.ToString(),
+                item["permission"].Value<JValue>().Value.ToString()
                 );
 
             return e;

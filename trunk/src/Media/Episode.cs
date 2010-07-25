@@ -1,4 +1,5 @@
-﻿using Jayrock.Json;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 
 namespace XbmcJson
@@ -21,17 +22,17 @@ namespace XbmcJson
             Year = year;
         }
 
-        public static Episode EpisodeFromJsonObject(JsonObject item)
+        public static Episode EpisodeFromJsonObject(JObject item)
         {
             Episode e = new Episode(
-                Convert.ToInt32(item["episodeid"]), 
-                item["file"].ToString(), item["label"].ToString(), 
-                (item["thumbnail"] != null) ? item["thumbnail"].ToString() : "", 
-                (item["plot"] != null) ? item["plot"].ToString() : "",
-                (item["showtitle"] != null) ? item["showtitle"].ToString() : "",
-                (item["episode"] != null) ? Convert.ToInt32(item["episode"]) : -1, 
-                (item["season"] != null) ? Convert.ToInt32(item["season"]) : -1, 
-                (item["year"] != null) ? Convert.ToInt32(item["year"]) : -1
+                Convert.ToInt32(item["episodeid"].Value<JValue>().Value.ToString()),
+                item["file"].ToString(), item["label"].Value<JValue>().Value.ToString(),
+                (item["thumbnail"] != null) ? item["thumbnail"].Value<JValue>().Value.ToString() : "",
+                (item["plot"] != null) ? item["plot"].Value<JValue>().Value.ToString() : "",
+                (item["showtitle"] != null) ? item["showtitle"].Value<JValue>().Value.ToString() : "",
+                (item["episode"] != null) ? Convert.ToInt32(item["episode"].Value<JValue>().Value) : -1,
+                (item["season"] != null) ? Convert.ToInt32(item["season"].Value<JValue>().Value) : -1,
+                (item["year"] != null) ? Convert.ToInt32(item["year"].Value<JValue>().Value) : -1
                 );
 
             return e;
