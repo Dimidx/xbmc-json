@@ -14,9 +14,14 @@ namespace XbmcJson
             Client = client;
         }
 
-        public void PlayPause()
+        public bool PlayPause()
         {
-            Client.Invoke("AudioPlayer.PlayPause");
+            JsonObject query = (JsonObject)Client.Invoke("AudioPlayer.PlayPause");
+
+            if (query["paused"] != null)
+                return (bool)query["paused"];
+            else
+                return false;
         }
 
         public void Stop()
