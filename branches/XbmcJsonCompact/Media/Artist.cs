@@ -19,7 +19,7 @@ namespace XbmcJson
         public static Artist ArtistFromJsonObject(JObject item)
         {
             Artist e = new Artist(
-                Convert.ToInt32(item["artistid"].Value<JValue>().Value.ToString()), 
+                Convert.ToInt32(item["artistid"].Value<JValue>().Value), 
                 item["label"].Value<JValue>().Value.ToString(), 
                 (item["thumbnail"] != null) ? item["thumbnail"].Value<JValue>().Value.ToString() : "");
             return e;

@@ -69,7 +69,7 @@ namespace XbmcJson
             {
                 foreach (JObject item in (JArray)query["directories"])
                 {
-                    list.Add(item["file"].ToString());
+                    list.Add(item["file"].Value<JValue>().Value.ToString());
                 }
             }
 
@@ -81,9 +81,19 @@ namespace XbmcJson
             String ImageLocation = "http://" + XbmcIp + ":" + XbmcPort + "/vfs/" + Thumbnail;
             WebRequest ImageGetter = WebRequest.Create(ImageLocation);
             ImageGetter.Credentials = new System.Net.NetworkCredential(XbmcUser, XbmcPass);
-            Stream stream = ImageGetter.GetResponse().GetResponseStream();
-            Image RetreievedImage = new Bitmap(stream);
-            stream.Close();
+            Image RetreievedImage;
+            try
+            {
+                Stream stream = ImageGetter.GetResponse().GetResponseStream();
+                RetreievedImage = new Bitmap(stream);
+                stream.Close();
+            }
+            catch
+            {
+                MemoryStream memstr = new MemoryStream();
+                RetreievedImage = new Bitmap(32, 32);
+            }
+
             return RetreievedImage;
         }
     }

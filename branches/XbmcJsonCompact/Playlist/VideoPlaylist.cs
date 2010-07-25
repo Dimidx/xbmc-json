@@ -9,6 +9,8 @@ namespace XbmcJson
     {
         private JsonRpcClient Client;
 
+        private string[] AllPlaylistFields = new string[] { "episodeid", "movieid", "plot", "director", "writer", "studio", "genre", "year", "runtime", "rating", "tagline", "plotoutline", "showtitle", "season", "episode" }; 
+
         public XbmcVideoPlaylist(JsonRpcClient client)
         {
             Client = client;
@@ -29,15 +31,15 @@ namespace XbmcJson
             Client.Invoke("VideoPlaylist.SkipNext");
         }
 
-        /*
-        * This should reheaallyy return a Movie/Episode instead
-        */
         public PlaylistItem GetCurrentItem()
         {
+            JObject args = new JObject();
+            args.Add(new JProperty("fields", AllPlaylistFields));
+
             int currentId;
             PlaylistItem currentItem = null;
 
-            JObject query = (JObject)Client.Invoke("VideoPlaylist.GetItems");
+            JObject query = (JObject)Client.Invoke("VideoPlaylist.GetItems", args);
             List<PlaylistItem> list = new List<PlaylistItem>();
 
             if (query["items"] != null)
@@ -51,7 +53,10 @@ namespace XbmcJson
 
         public List<PlaylistItem> GetItems()
         {
-            JObject query = (JObject)Client.Invoke("VideoPlaylist.GetItems");
+            JObject args = new JObject();
+            args.Add(new JProperty("fields", AllPlaylistFields));
+
+            JObject query = (JObject)Client.Invoke("VideoPlaylist.GetItems", args);
             List<PlaylistItem> list = new List<PlaylistItem>();
 
             if (query["items"] != null)

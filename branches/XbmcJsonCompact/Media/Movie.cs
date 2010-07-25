@@ -8,9 +8,9 @@ namespace XbmcJson
     {
         public int _id, Year;
         public float Rating;
-        public string File, Label, Thumbnail, Plot, Director, Writer, Studio, Genre,  Runtime, Tagline, PlotOutline;
+        public string File, Label, Thumbnail, Plot, Director, Writer, Studio, Genre, Runtime, Tagline, PlotOutline;
 
-        public Movie(int id, string file, string label, string thumbnail, string plot, string director, string writer, string studio, string genre, int? year, string runtime, float? rating, string tagline, string plotOutline)
+        public Movie(int id, string file, string label, string thumbnail, string plot, string director, string writer, string studio, string genre, int year, string runtime, float rating, string tagline, string plotOutline)
         {
             _id = id;
             File = file;
@@ -21,13 +21,13 @@ namespace XbmcJson
             Writer = writer;
             Studio = studio;
             Genre = genre;
-            Year = (int)year;
+            Year = year;
             Runtime = runtime;
-            Rating = (float)rating;
+            Rating = rating;
             Tagline = tagline;
             PlotOutline = plotOutline;
-        }
-
+        } 
+ 
         public static Movie MovieFromJsonObject(JObject item)
         {
             Movie e = new Movie(
@@ -45,6 +45,26 @@ namespace XbmcJson
                 (item["rating"] != null) ? (float)Convert.ToDouble(item["rating"].Value<JValue>().Value) : 0, 
                 (item["tagline"] != null) ? item["tagline"].Value<JValue>().Value.ToString() : "", 
                 (item["plotoutline"] != null) ? item["plotoutline"].Value<JValue>().Value.ToString() : "");
+            return e;
+        }
+
+        public static Movie MovieFromPlayListItem(PlaylistItem item)
+        {
+            Movie e = new Movie(
+                item._id,
+                item.File,
+                item.Label,
+                item.Thumbnail,
+                item.Plot,
+                item.Director,
+                item.Writer,
+                item.Studio,
+                item.Genre,
+                item.Year,
+                item.Runtime,
+                item.Rating,
+                item.Tagline,
+                item.PlotOutline);
             return e;
         }
     }

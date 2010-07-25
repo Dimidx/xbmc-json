@@ -6,7 +6,6 @@ namespace XbmcJson
     public class XbmcStatus
     {
         private JsonRpcClient Client;
-        private bool isConnected;
 
         public XbmcStatus(JsonRpcClient client)
         {
@@ -23,18 +22,16 @@ namespace XbmcJson
                 {
                     if (query == "pong")
                     {
-                        isConnected = true;
+                        return true;
                     }
                     else
                     {
-                        isConnected = false;
+                        return false;
                     }
                 }
                 else
-                    isConnected = false;
-
-                return isConnected; 
+                    return false;
             }
         }
-     }
+    }
 }

@@ -8,6 +8,8 @@ namespace XbmcJson
     public class XbmcAudioPlaylist
     {
         private JsonRpcClient Client;
+        private string[] AllAudioFields = new string[] 
+        { "songid", "title", "artist", "genre", "year", "rating", "album" };
 
         public XbmcAudioPlaylist(JsonRpcClient client)
         {
@@ -29,13 +31,22 @@ namespace XbmcJson
             Client.Invoke("AudioPlaylist.SkipNext");
         }
 
-
-        public Song GetCurrentItem()
+        public List<Song> GetItemsAllFields()
         {
-            string[] fields = new string[] { "songid", "title", "artist", "genre", "year", "rating" };
+            return GetItems(AllAudioFields);
+        }
 
+        public Song GetCurrentItemAllFields()
+        {
+            return GetCurrentItem(AllAudioFields);
+        } 
+
+        public Song GetCurrentItem(string[] fields)
+        {
             var args = new JObject();
-            args.Add(new JProperty("fields", fields));
+
+            if (fields != null)
+                args.Add(new JProperty("fields", fields));
 
             int currentId;
             Song currentSong = null;
@@ -52,12 +63,12 @@ namespace XbmcJson
             return currentSong;
         } 
 
-        public List<Song> GetItems()
+        public List<Song> GetItems(string[] fields)
         {
-            string[] fields = new string[] { "songid", "title", "artist", "genre", "year", "rating" }; 
-
             var args = new JObject();
-            args.Add(new JProperty("fields", fields));
+            
+            if (fields != null)
+                args.Add(new JProperty("fields", fields));
 
             JObject query = (JObject)Client.Invoke("AudioPlaylist.GetItems");
             List<Song> list = new List<Song>();
