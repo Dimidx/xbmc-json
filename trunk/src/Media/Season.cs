@@ -20,7 +20,14 @@ namespace XbmcJson
 
         public static Season SeasonFromJsonObject(JsonObject item)
         {
-            Season e = new Season(item["label"].ToString(), (item["thumbnail"] != null) ? item["thumbnail"].ToString() : "", (item["genre"] != null) ? item["genre"].ToString() : "", (item["year"] != null) ? Convert.ToInt32(item["year"]) : 0, (item["rating"] != null) ? (float)Convert.ToDouble(item["rating"]) : 0);
+            Season e = new Season(
+                item["label"].ToString(), 
+                (item["thumbnail"] != null) ? item["thumbnail"].ToString() : "", 
+                (item["genre"] != null) ? item["genre"].ToString() : "", 
+                (item["year"] != null) ? Convert.ToInt32(item["year"]) : 0, 
+                (item["rating"] != null) ? (float)Convert.ToDouble(item["rating"]) : 0
+                );
+
             return e;
         }
     }

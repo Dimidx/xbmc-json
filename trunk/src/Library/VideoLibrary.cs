@@ -7,6 +7,10 @@ namespace XbmcJson
     public class XbmcVideoLibrary
     {
         private JsonRpcClient Client;
+        private string[] AllMovieFields = new string[] { "plot", "director", "writer", "studio", "genre", "year", "runtime", "rating", "tagline", "plotoutline" };
+        private string[] AllTvShowFields = new string[] { "plot", "genre", "year", "rating" };
+        private string[] AllSeasonFields = new string[] { "genre", "year", "runtime", "rating" };
+        private string[] AllEpsiodeFields = new string[] { "season", "episode", "runtime", "year", "plot" };
 
         public XbmcVideoLibrary(JsonRpcClient client)
         {
@@ -15,8 +19,7 @@ namespace XbmcJson
 
         public List<Movie> GetMoviesAllFields(string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
         {
-            string[] fields = new string[] { "plot", "director", "writer", "studio", "genre", "year", "runtime", "rating", "tagline", "plotoutline" };
-            return GetMovies(fields, sortMethod, sortOrder, start, end);
+            return GetMovies(AllMovieFields, sortMethod, sortOrder, start, end);
         }
 
         public List<Movie> GetMovies(string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
@@ -50,8 +53,7 @@ namespace XbmcJson
 
         public List<TvShow> GetTvShowsAllFields(string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
         {
-            string[] fields = new string[] { "plot", "genre", "year", "rating"};
-            return GetTvShows(fields, sortMethod, sortOrder, start, end);
+            return GetTvShows(AllTvShowFields, sortMethod, sortOrder, start, end);
         }
 
         public List<TvShow> GetTvShows(string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
@@ -85,8 +87,7 @@ namespace XbmcJson
 
         public List<Season> GetSeasonsAllFields(int tvShowId, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
         {
-            string[] fields = new string[] { "genre", "year", "runtime", "rating" };
-            return GetSeasons(tvShowId, fields, sortMethod, sortOrder, start, end);
+            return GetSeasons(tvShowId, AllSeasonFields, sortMethod, sortOrder, start, end);
         }
 
         public List<Season> GetSeasons(int tvShowId, string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
@@ -121,8 +122,7 @@ namespace XbmcJson
 
         public List<Episode> GetEpisodesAllFields(int tvShowId, int season, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
         {
-            string[] fields = new string[] { "season", "episode", "runtime", "year", "plot" };
-            return GetEpisodes(tvShowId, season, fields, sortMethod, sortOrder, start, end);
+            return GetEpisodes(tvShowId, season, AllEpsiodeFields, sortMethod, sortOrder, start, end);
         }
 
         public List<Episode> GetEpisodes(int tvShowId, int season, string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
@@ -158,8 +158,7 @@ namespace XbmcJson
 
         public List<Movie> GetRecentlyAddedMoviesAllFields(string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
         {
-            string[] fields = new string[] { "plot", "director", "writer", "studio", "genre", "year", "runtime", "rating", "tagline", "plotoutline" };
-            return GetMovies(fields, sortMethod, sortOrder, start, end);
+            return GetMovies(AllMovieFields, sortMethod, sortOrder, start, end);
         }
 
         public List<Movie> GetRecentlyAddedMovies(string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
@@ -193,8 +192,7 @@ namespace XbmcJson
 
         public List<Episode> GetRecentlyAddedEpisodesAllFields(string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)
         {
-            string[] fields = new string[] { "season", "episode", "runtime", "year", "plot" };
-            return GetRecentlyAddedEpisodes(fields, sortMethod, sortOrder, start, end);
+            return GetRecentlyAddedEpisodes(AllEpsiodeFields, sortMethod, sortOrder, start, end);
         }
 
         public List<Episode> GetRecentlyAddedEpisodes(string[] fields = null, string sortMethod = null, string sortOrder = null, int? start = null, int? end = null)

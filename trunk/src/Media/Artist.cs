@@ -17,7 +17,12 @@ namespace XbmcJson
 
         public static Artist ArtistFromJsonObject(JsonObject item)
         {
-            Artist e = new Artist(Convert.ToInt32(item["artistid"]), item["label"].ToString(), (item["thumbnail"] != null) ? item["thumbnail"].ToString() : "");
+            Artist e = new Artist(
+                Convert.ToInt32(item["artistid"]), 
+                item["label"].ToString(), 
+                (item["thumbnail"] != null) ? item["thumbnail"].ToString() : ""
+                );
+
             return e;
         }
     }

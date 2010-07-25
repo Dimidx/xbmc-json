@@ -16,7 +16,12 @@ namespace XbmcJson
 
         public static PlaylistItem PlaylistItemFromJsonObject(JsonObject item)
         {
-            PlaylistItem e = new PlaylistItem(item["file"].ToString(), item["label"].ToString(), (item["thumbnail"] != null) ? item["thumbnail"].ToString() : "");
+            PlaylistItem e = new PlaylistItem(
+                item["file"].ToString(), 
+                item["label"].ToString(), 
+                (item["thumbnail"] != null) ? item["thumbnail"].ToString() : ""
+                );
+
             return e;
         }
     }
