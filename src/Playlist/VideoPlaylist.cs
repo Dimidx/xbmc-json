@@ -1,5 +1,6 @@
 ﻿using Jayrock.Json;
 using System.Collections.Generic;
+using System;
 
 namespace XbmcJson
 {
@@ -7,7 +8,7 @@ namespace XbmcJson
     {
         private JsonRpcClient Client;
 
-        private string[] AllPlaylistFields = new string[] { "episodeid", "movieid", "plot", "director", "writer", "studio", "genre", "year", "runtime", "rating", "tagline", "plotoutline", "season", "episode" };
+        private string[] AllPlaylistFields = new string[] { "episodeid", "movieid", "plot", "director", "writer", "studio", "genre", "year", "runtime", "rating", "tagline", "plotoutline", "showtitle", "season", "episode" };
 
         public XbmcVideoPlaylist(JsonRpcClient client)
         {
@@ -29,10 +30,44 @@ namespace XbmcJson
             Client.Invoke("VideoPlaylist.SkipNext");
         }
 
-        public List<PlaylistItem> GetItems()
+        public PlaylistItem GetCurrentItemAllFields()
+        {
+            return GetCurrentItem(AllPlaylistFields);
+        }
+
+        public PlaylistItem GetCurrentItem(string[] fields = null)
         {
             JsonObject args = new JsonObject();
-            args["fields"] =  AllPlaylistFields;
+
+            if (fields != null)
+                args["fields"] = fields;
+
+            int currentId;
+            PlaylistItem currentItem = null;
+
+            JsonObject query = (JsonObject)Client.Invoke("VideoPlaylist.GetItems", args);
+            List<PlaylistItem> list = new List<PlaylistItem>();
+
+            if (query["items"] != null)
+            {
+                currentId = Convert.ToInt32(query["current"]);
+                currentItem = PlaylistItem.PlaylistItemFromJsonObject((JsonObject)((JsonArray)query["items"])[currentId]);
+            }
+
+            return currentItem;
+        }
+
+        public List<PlaylistItem> GetItemsAllFields()
+        {
+            return GetItems(AllPlaylistFields);
+        }
+
+        public List<PlaylistItem> GetItems(string[] fields = null)
+        {
+            JsonObject args = new JsonObject();
+
+            if(fields != null)
+                args["fields"] =  fields;
             
             JsonObject query = (JsonObject)Client.Invoke("VideoPlaylist.GetItems", args);
             List<PlaylistItem> list = new List<PlaylistItem>();

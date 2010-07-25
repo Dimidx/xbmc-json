@@ -106,14 +106,17 @@ namespace XbmcJson
 
                 JsonConvert.Export(call, writer);
             }
+
             using (var response = GetWebResponse(request))
-            using (var stream2 = response.GetResponseStream())
-            using (var reader = new StreamReader(stream2, Encoding.UTF8))
             {
-                object res = OnResponse(JsonText.CreateReader(reader), returnType);
-                if (DebugEnabled)
-                    DebugLog.WriteLog("Response: " + res.ToString());
-                return res;
+                using (var stream2 = response.GetResponseStream())
+                using (var reader = new StreamReader(stream2, Encoding.UTF8))
+                {
+                    object res = OnResponse(JsonText.CreateReader(reader), returnType);
+                    if (DebugEnabled)
+                        DebugLog.WriteLog("Response: " + res.ToString());
+                    return res;
+                }
             }
         }
 
