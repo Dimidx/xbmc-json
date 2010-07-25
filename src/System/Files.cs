@@ -2,7 +2,8 @@
 using System.Drawing;
 using System.Net;
 using System.IO;
-using Jayrock.Json;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 
 namespace XbmcJson
@@ -26,15 +27,15 @@ namespace XbmcJson
 
         public List<Share> GetSources(string media)
         {
-            var args = new JsonObject();
-            args["media"] = media;
+            var args = new JObject();
+            args.Add(new JProperty("media", media));
 
-            JsonObject query = (JsonObject)Client.Invoke("Files.GetSources", args);
+            JObject query = (JObject)Client.Invoke("Files.GetSources", args);
             List<Share> list = new List<Share>();
 
             if (query["shares"] != null)
             {
-                foreach (JsonObject item in (JsonArray)query["shares"])
+                foreach (JObject item in (JArray)query["shares"])
                 {
                     list.Add(Share.ShareFromJsonObject(item));
                 }
@@ -45,29 +46,30 @@ namespace XbmcJson
 
         public string Download(string file)
         {
-            JsonObject query = (JsonObject)Client.Invoke("Files.Download", file);
+            JObject query = (JObject)Client.Invoke("Files.Download", file);
 
             if (query["path"] != null)
-                return query["path"].ToString();
+                return query["path"].Value<JValue>().Value.ToString();
             else
                 return "";
         }
 
         public List<string> GetDirectory(string directory, string media)
         {
-            var args = new JsonObject();
+            var args = new JObject();
 
-            args["directory"] = directory;
-            args["media"] = media;
+            args.Add(new JProperty("directory", directory));
+            args.Add(new JProperty("media", media));
 
-            JsonObject query = (JsonObject)Client.Invoke("Files.GetDirectory", args);
+            JObject query = (JObject)Client.Invoke("Files.GetDirectory", args);
+
             List<string> list = new List<string>();
 
             if (query["directories"] != null)
             {
-                foreach (JsonObject item in (JsonArray)query["directories"])
+                foreach (JObject item in (JArray)query["directories"])
                 {
-                    list.Add(item["file"].ToString());
+                    list.Add(item["file"].Value<JValue>().Value.ToString());
                 }
             }
 

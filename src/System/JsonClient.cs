@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
+using System.Net;
 using System.Text;
-using System.Web.Services.Protocols;
-using Jayrock.Json;
-using Jayrock.Json.Conversion;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace XbmcJson
 {
-    public class JsonRpcClient : HttpWebClientProtocol
+    public class JsonRpcClient : WebRequest
     {
         private int _id;
         private Uri ClientUri;
@@ -30,6 +32,7 @@ namespace XbmcJson
             XbmcPass = xbmcPass;
             DebugEnabled = debugEnabled;
         }
+
 
         public object Invoke(string method)
         {
@@ -85,7 +88,8 @@ namespace XbmcJson
             if (returnType == null)
                 throw new ArgumentNullException("returnType");
 
-            var request = GetWebRequest(ClientUri);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(ClientUri);
+            request.AllowWriteStreamBuffering = true;
             request.Credentials = new System.Net.NetworkCredential(XbmcUser, XbmcPass);
             request.Method = "POST";
             using (var stream = request.GetRequestStream())
@@ -94,59 +98,74 @@ namespace XbmcJson
                 if (_id > 100000)
                     _id = 0;
 
-                var call = new JsonObject();
+                var call = new JObject();
                 call["jsonrpc"] = "2.0";
                 call["method"] = method;
                 if (args != null)
-                    call["params"] = args;
+                    call["params"] = (JObject)args;
                 call["id"] = ++_id;
 
-                if(DebugEnabled)
+                if (DebugEnabled)
                     DebugLog.WriteLog("Invoke: " + call.ToString());
 
-                JsonConvert.Export(call, writer);
+                writer.Write(call.ToString());
             }
-
-            using (var response = GetWebResponse(request))
+            using (var response = request.GetResponse())
+            using (var stream2 = response.GetResponseStream())
+            using (var reader = new StreamReader(stream2, Encoding.UTF8))
             {
-                using (var stream2 = response.GetResponseStream())
-                using (var reader = new StreamReader(stream2, Encoding.UTF8))
-                {
-                    object res = OnResponse(JsonText.CreateReader(reader), returnType);
-                    if (DebugEnabled)
-                        DebugLog.WriteLog("Response: " + res.ToString());
-                    return res;
-                }
+                object res = OnResponse(reader, returnType);
+                if (DebugEnabled)
+                    DebugLog.WriteLog("Response: " + res.ToString());
+                return res;
             }
         }
 
-        private object OnResponse(JsonReader reader, Type returnType)
+        private object OnResponse(StreamReader reader, Type returnType)
         {
-            var members = JsonBuffer.From(reader).GetMembersArray();
+            var JObjectResponse = JObject.Parse(reader.ReadToEnd());
+
+            var members = JObjectResponse.Properties();
+
             foreach (var member in members)
             {
                 if (string.CompareOrdinal(member.Name, "error") == 0)
                 {
-                    var errorObject = JsonConvert.Import(member.Buffer.CreateReader());
+                    var errorObject = (JObject)member.Value;
                     if (errorObject != null)
                         OnError(errorObject);
                 }
                 else if (string.CompareOrdinal(member.Name, "result") == 0)
                 {
-                    return returnType != typeof(JsonBuffer)
-                               ? JsonConvert.Import(returnType, member.Buffer.CreateReader())
-                               : member.Buffer;
+                    if (member.Value.HasValues == true)
+                    {
+                        return (JObject)member.Value;
+                    }
+                    else
+                    {
+                        return (string)member.Value.Value<JValue>();
+                    }
                 }
             }
             throw new Exception("Invalid JSON-RPC response. It contains neither a result nor error.");
         }
 
-        protected virtual void OnError(object errorValue)
+        protected virtual void OnError(JObject errorValue)
         {
-            var error = errorValue as IDictionary;
-            if (error != null)
-                throw new Exception(error["message"] as string);
-            throw new Exception(errorValue as string);
+            if (errorValue != null)
+                throw new Exception(errorValue["code"].Value<JValue>().Value.ToString() + ": " + errorValue["message"].Value<JValue>().Value.ToString());
+            else
+                throw new Exception("Unknown error occured");
+        }
+    }
+
+    public sealed class AnyType
+    {
+        public static readonly Type Value = typeof(object);
+
+        private AnyType()
+        {
+            throw new NotImplementedException();
         }
     }
 }

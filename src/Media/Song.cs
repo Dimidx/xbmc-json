@@ -1,5 +1,6 @@
-﻿using System;
-using Jayrock.Json;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 
 namespace XbmcJson
 {
@@ -23,19 +24,19 @@ namespace XbmcJson
             Rating = rating;
         }
 
-        public static Song SongFromJsonObject(JsonObject item)
+        public static Song SongFromJsonObject(JObject item)
         {
             Song e = new Song(
-                (item["songid"] !=null) ? Convert.ToInt32(item["songid"]) : -1, 
-                item["file"].ToString(), 
-                item["label"].ToString(), 
-                (item["thumbnail"] != null) ? item["thumbnail"].ToString() : "",
-                (item["artist"] != null) ? item["artist"].ToString() : "",
-                (item["title"] != null) ? item["title"].ToString() : "",
-                (item["genre"] != null) ? item["genre"].ToString() : "",
-                (item["album"] != null) ? item["album"].ToString() : "",
-                (item["year"] !=null) ? Convert.ToInt32(item["year"]) : -1,
-                (item["rating"] !=null) ? (float)Convert.ToDouble(item["rating"]) : -1
+                (item["songid"] != null) ? Convert.ToInt32(item["songid"].Value<JValue>().Value) : -1,
+                item["file"].Value<JValue>().Value.ToString(),
+                item["label"].Value<JValue>().Value.ToString(),
+                (item["thumbnail"] != null) ? item["thumbnail"].Value<JValue>().Value.ToString() : "",
+                (item["artist"] != null) ? item["artist"].Value<JValue>().Value.ToString() : "",
+                (item["title"] != null) ? item["title"].Value<JValue>().Value.ToString() : "",
+                (item["genre"] != null) ? item["genre"].Value<JValue>().Value.ToString() : "",
+                (item["album"] != null) ? item["album"].Value<JValue>().Value.ToString() : "",
+                (item["year"] != null) ? Convert.ToInt32(item["year"].Value<JValue>().Value) : -1,
+                (item["rating"] != null) ? (float)Convert.ToDouble(item["rating"].Value<JValue>().Value) : -1
                 );
             return e;
         }

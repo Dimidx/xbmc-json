@@ -1,5 +1,6 @@
-﻿using System;
-using Jayrock.Json;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 
 namespace XbmcJson
 {
@@ -14,10 +15,10 @@ namespace XbmcJson
 
         public bool PlayPause()
         {
-            JsonObject query = (JsonObject)Client.Invoke("VideoPlayer.PlayPause");
+            JObject query = (JObject)Client.Invoke("VideoPlayer.PlayPause");
 
             if (query["paused"] != null)
-                return (bool)query["paused"];
+                return (bool)query["paused"].Value<JValue>().Value;
             else
                 return false;
         }
@@ -82,50 +83,50 @@ namespace XbmcJson
 
         public int GetTimePlayedSeconds()
         {
-            JsonObject query = (JsonObject)Client.Invoke("VideoPlayer.GetTime");
+            JObject query = (JObject)Client.Invoke("VideoPlayer.GetTime");
 
             if (query["time"] != null)
-                return Convert.ToInt32(query["time"]);
+                return Convert.ToInt32(query["time"].Value<JValue>().Value);
             else
                 return -1;
         }
 
         public int GetTimeTotalSeconds()
         {
-            JsonObject query = (JsonObject)Client.Invoke("VideoPlayer.GetTime");
+            JObject query = (JObject)Client.Invoke("VideoPlayer.GetTime");
 
             if (query["total"] != null)
-                return Convert.ToInt32(query["total"]);
+                return Convert.ToInt32(query["total"].Value<JValue>().Value);
             else
                 return -1;
         }
 
         public int GetTimePlayedMs()
         {
-            JsonObject query = (JsonObject)Client.Invoke("VideoPlayer.GetTimeMs");
+            JObject query = (JObject)Client.Invoke("VideoPlayer.GetTimeMs");
 
             if (query["time"] != null)
-                return Convert.ToInt32(query["time"]);
+                return Convert.ToInt32(query["time"].Value<JValue>().Value);
             else
                 return -1;
         }
 
         public int GetTimeTotalMs()
         {
-            JsonObject query = (JsonObject)Client.Invoke("VideoPlayer.GetTimeMs");
+            JObject query = (JObject)Client.Invoke("VideoPlayer.GetTimeMs");
 
             if (query["total"] != null)
-                return Convert.ToInt32(query["total"]);
+                return Convert.ToInt32(query["total"].Value<JValue>().Value);
             else
                 return -1;
         }
 
         public float GetPercentagePlayed()
         {
-            JsonObject query = (JsonObject)Client.Invoke("VideoPlayer.GetPercentage");
+            JObject query = (JObject)Client.Invoke("VideoPlayer.GetPercentage");
 
             if (query != null)
-                return (float)Convert.ToDouble(query);
+                return (float)Convert.ToDouble(query.Value<JValue>().Value);
             else
                 return -1;
         }

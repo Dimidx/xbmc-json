@@ -1,5 +1,6 @@
 ﻿using System;
-using Jayrock.Json;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace XbmcJson
 {
@@ -14,10 +15,10 @@ namespace XbmcJson
 
         public int GetVolume()
         {
-            JsonObject query = (JsonObject)Client.Invoke("XBMC.GetVolume");
+            JObject query = (JObject)Client.Invoke("XBMC.GetVolume");
 
             if (query != null)
-                return Convert.ToInt32(query);
+                return Convert.ToInt32(query.Value<JValue>().Value);
             else
                 return -1;
         }
@@ -50,21 +51,21 @@ namespace XbmcJson
 
         public void StartSlideShow(string directory, bool random = true, bool recursive = true)
         {
-            var args = new JsonObject();
+            var args = new JObject();
 
-            args["directory"] = directory;
-            args["random"] = random;
-            args["recursive"] = recursive;
+            args.Add(new JProperty("directory", directory));
+            args.Add(new JProperty("random", random));
+            args.Add(new JProperty("recursive", recursive));
 
             Client.Invoke("XBMC.StartSlideShow", args);
         }
 
         public void Log(string message, string level = "info")
         {
-            var args = new JsonObject();
+            var args = new JObject();
 
-            args["message"] = message;
-            args["level"] = level;
+            args.Add(new JProperty("message", message));
+            args.Add(new JProperty("level", level));
 
             Client.Invoke("XBMC.Log", args);
         }

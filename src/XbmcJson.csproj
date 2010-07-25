@@ -34,11 +34,9 @@
     <Reference Include="Accessibility">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="Jayrock">
-      <HintPath>..\XBMC Remote\bin\Debug\Jayrock.dll</HintPath>
-    </Reference>
-    <Reference Include="Jayrock.Json">
-      <HintPath>..\XBMC Remote\bin\Debug\Jayrock.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json.Compact, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Newtonsoft.Json.Compact.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -63,9 +61,7 @@
     <Compile Include="System\DebugLog.cs" />
     <Compile Include="Media\Episode.cs" />
     <Compile Include="System\Files.cs" />
-    <Compile Include="System\JsonClient.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="System\JsonClient.cs" />
     <Compile Include="System\JsonRpc.cs" />
     <Compile Include="Player\PicturePlayer.cs" />
     <Compile Include="Player\Player.cs" />

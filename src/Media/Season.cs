@@ -1,4 +1,5 @@
-﻿using Jayrock.Json;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 
 namespace XbmcJson
@@ -18,14 +19,14 @@ namespace XbmcJson
             Rating = rating;
         }
 
-        public static Season SeasonFromJsonObject(JsonObject item)
+        public static Season SeasonFromJsonObject(JObject item)
         {
             Season e = new Season(
-                item["label"].ToString(), 
-                (item["thumbnail"] != null) ? item["thumbnail"].ToString() : "", 
-                (item["genre"] != null) ? item["genre"].ToString() : "", 
-                (item["year"] != null) ? Convert.ToInt32(item["year"]) : -1, 
-                (item["rating"] != null) ? (float)Convert.ToDouble(item["rating"]) : -1
+                item["label"].Value<JValue>().Value.ToString(),
+                (item["thumbnail"] != null) ? item["thumbnail"].Value<JValue>().Value.ToString() : "",
+                (item["genre"] != null) ? item["genre"].Value<JValue>().Value.ToString() : "",
+                (item["year"] != null) ? Convert.ToInt32(item["year"].Value<JValue>().Value) : -1,
+                (item["rating"] != null) ? (float)Convert.ToDouble(item["rating"].Value<JValue>().Value) : -1
                 );
 
             return e;

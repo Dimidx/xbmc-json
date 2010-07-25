@@ -1,4 +1,5 @@
-﻿using Jayrock.Json;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace XbmcJson
 {
@@ -13,11 +14,11 @@ namespace XbmcJson
 
         public bool IsAudioPlayerActive()
         {
-           JsonObject query = (JsonObject)Client.Invoke("Player.GetActivePlayers");
+           JObject query = (JObject)Client.Invoke("Player.GetActivePlayers");
 
            if (query["audio"] != null)
            {
-               if (query["audio"].ToString() == "True")
+               if (query["audio"].Value<JValue>().Value.ToString() == "True")
                    return true;
                else
                    return false;
@@ -28,11 +29,11 @@ namespace XbmcJson
 
         public bool IsVideoPlayerActive()
         {
-            JsonObject query = (JsonObject)Client.Invoke("Player.GetActivePlayers");
+            JObject query = (JObject)Client.Invoke("Player.GetActivePlayers");
 
             if (query["video"] != null)
             {
-                if (query["video"].ToString() == "True")
+                if (query["video"].Value<JValue>().Value.ToString() == "True")
                     return true;
                 else
                     return false;
@@ -43,11 +44,11 @@ namespace XbmcJson
 
         public bool IsPicturePlayerActive()
         {
-            JsonObject query = (JsonObject)Client.Invoke("Player.GetActivePlayers");
+            JObject query = (JObject)Client.Invoke("Player.GetActivePlayers");
 
             if (query["picture"] != null)
             {
-                if (query["picture"].ToString() == "True")
+                if (query["picture"].Value<JValue>().Value.ToString() == "True")
                     return true;
                 else
                     return false;
