@@ -89,10 +89,7 @@ namespace XbmcJson
             }
             catch
             {
-                MemoryStream memstr = new MemoryStream();
-                Bitmap blankImage = new Bitmap(32,32);
-                blankImage.Save(memstr, System.Drawing.Imaging.ImageFormat.Png);
-                RetreievedImage = Image.FromStream(memstr);
+                RetreievedImage = new Bitmap(32,32);
             }
 
             return RetreievedImage;

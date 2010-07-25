@@ -48,5 +48,26 @@ namespace XbmcJson
 
             return e;
         }
+
+        public static Movie MovieFromPlayListItem(PlaylistItem item)
+        {
+            Movie e = new Movie(
+                item._id,
+                item.File,
+                item.Label,
+                item.Thumbnail,
+                item.Plot,
+                item.Director,
+                item.Writer,
+                item.Studio,
+                item.Genre,
+                item.Year,
+                item.Runtime,
+                item.Rating,
+                item.Tagline,
+                item.PlotOutline
+                );
+            return e;
+        }
     }
 }

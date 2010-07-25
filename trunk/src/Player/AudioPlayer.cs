@@ -64,6 +64,19 @@ namespace XbmcJson
             Client.Invoke("AudioPlayer.Forward");
         }
 
+        public string GetTimeFormatted()
+        {
+            string TimeFormatted = "";
+
+            int? TimePlayed = GetTimePlayedSeconds();
+            int? TimeTotal = GetTimeTotalSeconds();
+            
+            if(TimePlayed != null && TimeTotal !=null)
+                TimeFormatted = String.Format("{0:00}", (TimePlayed / 60)) + ":" + String.Format("{0:00}", (TimePlayed % 60)) + " / " + String.Format("{0:00}", (TimeTotal / 60)) + ":" + String.Format("{0:00}", (TimeTotal % 60));
+            
+            return TimeFormatted;
+        }
+
         public int GetTimePlayedSeconds()
         {
             JsonObject query = (JsonObject)Client.Invoke("AudioPlayer.GetTime");
