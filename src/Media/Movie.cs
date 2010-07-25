@@ -29,7 +29,23 @@ namespace XbmcJson
 
         public static Movie MovieFromJsonObject(JsonObject item)
         {
-            Movie e = new Movie(Convert.ToInt32(item["movieid"]), item["file"].ToString(), item["label"].ToString(), (item["thumbnail"] != null) ? item["thumbnail"].ToString() : "", (item["plot"] != null) ? item["plot"].ToString() : "", (item["director"] != null) ? item["director"].ToString() : "", (item["writer"] != null) ? item["writer"].ToString() : "", (item["studio"] != null) ? item["studio"].ToString() : "", (item["genre"] != null) ? item["genre"].ToString() : "", (item["year"] != null) ? Convert.ToInt32(item["year"]) : 0, (item["runtime"] != null) ? item["runtime"].ToString() : "", (item["rating"] != null) ? (float)Convert.ToDouble(item["rating"]) : 0, (item["tagline"] != null) ? item["tagline"].ToString() : "", (item["plotoutline"] != null) ? item["plotoutline"].ToString() : "");
+            Movie e = new Movie(
+                Convert.ToInt32(item["movieid"]), 
+                item["file"].ToString(), 
+                item["label"].ToString(), 
+                (item["thumbnail"] != null) ? item["thumbnail"].ToString() : "", 
+                (item["plot"] != null) ? item["plot"].ToString() : "", 
+                (item["director"] != null) ? item["director"].ToString() : "", 
+                (item["writer"] != null) ? item["writer"].ToString() : "", 
+                (item["studio"] != null) ? item["studio"].ToString() : "", 
+                (item["genre"] != null) ? item["genre"].ToString() : "", 
+                (item["year"] != null) ? Convert.ToInt32(item["year"]) : 0, 
+                (item["runtime"] != null) ? item["runtime"].ToString() : "", 
+                (item["rating"] != null) ? (float)Convert.ToDouble(item["rating"]) : 0, 
+                (item["tagline"] != null) ? item["tagline"].ToString() : "", 
+                (item["plotoutline"] != null) ? item["plotoutline"].ToString() : ""
+                );
+
             return e;
         }
     }

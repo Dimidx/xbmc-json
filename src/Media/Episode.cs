@@ -22,7 +22,16 @@ namespace XbmcJson
 
         public static Episode EpisodeFromJsonObject(JsonObject item)
         {
-            Episode e = new Episode(Convert.ToInt32(item["episodeid"]), item["file"].ToString(), item["label"].ToString(), (item["thumbnail"] != null) ? item["thumbnail"].ToString() : "", (item["plot"] != null) ? item["plot"].ToString() : "", (item["episode"] != null) ? Convert.ToInt32(item["episode"]) : 0, (item["season"] != null) ? Convert.ToInt32(item["season"]) : 0, (item["episode"] != null) ? Convert.ToInt32(item["year"]) : 0);
+            Episode e = new Episode(
+                Convert.ToInt32(item["episodeid"]), 
+                item["file"].ToString(), item["label"].ToString(), 
+                (item["thumbnail"] != null) ? item["thumbnail"].ToString() : "", 
+                (item["plot"] != null) ? item["plot"].ToString() : "", 
+                (item["episode"] != null) ? Convert.ToInt32(item["episode"]) : 0, 
+                (item["season"] != null) ? Convert.ToInt32(item["season"]) : 0, 
+                (item["episode"] != null) ? Convert.ToInt32(item["year"]) : 0
+                );
+
             return e;
         }
     }

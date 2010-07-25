@@ -79,9 +79,22 @@ namespace XbmcJson
             String ImageLocation = "http://" + XbmcIp + ":" + XbmcPort + "/vfs/" + Thumbnail;
             WebClient ImageGetter = new WebClient();
             ImageGetter.Credentials = new System.Net.NetworkCredential(XbmcUser, XbmcPass);
-            Stream stream = ImageGetter.OpenRead(ImageLocation);
-            Image RetreievedImage = Image.FromStream(stream);
-            stream.Close();
+            Image RetreievedImage;
+
+            try
+            {
+                Stream stream = ImageGetter.OpenRead(ImageLocation);
+                RetreievedImage = Image.FromStream(stream);
+                stream.Close();
+            }
+            catch
+            {
+                MemoryStream memstr = new MemoryStream();
+                Bitmap blankImage = new Bitmap(32,32);
+                blankImage.Save(memstr, System.Drawing.Imaging.ImageFormat.Png);
+                RetreievedImage = Image.FromStream(memstr);
+            }
+
             return RetreievedImage;
         }
     }

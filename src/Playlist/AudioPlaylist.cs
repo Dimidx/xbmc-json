@@ -27,16 +27,20 @@ namespace XbmcJson
             Client.Invoke("AudioPlaylist.SkipNext");
         }
 
-        public List<PlaylistItem> GetItems()
+        public List<Song> GetItems()
         {
-            JsonObject query =  (JsonObject)Client.Invoke("AudioPlaylist.GetItems");
-            List<PlaylistItem> list = new List<PlaylistItem>();
+            //These fields aren't parsed by xbmc, always returns file, label and thumbnail only.
+            JsonObject args = new JsonObject();
+            args["fields"] = new string[] { "songid", "title", "artist", "genre", "year", "rating" };
+
+            JsonObject query =  (JsonObject)Client.Invoke("AudioPlaylist.GetItems", args);
+            List<Song> list = new List<Song>();
 
             if (query["items"] != null)
             {
                 foreach (JsonObject item in (JsonArray)query["items"])
                 {
-                    list.Add(PlaylistItem.PlaylistItemFromJsonObject(item));
+                    list.Add(Song.SongFromJsonObject(item));
                 }
             }
 
