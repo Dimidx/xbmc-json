@@ -20,3 +20,8 @@ C:\Users\Tyler\Desktop\xbmc-json\bin\Debug\XbmcJson.pdb
 C:\Users\Tyler\Desktop\xbmc-json\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Tyler\Desktop\xbmc-json\obj\Debug\XbmcJson.dll
 C:\Users\Tyler\Desktop\xbmc-json\obj\Debug\XbmcJson.pdb
+C:\Users\Administrator\Documents\XbmcJson\bin\Debug\XbmcJson.dll
+C:\Users\Administrator\Documents\XbmcJson\bin\Debug\XbmcJson.pdb
+C:\Users\Administrator\Documents\XbmcJson\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\XbmcJson\obj\Debug\XbmcJson.dll
+C:\Users\Administrator\Documents\XbmcJson\obj\Debug\XbmcJson.pdb

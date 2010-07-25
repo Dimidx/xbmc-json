@@ -79,14 +79,14 @@ namespace XbmcJson
         public Image GetImageFromThumbnail(String Thumbnail)
         {
             String ImageLocation = "http://" + XbmcIp + ":" + XbmcPort + "/vfs/" + Thumbnail;
-            WebClient ImageGetter = new WebClient();
+            WebRequest ImageGetter = WebRequest.Create(ImageLocation);
             ImageGetter.Credentials = new System.Net.NetworkCredential(XbmcUser, XbmcPass);
             Image RetreievedImage;
 
             try
             {
-                Stream stream = ImageGetter.OpenRead(ImageLocation);
-                RetreievedImage = Image.FromStream(stream);
+                Stream stream = ImageGetter.GetResponse().GetResponseStream();
+                RetreievedImage = new Bitmap(stream);
                 stream.Close();
             }
             catch
