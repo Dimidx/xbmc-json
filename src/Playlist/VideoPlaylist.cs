@@ -7,6 +7,8 @@ namespace XbmcJson
     {
         private JsonRpcClient Client;
 
+        private string[] AllPlaylistFields = new string[] { "episodeid", "movieid", "plot", "director", "writer", "studio", "genre", "year", "runtime", "rating", "tagline", "plotoutline", "season", "episode" };
+
         public XbmcVideoPlaylist(JsonRpcClient client)
         {
             Client = client;
@@ -29,7 +31,10 @@ namespace XbmcJson
 
         public List<PlaylistItem> GetItems()
         {
-            JsonObject query = (JsonObject)Client.Invoke("VideoPlaylist.GetItems");
+            JsonObject args = new JsonObject();
+            args["fields"] =  AllPlaylistFields;
+            
+            JsonObject query = (JsonObject)Client.Invoke("VideoPlaylist.GetItems", args);
             List<PlaylistItem> list = new List<PlaylistItem>();
 
             if (query["items"] != null)

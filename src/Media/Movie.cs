@@ -9,7 +9,7 @@ namespace XbmcJson
         public float Rating;
         public string File, Label, Thumbnail, Plot, Director, Writer, Studio, Genre,  Runtime, Tagline, PlotOutline;
 
-        public Movie(int id, string file, string label, string thumbnail = "", string plot = "", string director = "", string writer = "", string studio = "", string genre = "", int? year = 0, string runtime = "", float? rating = 0, string tagline = "", string plotOutline ="")
+        public Movie(int id, string file, string label, string thumbnail, string plot, string director, string writer, string studio, string genre, int year, string runtime, float rating, string tagline, string plotOutline)
         {
             _id = id;
             File = file;
@@ -20,9 +20,9 @@ namespace XbmcJson
             Writer = writer;
             Studio = studio;
             Genre = genre;
-            Year = (int)year;
+            Year = year;
             Runtime = runtime;
-            Rating = (float)rating;
+            Rating = rating;
             Tagline = tagline;
             PlotOutline = plotOutline;
         }
@@ -39,9 +39,9 @@ namespace XbmcJson
                 (item["writer"] != null) ? item["writer"].ToString() : "", 
                 (item["studio"] != null) ? item["studio"].ToString() : "", 
                 (item["genre"] != null) ? item["genre"].ToString() : "", 
-                (item["year"] != null) ? Convert.ToInt32(item["year"]) : 0, 
+                (item["year"] != null) ? Convert.ToInt32(item["year"]) : -1, 
                 (item["runtime"] != null) ? item["runtime"].ToString() : "", 
-                (item["rating"] != null) ? (float)Convert.ToDouble(item["rating"]) : 0, 
+                (item["rating"] != null) ? (float)Convert.ToDouble(item["rating"]) : -1, 
                 (item["tagline"] != null) ? item["tagline"].ToString() : "", 
                 (item["plotoutline"] != null) ? item["plotoutline"].ToString() : ""
                 );
