@@ -68,7 +68,7 @@ namespace XbmcJson
             return ((JObject)Client.Invoke("JSONRPC.Ping")).Value<JValue>().Value.ToString();
         }
 
-        public void Announce(string sender, string message, object data = null)
+        public void Announce(string sender, string message, object data)
         {
             var args = new JObject();
 
