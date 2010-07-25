@@ -29,36 +29,44 @@ namespace XbmcJson
             Client.Invoke("AudioPlaylist.SkipNext");
         }
 
-        /*
-         * This should reheaallyy return a song instead
-         */
-        public PlaylistItem GetCurrentItem()
-        {
-            int currentId;
-            PlaylistItem currentItem = null;
 
-            JObject query = (JObject)Client.Invoke("AudioPlaylist.GetItems");
-            List<PlaylistItem> list = new List<PlaylistItem>();
+        public Song GetCurrentItem()
+        {
+            string[] fields = new string[] { "songid", "title", "artist", "genre", "year", "rating" };
+
+            var args = new JObject();
+            args.Add(new JProperty("fields", fields));
+
+            int currentId;
+            Song currentSong = null;
+
+            JObject query = (JObject)Client.Invoke("AudioPlaylist.GetItems", args);
+            List<Song> list = new List<Song>();
 
             if (query["items"] != null)
             {
                 currentId = Convert.ToInt32(query["current"].Value<JValue>().Value);
-                currentItem = PlaylistItem.PlaylistItemFromJsonObject(query["items"].Value<JObject>(currentId));
+                currentSong = Song.SongFromJsonObject(query["items"].Value<JObject>(currentId));
             }
 
-            return currentItem;
+            return currentSong;
         } 
 
-        public List<PlaylistItem> GetItems()
+        public List<Song> GetItems()
         {
+            string[] fields = new string[] { "songid", "title", "artist", "genre", "year", "rating" }; 
+
+            var args = new JObject();
+            args.Add(new JProperty("fields", fields));
+
             JObject query = (JObject)Client.Invoke("AudioPlaylist.GetItems");
-            List<PlaylistItem> list = new List<PlaylistItem>();
+            List<Song> list = new List<Song>();
 
             if (query["items"] != null)
             {
                 foreach (JObject item in (JArray)query["items"])
                 {
-                    list.Add(PlaylistItem.PlaylistItemFromJsonObject(item));
+                    list.Add(Song.SongFromJsonObject(item));
                 }
             }
 
