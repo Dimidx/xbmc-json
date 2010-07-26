@@ -40,5 +40,23 @@ namespace XbmcJson
                 );
             return e;
         }
+
+        public static MusicVideo MusicVideoFromPlaylistItem(PlaylistItem item)
+        {
+            MusicVideo e = new MusicVideo(
+                item._id,
+                item.File,
+                item.Label,
+                item.Thumbnail,
+                item.Artist,
+                item.Title,
+                item.Genre,
+                item.Album,
+                item.Year,
+                item.Rating
+            );
+
+            return e;
+        }
     }
 }
