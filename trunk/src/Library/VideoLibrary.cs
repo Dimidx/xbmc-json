@@ -11,7 +11,8 @@ namespace XbmcJson
         private string[] AllMovieFields = new string[] { "plot", "director", "writer", "studio", "genre", "year", "runtime", "rating", "tagline", "plotoutline" };
         private string[] AllTvShowFields = new string[] { "plot", "genre", "year", "rating" };
         private string[] AllSeasonFields = new string[] { "genre", "year", "runtime", "rating" };
-        private string[] AllEpsiodeFields = new string[] { "season", "episode", "runtime", "year", "plot" };
+        private string[] AllEpisodeFields = new string[] { "season", "episode", "runtime", "year", "plot" };
+        private string[] AllMusicVideoFields = new string[] { "title", "artist", "genre", "year", "rating", "album" };
 
         public XbmcVideoLibrary(JsonRpcClient client)
         {
@@ -141,7 +142,7 @@ namespace XbmcJson
 
         public List<Episode> GetEpisodesAllFields(int tvShowId, int season, string sortMethod, string sortOrder, int? start, int? end)
         {
-            return GetEpisodes(tvShowId, season, AllEpsiodeFields, sortMethod, sortOrder, start, end);
+            return GetEpisodes(tvShowId, season, AllEpisodeFields, sortMethod, sortOrder, start, end);
         }
 
         public List<Episode> GetEpisodes(int tvShowId, int season)
@@ -175,6 +176,36 @@ namespace XbmcJson
                 foreach (JObject item in (JArray)query["episodes"])
                 {
                     list.Add(Episode.EpisodeFromJsonObject(item));
+                }
+            }
+
+            return list;
+        }
+
+        public List<MusicVideo> GetMusicVideosAllFields()
+        {
+            return GetMusicVideos(AllMusicVideoFields);
+        }
+
+        public List<MusicVideo> GetMusicVideos()
+        {
+            return GetMusicVideos(null);
+        }
+        public List<MusicVideo> GetMusicVideos(string[] fields)
+        {
+            var args = new JObject();
+
+            if (fields != null)
+                args.Add(new JProperty("fields", fields));
+
+            JObject query = (JObject)Client.Invoke("VideoLibrary.GetMusicVideos", args);
+            List<MusicVideo> list = new List<MusicVideo>();
+
+            if (query["songs"] != null)
+            {
+                foreach (JObject item in (JArray)query["musicvideos"])
+                {
+                    list.Add(MusicVideo.MusicVideoFromJsonObject(item));
                 }
             }
 
@@ -222,7 +253,7 @@ namespace XbmcJson
 
         public List<Episode> GetRecentlyAddedEpisodesAllFields(string sortMethod, string sortOrder, int? start, int? end)
         {
-            return GetRecentlyAddedEpisodes(AllEpsiodeFields, sortMethod, sortOrder, start, end);
+            return GetRecentlyAddedEpisodes(AllEpisodeFields, sortMethod, sortOrder, start, end);
         }
 
         public List<Episode> GetRecentlyAddedEpisodes()
@@ -259,7 +290,44 @@ namespace XbmcJson
             return list;
         }
 
-        //Need to add music videos
+        public List<MusicVideo> GetRecentlyAddedMusicVideosAllFields(string sortMethod, string sortOrder, int? start, int? end)
+        {
+            return GetRecentlyAddedMusicVideos(AllMusicVideoFields, sortMethod, sortOrder, start, end);
+        }
+
+        public List<MusicVideo> GetRecentlyAddedMusicVideos()
+        {
+            return GetRecentlyAddedMusicVideos(null, null, null, null, null);
+        }
+
+        public List<MusicVideo> GetRecentlyAddedMusicVideos(string[] fields, string sortMethod, string sortOrder, int? start, int? end)
+        {
+            var args = new JObject();
+
+            if (fields != null)
+                args.Add(new JProperty("fields", fields));
+            if (sortMethod != null)
+                args.Add(new JProperty("sortmethod", sortMethod));
+            if (sortOrder != null)
+                args.Add(new JProperty("sortorder", sortOrder));
+            if (start != null)
+                args.Add(new JProperty("start", start));
+            if (end != null)
+                args.Add(new JProperty("end", sortOrder));
+
+            List<MusicVideo> list = new List<MusicVideo>();
+            JObject query = (JObject)Client.Invoke("VideoLibrary.GetRecentlyAddedMusicVideos", args);
+
+            if (query["musicvideos"] != null)
+            {
+                foreach (JObject item in (JArray)query["musicvideos"])
+                {
+                    list.Add(MusicVideo.MusicVideoFromJsonObject(item));
+                }
+            }
+
+            return list;
+        }
 
         public void ScanForContent()
         {
