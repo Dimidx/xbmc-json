@@ -7,9 +7,9 @@ namespace XbmcJson
     {
         public int _id, Year, EpisodeNum, Season;
         public float Rating;
-        public string File, Label, Thumbnail, Plot, Director, Writer, Studio, Genre, Runtime, Tagline, PlotOutline, Show;
+        public string File, Label, Thumbnail, Plot, Director, Writer, Studio, Genre, Runtime, Tagline, PlotOutline, Show, Artist, Album, Title;
 
-        public PlaylistItem(string file, string label, string thumbnail, string plot, string director, string writer, string studio, string genre, int year, string runtime, float rating, string tagline, string plotOutline, string show, int season, int episodeNum)
+        public PlaylistItem(string file, string label, string thumbnail, string plot, string director, string writer, string studio, string genre, int year, string runtime, float rating, string tagline, string plotOutline, string show, int season, int episodeNum, string artist, string album, string title)
         {
             File = file;
             Label = label;
@@ -27,6 +27,9 @@ namespace XbmcJson
             Show = show;
             Season = season;
             EpisodeNum = episodeNum;
+            Artist = artist;
+            Album = album;
+            Title = title;
         }
 
         public static PlaylistItem PlaylistItemFromJsonObject(JObject item)
@@ -46,8 +49,11 @@ namespace XbmcJson
                 (item["tagline"] != null) ? item["tagline"].Value<JValue>().Value.ToString() : "",
                 (item["plotoutline"] != null) ? item["plotoutline"].Value<JValue>().Value.ToString() : "",
                 (item["showtitle"] != null) ? item["showtitle"].Value<JValue>().Value.ToString() : "",
-                (item["episode"] != null) ? Convert.ToInt32(item["episode"].Value<JValue>().Value) : -1,
-                (item["season"] != null) ? Convert.ToInt32(item["season"].Value<JValue>().Value) : -1
+                (item["season"] != null) ? Convert.ToInt32(item["season"].Value<JValue>().Value) : -1,
+                (item["episode"] != null) ? Convert.ToInt32(item["episode"].Value<JValue>().Value) : -1,            
+                (item["artist"] != null) ? item["artist"].Value<JValue>().Value.ToString() : "",
+                (item["album"] != null) ? item["album"].Value<JValue>().Value.ToString() : "",
+                (item["title"] != null) ? item["title"].Value<JValue>().Value.ToString() : ""
                 );
 
             return e;

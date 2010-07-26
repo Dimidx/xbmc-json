@@ -9,7 +9,7 @@ namespace XbmcJson
     {
         private JsonRpcClient Client;
 
-        private string[] AllPlaylistFields = new string[] { "episodeid", "movieid", "plot", "director", "writer", "studio", "genre", "year", "runtime", "rating", "tagline", "plotoutline", "showtitle", "season", "episode" };
+        private string[] AllPlaylistFields = new string[] { "episodeid", "movieid", "plot", "director", "writer", "studio", "genre", "year", "runtime", "rating", "tagline", "plotoutline", "showtitle", "season", "episode", "artist", "album", "title"};
 
         public XbmcVideoPlaylist(JsonRpcClient client)
         {
