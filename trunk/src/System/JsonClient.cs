@@ -90,7 +90,10 @@ namespace XbmcJson
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(ClientUri);
             request.AllowWriteStreamBuffering = true;
             request.Credentials = new System.Net.NetworkCredential(XbmcUser, XbmcPass);
+            request.ContentType = "application/json";
             request.Method = "POST";
+            request.KeepAlive = false;
+
             using (var stream = request.GetRequestStream())
             {
                 using (var writer = new StreamWriter(stream, Encoding.ASCII))
