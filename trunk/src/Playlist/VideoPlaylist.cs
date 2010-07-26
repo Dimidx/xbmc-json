@@ -56,7 +56,10 @@ namespace XbmcJson
 
             if (query["items"] != null)
             {
-                currentId = Convert.ToInt32(query["current"].Value<JValue>().Value);
+                if (!query["current"] == null)
+                {
+                    currentId = Convert.ToInt32(query["current"].Value<JValue>().Value);
+                }
                 currentItem = PlaylistItem.PlaylistItemFromJsonObject(query["items"].Value<JObject>(currentId));
             }
 
