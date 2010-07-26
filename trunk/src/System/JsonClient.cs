@@ -33,7 +33,6 @@ namespace XbmcJson
             DebugEnabled = debugEnabled;
         }
 
-
         public object Invoke(string method)
         {
             return Invoke(AnyType.Value, method);
@@ -93,31 +92,38 @@ namespace XbmcJson
             request.Credentials = new System.Net.NetworkCredential(XbmcUser, XbmcPass);
             request.Method = "POST";
             using (var stream = request.GetRequestStream())
-            using (var writer = new StreamWriter(stream, Encoding.ASCII))
             {
-                if (_id > 100000)
-                    _id = 0;
+                using (var writer = new StreamWriter(stream, Encoding.ASCII))
+                {
+                    if (_id > 100000)
+                        _id = 0;
 
-                var call = new JObject();
-                call["jsonrpc"] = "2.0";
-                call["method"] = method;
-                if (args != null)
-                    call["params"] = (JObject)args;
-                call["id"] = ++_id;
+                    var call = new JObject();
+                    call["jsonrpc"] = "2.0";
+                    call["method"] = method;
+                    if (args != null)
+                        call["params"] = (JObject)args;
+                    call["id"] = ++_id;
 
-                if (DebugEnabled)
-                    DebugLog.WriteLog("Invoke: " + call.ToString());
+                    if (DebugEnabled)
+                        DebugLog.WriteLog("Invoke: " + call.ToString());
 
-                writer.Write(call.ToString());
-            }
-            using (var response = request.GetResponse())
-            using (var stream2 = response.GetResponseStream())
-            using (var reader = new StreamReader(stream2, Encoding.UTF8))
-            {
-                object res = OnResponse(reader, returnType);
-                if (DebugEnabled)
-                    DebugLog.WriteLog("Response: " + res.ToString());
-                return res;
+                    writer.Write(call.ToString());
+                }
+
+                using (var response = request.GetResponse())
+                {
+                    using (var stream2 = response.GetResponseStream())
+                    {
+                        using (var reader = new StreamReader(stream2, Encoding.UTF8))
+                        {
+                            object res = OnResponse(reader, returnType);
+                            if (DebugEnabled)
+                                DebugLog.WriteLog("Response: " + res.ToString());
+                            return res;
+                        }
+                    }
+                }
             }
         }
 

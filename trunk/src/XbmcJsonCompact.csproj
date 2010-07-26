@@ -69,7 +69,6 @@
     <Compile Include="Media\Song.cs" />
     <Compile Include="Media\TvShow.cs" />
     <Compile Include="Player\AudioPlayer.cs" />
-    <Compile Include="Player\NowPlaying.cs" />
     <Compile Include="Player\PicturePlayer.cs" />
     <Compile Include="Player\Player.cs" />
     <Compile Include="Player\VideoPlayer.cs" />
