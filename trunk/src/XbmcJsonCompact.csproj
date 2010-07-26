@@ -63,6 +63,7 @@
     <Compile Include="Media\Episode.cs" />
     <Compile Include="Media\JsonMethod.cs" />
     <Compile Include="Media\Movie.cs" />
+    <Compile Include="Media\MusicVideo.cs" />
     <Compile Include="Media\PlaylistItem.cs" />
     <Compile Include="Media\Season.cs" />
     <Compile Include="Media\Share.cs" />

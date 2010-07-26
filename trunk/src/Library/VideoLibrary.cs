@@ -124,7 +124,7 @@ namespace XbmcJson
             if (start != null)
                 args.Add(new JProperty("start", start));
             if (end != null)
-                args.Add(new JProperty("end", sortOrder));
+                args.Add(new JProperty("end", end));
 
             List<Season> list = new List<Season>();
             JObject query = (JObject)Client.Invoke("VideoLibrary.GetSeasons", args);
@@ -166,7 +166,7 @@ namespace XbmcJson
             if (start != null)
                 args.Add(new JProperty("start", start));
             if (end != null)
-                args.Add(new JProperty("end", sortOrder));
+                args.Add(new JProperty("end", end));
 
             List<Episode> list = new List<Episode>();
             JObject query = (JObject)Client.Invoke("VideoLibrary.GetEpisodes", args);
@@ -235,7 +235,7 @@ namespace XbmcJson
             if (start != null)
                 args.Add(new JProperty("start", start));
             if (end != null)
-                args.Add(new JProperty("end", sortOrder));
+                args.Add(new JProperty("end", end));
 
             List<Movie> list = new List<Movie>();
             JObject query = (JObject)Client.Invoke("VideoLibrary.GetRecentlyAddedMovies", args);
@@ -274,7 +274,7 @@ namespace XbmcJson
             if (start != null)
                 args.Add(new JProperty("start", start));
             if (end != null)
-                args.Add(new JProperty("end", sortOrder));
+                args.Add(new JProperty("end", end));
 
             List<Episode> list = new List<Episode>();
             JObject query = (JObject)Client.Invoke("VideoLibrary.GetRecentlyAddedEpisodes", args);
@@ -313,7 +313,7 @@ namespace XbmcJson
             if (start != null)
                 args.Add(new JProperty("start", start));
             if (end != null)
-                args.Add(new JProperty("end", sortOrder));
+                args.Add(new JProperty("end", end));
 
             List<MusicVideo> list = new List<MusicVideo>();
             JObject query = (JObject)Client.Invoke("VideoLibrary.GetRecentlyAddedMusicVideos", args);
