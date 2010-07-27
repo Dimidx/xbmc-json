@@ -102,11 +102,11 @@ namespace XbmcJson
                         _id = 0;
 
                     var call = new JObject();
-                    call["jsonrpc"] = "2.0";
-                    call["method"] = method;
+                    call.Add(new JProperty("jsonrpc", "2.0"));
+                    call.Add(new JProperty("method", method));
                     if (args != null)
-                        call["params"] = (JObject)args;
-                    call["id"] = ++_id;
+                        call.Add(new JProperty("params", args));
+                    call.Add(new JProperty("id", ++_id));
 
                     if (DebugEnabled)
                         DebugLog.WriteLog("Invoke: " + call.ToString());
@@ -114,7 +114,7 @@ namespace XbmcJson
                     writer.Write(call.ToString());
                 }
 
-                using (var response = request.GetResponse())
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                 {
                     using (var stream2 = response.GetResponseStream())
                     {

@@ -2,4 +2,8 @@
   <PropertyGroup>
     <ProjectView>ProjectFiles</ProjectView>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\Users\Tyler\Desktop\XBMC Remote\XBMC Remote\bin\Debug\XBMC_Remote.exe</StartProgram>
+  </PropertyGroup>
 </Project>
