@@ -113,19 +113,26 @@ namespace XbmcJson
 
                     writer.Write(call.ToString());
                 }
-
-                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                try
                 {
-                    using (var stream2 = response.GetResponseStream())
+                    using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                     {
-                        using (var reader = new StreamReader(stream2, Encoding.UTF8))
+                        using (var stream2 = response.GetResponseStream())
                         {
-                            object res = OnResponse(reader, returnType);
-                            if (DebugEnabled)
-                                DebugLog.WriteLog("Response: " + res.ToString());
-                            return res;
+                            using (var reader = new StreamReader(stream2, Encoding.UTF8))
+                            {
+                                object res = OnResponse(reader, returnType);
+                                if (DebugEnabled)
+                                    DebugLog.WriteLog("Response: " + res.ToString());
+                                return res;
+                            }
                         }
                     }
+                }
+                catch
+                {
+                    DebugLog.WriteLog("Exception");
+                    return (object)null;
                 }
             }
         }

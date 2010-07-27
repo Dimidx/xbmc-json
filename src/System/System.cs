@@ -36,6 +36,51 @@ namespace XbmcJson
                 return "";
         }
 
+       public string GetScreenResolution()
+        {
+            string[] label = new string[] { "System.ScreenResolution" };
+            JObject query = (JObject)Client.Invoke("System.GetInfoLabels", label);
+
+            if (query != null)
+                return (string)query["System.ScreenResolution"].Value<JValue>().Value;
+            else
+                return "";
+        }
+
+       public string GetBuildVersion()
+        {
+            string[] label = new string[] { "System.BuildVersion" };
+            JObject query = (JObject)Client.Invoke("System.GetInfoLabels", label);
+
+            if (query != null)
+                return (string)query["System.BuildVersion"].Value<JValue>().Value;
+            else
+                return "";
+        }
+
+       public string GetTotalUptime()
+        {
+            string[] label = new string[] { "System.TotalUptime" };
+            JObject query = (JObject)Client.Invoke("System.GetInfoLabels", label);
+
+            if (query != null)
+                return (string)query["System.TotalUptime"].Value<JValue>().Value;
+            else
+                return "";
+        }
+
+       public string GetUptime()
+       {
+           string[] label = new string[] { "System.Uptime" };
+           JObject query = (JObject)Client.Invoke("System.GetInfoLabels", label);
+
+           if (query != null)
+               return (string)query["System.Uptime"].Value<JValue>().Value;
+           else
+               return "";
+       }
+       
+       
         //Will fix later
         public Dictionary<string, string> GetInfoLabels(string[] labels)
         {
