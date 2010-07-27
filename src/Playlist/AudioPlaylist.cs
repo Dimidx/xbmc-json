@@ -55,8 +55,11 @@ namespace XbmcJson
 
             if (query["items"] != null)
             {
-                currentId = Convert.ToInt32(query["current"].Value<JValue>().Value);
-                currentSong = Song.SongFromJsonObject(query["items"].Value<JObject>(currentId));
+                if (query["current"] != null)
+                {
+                    currentId = Convert.ToInt32(query["current"].Value<JValue>().Value);
+                    currentSong = Song.SongFromJsonObject(query["items"].Value<JObject>(currentId));
+                }
             }
 
             return currentSong;
