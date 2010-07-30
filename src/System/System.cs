@@ -36,7 +36,7 @@ namespace XbmcJson
                 return "";
         }
 
-       public string GetScreenResolution()
+        public string GetScreenResolution()
         {
             string[] label = new string[] { "System.ScreenResolution" };
             JObject query = (JObject)Client.Invoke("System.GetInfoLabels", label);
@@ -47,7 +47,7 @@ namespace XbmcJson
                 return "";
         }
 
-       public string GetBuildVersion()
+        public string GetBuildVersion()
         {
             string[] label = new string[] { "System.BuildVersion" };
             JObject query = (JObject)Client.Invoke("System.GetInfoLabels", label);
@@ -58,7 +58,7 @@ namespace XbmcJson
                 return "";
         }
 
-       public string GetTotalUptime()
+        public string GetTotalUptime()
         {
             string[] label = new string[] { "System.TotalUptime" };
             JObject query = (JObject)Client.Invoke("System.GetInfoLabels", label);
@@ -69,8 +69,8 @@ namespace XbmcJson
                 return "";
         }
 
-       public string GetUptime()
-       {
+        public string GetUptime()
+        {
            string[] label = new string[] { "System.Uptime" };
            JObject query = (JObject)Client.Invoke("System.GetInfoLabels", label);
 

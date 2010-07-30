@@ -39,9 +39,19 @@ namespace XbmcJson
             Client.Invoke("XBMC.ToggleMute");
         }
 
-        public void Play()
+        public void Play(int? artistId, int? albumId, int? songId, string playlist)
         {
-            Client.Invoke("XBMC.Play");
+            var args = new JObject();
+            if (artistId != null)
+                args.Add(new JProperty("artistid", artistId));
+            if (albumId != null)
+                args.Add(new JProperty("albumid", albumId));
+            if (songId != null)
+                args.Add(new JProperty("songid", songId));
+            if (playlist != null)
+                args.Add(new JProperty("playlist", playlist));
+            
+            Client.Invoke("XBMC.Play", args);
         }
 
         public void Quit()

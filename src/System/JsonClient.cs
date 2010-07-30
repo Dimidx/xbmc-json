@@ -113,8 +113,8 @@ namespace XbmcJson
 
                     writer.Write(call.ToString());
                 }
-                try
-                {
+              //  try
+              //  {
                     using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                     {
                         using (var stream2 = response.GetResponseStream())
@@ -128,12 +128,12 @@ namespace XbmcJson
                             }
                         }
                     }
-                }
-                catch
-                {
-                    DebugLog.WriteLog("Exception");
-                    return (object)null;
-                }
+               // }
+              //  catch
+              //  {
+              //      DebugLog.WriteLog("Exception");
+              //      return (object)null;
+             //   }
             }
         }
 
