@@ -10,7 +10,7 @@ namespace XbmcJson
         private JsonRpcClient Client;
         private string[] AllMovieFields = new string[] { "plot", "director", "writer", "studio", "genre", "year", "runtime", "rating", "tagline", "plotoutline" };
         private string[] AllTvShowFields = new string[] { "plot", "genre", "year", "rating" };
-        private string[] AllSeasonFields = new string[] { "genre", "year", "runtime", "rating" };
+        private string[] AllSeasonFields = new string[] {"season", "genre", "year", "runtime", "rating" };
         private string[] AllEpisodeFields = new string[] { "season", "episode", "runtime", "year", "plot" };
         private string[] AllMusicVideoFields = new string[] { "title", "artist", "genre", "year", "rating", "album" };
 
