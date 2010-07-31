@@ -140,7 +140,6 @@ namespace XbmcJson
         private object OnResponse(StreamReader reader, Type returnType)
         {
             var JObjectResponse = JObject.Parse(reader.ReadToEnd());
-
             var members = JObjectResponse.Properties();
 
             foreach (var member in members)

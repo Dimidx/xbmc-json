@@ -6,12 +6,13 @@ namespace XbmcJson
 {
     public class Season
     {
-        public int Year;
+        public int Year, _Season;
         public float Rating;
         public string Label, Thumbnail,  Genre;
 
-        public Season(string label, string thumbnail, string genre, int year, float rating)
+        public Season(int season, string label, string thumbnail, string genre, int year, float rating)
         {
+            _Season = season;
             Label = label;
             Thumbnail = thumbnail;
             Genre = genre;
@@ -22,6 +23,7 @@ namespace XbmcJson
         public static Season SeasonFromJsonObject(JObject item)
         {
             Season e = new Season(
+                (item["season"] != null) ? Convert.ToInt32(item["season"].Value<JValue>().Value) : -1,
                 item["label"].Value<JValue>().Value.ToString(),
                 (item["thumbnail"] != null) ? item["thumbnail"].Value<JValue>().Value.ToString() : "",
                 (item["genre"] != null) ? item["genre"].Value<JValue>().Value.ToString() : "",

@@ -39,7 +39,42 @@ namespace XbmcJson
             Client.Invoke("XBMC.ToggleMute");
         }
 
-        public void Play(int? artistId, int? albumId, int? songId, string playlist)
+        public void PlayArtist(int artistId)
+        {
+            Play(artistId, null, null, null, null, null, null, null, null);
+        }
+
+        public void PlayAlbum(int albumId)
+        {
+            Play(null, albumId, null, null, null, null, null, null, null);
+        }
+
+        public void PlaySong(int songId)
+        {
+            Play(null, null, songId, null, null, null, null, null, null);
+        }
+
+        public void PlayMovie(int movieId)
+        {
+            Play(null, null, null, movieId, null, null, null, null, null);
+        }
+
+        public void PlayEpisode(int tvshowId, int seasonId, int episodeId)
+        {
+            Play(null, null, null, null, tvshowId, seasonId, episodeId, null, null);
+        }
+
+        public void PlayFile(string file)
+        {
+            Play(null, null, null, null, null, null, null, null, file);
+        }
+
+        public void PlayPlaylist(string playlist)
+        {
+            Play(null, null, null, null, null, null, null, playlist, null);
+        }
+
+        private void Play(int? artistId, int? albumId, int? songId, int? movieId,  int? tvshowId, int? seasonId, int? episodeId, string playlist, string file)
         {
             var args = new JObject();
             if (artistId != null)
@@ -50,6 +85,14 @@ namespace XbmcJson
                 args.Add(new JProperty("songid", songId));
             if (playlist != null)
                 args.Add(new JProperty("playlist", playlist));
+            if (movieId != null)
+                args.Add(new JProperty("movieid", movieId));
+            if (tvshowId != null && seasonId != null && episodeId != null)
+                args.Add(new JProperty("tvshowid", tvshowId));
+                args.Add(new JProperty("season", seasonId));
+                args.Add(new JProperty("episodeid", episodeId));
+            if (file != null)
+                args.Add(new JProperty("file", file));
             
             Client.Invoke("XBMC.Play", args);
         }

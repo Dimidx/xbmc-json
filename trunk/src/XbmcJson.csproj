@@ -58,12 +58,7 @@
     <Compile Include="Media\PlaylistItem.cs" />
     <Compile Include="Player\AudioPlayer.cs" />
     <Compile Include="Playlist\AudioPlaylist.cs" />
-    <Compile Include="System\Control.cs" />
-    <Compile Include="System\DebugLog.cs" />
     <Compile Include="Media\Episode.cs" />
-    <Compile Include="System\Files.cs" />
-    <Compile Include="System\JsonClient.cs" />
-    <Compile Include="System\JsonRpc.cs" />
     <Compile Include="Player\PicturePlayer.cs" />
     <Compile Include="Player\Player.cs" />
     <Compile Include="Playlist\Playlist.cs" />
@@ -71,13 +66,18 @@
     <Compile Include="Media\Season.cs" />
     <Compile Include="Media\Share.cs" />
     <Compile Include="Media\Song.cs" />
-    <Compile Include="System\Status.cs" />
-    <Compile Include="System\System.cs" />
     <Compile Include="Media\TvShow.cs" />
     <Compile Include="Media\Movie.cs" />
     <Compile Include="Library\VideoLibrary.cs" />
     <Compile Include="Player\VideoPlayer.cs" />
     <Compile Include="Playlist\VideoPlaylist.cs" />
+    <Compile Include="System\Control.cs" />
+    <Compile Include="System\DebugLog.cs" />
+    <Compile Include="System\Files.cs" />
+    <Compile Include="System\JsonClient.cs" />
+    <Compile Include="System\JsonRpc.cs" />
+    <Compile Include="System\Status.cs" />
+    <Compile Include="System\System.cs" />
     <Compile Include="System\XbmcConnection.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

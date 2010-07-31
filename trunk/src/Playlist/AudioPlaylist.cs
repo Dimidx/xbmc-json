@@ -15,9 +15,9 @@ namespace XbmcJson
             Client = client;
         }
 
-        public void Play()
+        public void Play(int playlistIndex)
         {
-            Client.Invoke("AudioPlaylist.Play");
+            Client.Invoke("AudioPlaylist.Play", playlistIndex);
         }
 
         public void SkipPrevious()
