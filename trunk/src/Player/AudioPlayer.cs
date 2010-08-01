@@ -125,12 +125,7 @@ namespace XbmcJson
 
         public float GetPercentagePlayed()
         {
-           JObject query = (JObject)Client.Invoke("AudioPlayer.GetPercentage");
-
-           if (query != null)
-               return (float)Convert.ToDouble(query.Value<JValue>().Value);
-           else
-               return -1;
+            return (float)Client.Invoke("AudioPlayer.GetPercentage");
         }
 
         public void SeekTime(int timeInSeconds)

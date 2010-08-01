@@ -113,8 +113,8 @@ namespace XbmcJson
 
                     writer.Write(call.ToString());
                 }
-              //  try
-              //  {
+                try
+                {
                     using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                     {
                         using (var stream2 = response.GetResponseStream())
@@ -128,12 +128,12 @@ namespace XbmcJson
                             }
                         }
                     }
-               // }
-              //  catch
-              //  {
-              //      DebugLog.WriteLog("Exception");
-              //      return (object)null;
-             //   }
+                }
+                catch
+                {
+                    DebugLog.WriteLog("Exception");
+                    return (object)null;
+                }
             }
         }
 
@@ -158,7 +158,12 @@ namespace XbmcJson
                     }
                     else
                     {
-                        return (string)member.Value.Value<JValue>();
+                        if(member.Value.Type == JTokenType.Integer)
+                            return (int)member.Value.Value<JValue>();
+                        else if(member.Value.Type == JTokenType.Float)
+                            return (float)member.Value.Value<JValue>();
+                        else
+                            return (string)member.Value.Value<JValue>();  
                     }
                 }
             }
