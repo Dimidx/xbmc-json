@@ -35,7 +35,7 @@ namespace XbmcJson
             JObject query = (JObject)Client.Invoke("AudioLibrary.GetArtists", args);
             List<Artist> list = new List<Artist>();
 
-            if (query["artists"] != null)
+            if (query != null)
             {
                 foreach (JObject item in (JArray)query["artists"])
                 {
@@ -80,7 +80,7 @@ namespace XbmcJson
             JObject query = (JObject)Client.Invoke("AudioLibrary.GetAlbums", args);
             List<Album> list = new List<Album>();
 
-            if (query["albums"] != null)
+            if (query != null)
             {
                 foreach (JObject item in (JArray)query["albums"])
                 {
@@ -127,7 +127,7 @@ namespace XbmcJson
             JObject query = (JObject)Client.Invoke("AudioLibrary.GetAlbums", args);
             List<Album> list = new List<Album>();
 
-            if (query["albums"] != null)
+            if (query != null)
             {
                 foreach (JObject item in (JArray)query["albums"])
                 {
@@ -174,7 +174,7 @@ namespace XbmcJson
             JObject query = (JObject)Client.Invoke("AudioLibrary.GetAlbums", args);
             List<Album> list = new List<Album>();
 
-            if (query["albums"] != null)
+            if (query != null)
             {
                 foreach (JObject item in (JArray)query["albums"])
                 {
@@ -223,7 +223,7 @@ namespace XbmcJson
             JObject query = (JObject)Client.Invoke("AudioLibrary.GetAlbums", args);
             List<Album> list = new List<Album>();
 
-            if (query["albums"] != null)
+            if (query != null)
             {
                 foreach (JObject item in (JArray)query["albums"])
                 {
@@ -268,7 +268,7 @@ namespace XbmcJson
            JObject query = (JObject)Client.Invoke("AudioLibrary.GetSongs", args);
            List<Song> list = new List<Song>();
 
-           if (query["songs"] != null)
+           if (query != null)
            {
                foreach (JObject item in (JArray)query["songs"])
                {
@@ -315,7 +315,7 @@ namespace XbmcJson
             JObject query = (JObject)Client.Invoke("AudioLibrary.GetSongs", args);
             List<Song> list = new List<Song>();
 
-            if (query["songs"] != null)
+            if (query != null)
             {
                 foreach (JObject item in (JArray)query["songs"])
                 {
@@ -362,7 +362,7 @@ namespace XbmcJson
             JObject query = (JObject)Client.Invoke("AudioLibrary.GetSongs", args);
             List<Song> list = new List<Song>();
 
-            if (query["songs"] != null)
+            if (query != null)
             {
                 foreach (JObject item in (JArray)query["songs"])
                 {
@@ -411,7 +411,7 @@ namespace XbmcJson
             JObject query = (JObject)Client.Invoke("AudioLibrary.GetSongs", args);
             List<Song> list = new List<Song>();
 
-            if (query["songs"] != null)
+            if (query != null)
             {
                 foreach (JObject item in (JArray)query["songs"])
                 {
@@ -458,7 +458,7 @@ namespace XbmcJson
             JObject query = (JObject)Client.Invoke("AudioLibrary.GetSongs", args);
             List<Song> list = new List<Song>();
 
-            if (query["songs"] != null)
+            if (query != null)
             {
                 foreach (JObject item in (JArray)query["songs"])
                 {
@@ -507,7 +507,7 @@ namespace XbmcJson
             JObject query = (JObject)Client.Invoke("AudioLibrary.GetSongs", args);
             List<Song> list = new List<Song>();
 
-            if (query["songs"] != null)
+            if (query != null)
             {
                 foreach (JObject item in (JArray)query["songs"])
                 {
