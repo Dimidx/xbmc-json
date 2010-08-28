@@ -9,7 +9,7 @@ namespace XbmcJson
         private int? Start, Stop;
         private string Sortmethod, Sortorder;
 
-        public SortParams(string sortmethod, string sortorder, int start, int stop)
+        public SortParams(string sortmethod, string sortorder, int? start, int? stop)
         {
             Sortmethod = sortmethod;
             Sortorder = sortorder;
