@@ -8,3 +8,9 @@ C:\Users\Tyler\Desktop\xbmc-json\obj\Debug\XbmcJsonCompact.dll
 C:\Users\Tyler\Desktop\xbmc-json\obj\Debug\XbmcJsonCompact.pdb
 C:\Users\Tyler\Desktop\xbmc-json\bin\Debug\XbmcJsonCompact.dll
 C:\Users\Tyler\Desktop\xbmc-json\bin\Debug\XbmcJsonCompact.pdb
+C:\Users\Johnny\Documents\Visual Studio 2008\Projects\XbmcJson\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Johnny\Documents\Visual Studio 2008\Projects\XbmcJson\obj\Debug\XbmcJsonCompact.dll
+C:\Users\Johnny\Documents\Visual Studio 2008\Projects\XbmcJson\obj\Debug\XbmcJsonCompact.pdb
+C:\Users\Johnny\Documents\Visual Studio 2008\Projects\XbmcJson\bin\Debug\XbmcJsonCompact.dll
+C:\Users\Johnny\Documents\Visual Studio 2008\Projects\XbmcJson\bin\Debug\XbmcJsonCompact.pdb
+C:\Users\Johnny\Documents\Visual Studio 2008\Projects\XbmcJson\bin\Debug\Newtonsoft.Json.Compact.dll

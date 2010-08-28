@@ -46,7 +46,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
-    <Reference Include="Newtonsoft.Json.Compact, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json.Compact, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\My Dropbox\development\xbmcremotewinmo\XBMC Remote\bin\Release\Newtonsoft.Json.Compact.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -68,6 +70,7 @@
     <Compile Include="Media\Season.cs" />
     <Compile Include="Media\Share.cs" />
     <Compile Include="Media\Song.cs" />
+    <Compile Include="Media\Sort.cs" />
     <Compile Include="Media\TvShow.cs" />
     <Compile Include="Player\AudioPlayer.cs" />
     <Compile Include="Player\PicturePlayer.cs" />

@@ -56,6 +56,7 @@
     <Compile Include="Media\JsonMethod.cs" />
     <Compile Include="Media\MusicVideo.cs" />
     <Compile Include="Media\PlaylistItem.cs" />
+    <Compile Include="Media\Sort.cs" />
     <Compile Include="Player\AudioPlayer.cs" />
     <Compile Include="Playlist\AudioPlaylist.cs" />
     <Compile Include="Media\Episode.cs" />

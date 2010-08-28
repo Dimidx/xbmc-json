@@ -25,3 +25,8 @@ C:\Users\Administrator\Documents\XbmcJson\bin\Debug\XbmcJson.pdb
 C:\Users\Administrator\Documents\XbmcJson\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Administrator\Documents\XbmcJson\obj\Debug\XbmcJson.dll
 C:\Users\Administrator\Documents\XbmcJson\obj\Debug\XbmcJson.pdb
+C:\Users\Johnny\Documents\Visual Studio 2008\Projects\XbmcJson\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Johnny\Documents\Visual Studio 2008\Projects\XbmcJson\obj\Debug\XbmcJson.dll
+C:\Users\Johnny\Documents\Visual Studio 2008\Projects\XbmcJson\obj\Debug\XbmcJson.pdb
+C:\Users\Johnny\Documents\Visual Studio 2008\Projects\XbmcJson\bin\Debug\XbmcJson.dll
+C:\Users\Johnny\Documents\Visual Studio 2008\Projects\XbmcJson\bin\Debug\XbmcJson.pdb
