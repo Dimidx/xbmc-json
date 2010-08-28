@@ -6,7 +6,7 @@ namespace XbmcJson
 {
     public class SortParams
     {
-        private int Start = -1, Stop = -1;
+        private int? Start, Stop;
         private string Sortmethod, Sortorder;
 
         public SortParams(string sortmethod, string sortorder, int start, int stop)
@@ -26,9 +26,9 @@ namespace XbmcJson
                 sortParams.Add(new JProperty("method", Sortmethod));
 
             JObject sortObj = new JObject();
-            if (this.Start != -1)
+            if (this.Start != null)
                 sortObj.Add(new JProperty("start", Start));
-            if (this.Stop != -1)
+            if (this.Stop != null)
                 sortObj.Add(new JProperty("stop", Stop));
 
             if (sortParams != null)
