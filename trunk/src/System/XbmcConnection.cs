@@ -4,27 +4,27 @@ namespace XbmcJson
 {
     public class XbmcConnection
     {   
-       public Uri XbmcUri;
-       public string XbmcIp;
-       public int XbmcPort;
-       public string XbmcUser;
-       public string XbmcPass;
-       private JsonRpcClient Client;
+        public Uri XbmcUri;
+        public string XbmcIp;
+        public int XbmcPort;
+        public string XbmcUser;
+        public string XbmcPass;
+        private JsonRpcClient Client;
 
-       public XbmcAudioLibrary AudioLibrary;
-       public XbmcAudioPlayer AudioPlayer;
-       public XbmcAudioPlaylist AudioPlaylist;
-       public XbmcControl Control;
-       public XbmcFiles Files;
-       public XbmcJsonRpc JsonRpc;
-       public XbmcPicturePlayer PicturePlayer;
-       public XbmcPlayer Player;
-       public XbmcPlaylist Playlist;
-       public XbmcStatus Status;
-       public XbmcSystem System_;
-       public XbmcVideoLibrary VideoLibrary;
-       public XbmcVideoPlayer VideoPlayer;
-       public XbmcVideoPlaylist VideoPlaylist;
+        public XbmcAudioLibrary AudioLibrary;
+        public XbmcAudioPlayer AudioPlayer;
+        public XbmcAudioPlaylist AudioPlaylist;
+        public XbmcControl Control;
+        public XbmcFiles Files;
+        public XbmcJsonRpc JsonRpc;
+        public XbmcPicturePlayer PicturePlayer;
+        public XbmcPlayer Player;
+        public XbmcPlaylist Playlist;
+        public XbmcStatus Status;
+        public XbmcSystem System_;
+        public XbmcVideoLibrary VideoLibrary;
+        public XbmcVideoPlayer VideoPlayer;
+        public XbmcVideoPlaylist VideoPlaylist;
 
         public XbmcConnection(string xbmcIp, int xbmcPort, string xbmcUser, string xbmcPass)
         {

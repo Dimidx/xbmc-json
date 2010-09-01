@@ -35,57 +35,30 @@ namespace XbmcJson
 
         public object Invoke(string method)
         {
-            return Invoke(AnyType.Value, method);
-        }
-
-        public object Invoke(Type returnType, string method)
-        {
-            return Invoke(returnType, method, (object)null);
+            return Invoke(method, null, null);
         }
 
         public object Invoke(string method, object[] args)
         {
-            return Invoke(AnyType.Value, method, args);
+            return Invoke(method, args, null);
         }
 
         public object Invoke(string method, object args)
         {
-            return Invoke(AnyType.Value, method, args);
-        }
-
-        public object Invoke(Type returnType, string method, object[] args)
-        {
-            return Invoke(returnType, method, (object)args);
-        }
-
-        public object InvokeVargs(string method, params object[] args)
-        {
-            return Invoke(method, args);
-        }
-
-        public object InvokeVargs(Type returnType, string method, params object[] args)
-        {
-            return Invoke(returnType, method, args);
+            return Invoke(method, args, null);
         }
 
         public object Invoke(string method, IDictionary args)
         {
-            return Invoke(AnyType.Value, method, args);
+            return Invoke(method, args, null);
         }
 
-        public object Invoke(Type returnType, string method, IDictionary args)
-        {
-            return Invoke(returnType, method, (object)args);
-        }
-
-        public virtual object Invoke(Type returnType, string method, object args)
+        public virtual object Invoke(string method, object args, int? timeout)
         {
             if (method == null)
                 throw new ArgumentNullException("method");
             if (method.Length == 0)
                 throw new ArgumentException(null, "method");
-            if (returnType == null)
-                throw new ArgumentNullException("returnType");
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(ClientUri);
             request.AllowWriteStreamBuffering = true;
@@ -94,6 +67,7 @@ namespace XbmcJson
             request.Method = "POST";
             request.KeepAlive = false;
 
+            request.Timeout = 5000;
             using (var stream = request.GetRequestStream())
             {
                 using (var writer = new StreamWriter(stream, Encoding.ASCII))
@@ -121,7 +95,7 @@ namespace XbmcJson
                         {
                             using (var reader = new StreamReader(stream2, Encoding.UTF8))
                             {
-                                object res = OnResponse(reader, returnType);
+                                object res = OnResponse(reader);
                                 if (DebugEnabled)
                                     DebugLog.WriteLog("Response: " + res.ToString());
                                 return res;
@@ -129,15 +103,16 @@ namespace XbmcJson
                         }
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
-                    DebugLog.WriteLog("Exception");
+                    DebugLog.WriteLog("Exception: " + ex.Message);
+                    DebugLog.WriteLog(ex.StackTrace);
                     return (object)null;
                 }
             }
         }
 
-        private object OnResponse(StreamReader reader, Type returnType)
+        private object OnResponse(StreamReader reader)
         {
             var JObjectResponse = JObject.Parse(reader.ReadToEnd());
             var members = JObjectResponse.Properties();
@@ -176,16 +151,6 @@ namespace XbmcJson
                 throw new Exception(errorValue["code"].Value<JValue>().Value.ToString() + ": " + errorValue["message"].Value<JValue>().Value.ToString());
             else
                 throw new Exception("Unknown error occured");
-        }
-    }
-
-    public sealed class AnyType
-    {
-        public static readonly Type Value = typeof(object);
-
-        private AnyType()
-        {
-            throw new NotImplementedException();
         }
     }
 }
