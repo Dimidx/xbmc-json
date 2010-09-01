@@ -31,7 +31,7 @@ namespace XbmcJson
         public static Movie MovieFromJsonObject(JObject item)
         {
             Movie e = new Movie(
-                Convert.ToInt32(item["movieid"].Value<JValue>().Value),
+                (item["movieid"] != null) ? Convert.ToInt32(item["movieid"].Value<JValue>().Value) : -1,
                 item["file"].Value<JValue>().Value.ToString(),
                 item["label"].Value<JValue>().Value.ToString(),
                 (item["thumbnail"] != null) ? item["thumbnail"].Value<JValue>().Value.ToString() : "",

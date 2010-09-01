@@ -5,7 +5,29 @@ namespace XbmcJson
 {
     public class DebugLog
     {
-        private static string LogName = "xbmc-json-debug.log";          
+        private static string LogName = "xbmc-json-debug.log";
+
+        public static void EraseLog(String logFile)
+        {
+            if (File.Exists(logFile))
+            {
+                File.Delete(logFile);
+            }
+        }
+
+        public static void EraseLog()
+        {
+            #if PocketPC
+            string LogFile = (System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase) + "\\" + LogName).Replace("file:\\", "");
+            #else
+            string LogFile = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\" + LogName;
+            #endif
+
+            if (File.Exists(LogFile))
+            {
+                File.Delete(LogFile);
+            }
+        }
 
         public static void WriteLog(String logFile, String logContent)
         {
