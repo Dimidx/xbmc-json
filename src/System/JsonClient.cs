@@ -89,7 +89,7 @@ namespace XbmcJson
                 }
                 try
                 {
-                    using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                    using (WebResponse response = request.GetResponse())
                     {
                         using (var stream2 = response.GetResponseStream())
                         {
