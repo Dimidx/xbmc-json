@@ -66,49 +66,58 @@ namespace XbmcJson
             request.ContentType = "application/json";
             request.Method = "POST";
             request.KeepAlive = false;
+            request.Timeout = 2000;
 
-            request.Timeout = 5000;
-            using (var stream = request.GetRequestStream())
+            try
             {
-                using (var writer = new StreamWriter(stream, Encoding.ASCII))
+                using (var stream = request.GetRequestStream())
                 {
-                    if (_id > 100000)
-                        _id = 0;
-
-                    var call = new JObject();
-                    call.Add(new JProperty("jsonrpc", "2.0"));
-                    call.Add(new JProperty("method", method));
-                    if (args != null)
-                        call.Add(new JProperty("params", args));
-                    call.Add(new JProperty("id", ++_id));
-
-                    if (DebugEnabled)
-                        DebugLog.WriteLog("Invoke: " + call.ToString());
-
-                    writer.Write(call.ToString());
-                }
-                try
-                {
-                    using (WebResponse response = request.GetResponse())
+                    using (var writer = new StreamWriter(stream, Encoding.ASCII))
                     {
-                        using (var stream2 = response.GetResponseStream())
+                        if (_id > 100000)
+                            _id = 0;
+
+                        var call = new JObject();
+                        call.Add(new JProperty("jsonrpc", "2.0"));
+                        call.Add(new JProperty("method", method));
+                        if (args != null)
+                            call.Add(new JProperty("params", args));
+                        call.Add(new JProperty("id", ++_id));
+
+                        if (DebugEnabled)
+                            DebugLog.WriteLog("Invoke: " + call.ToString());
+
+                        writer.Write(call.ToString());
+                    }
+                    try
+                    {
+                        using (WebResponse response = request.GetResponse())
                         {
-                            using (var reader = new StreamReader(stream2, Encoding.UTF8))
+                            using (var stream2 = response.GetResponseStream())
                             {
-                                object res = OnResponse(reader);
-                                if (DebugEnabled)
-                                    DebugLog.WriteLog("Response: " + res.ToString());
-                                return res;
+                                using (var reader = new StreamReader(stream2, Encoding.UTF8))
+                                {
+                                    object res = OnResponse(reader);
+                                    if (DebugEnabled)
+                                        DebugLog.WriteLog("Response: " + res.ToString());
+                                    return res;
+                                }
                             }
                         }
                     }
+                    catch (Exception ex)
+                    {
+                        DebugLog.WriteLog("Exception: " + ex.Message);
+                        DebugLog.WriteLog(ex.StackTrace);
+                        return (object)null;
+                    }
                 }
-                catch (Exception ex)
-                {
-                    DebugLog.WriteLog("Exception: " + ex.Message);
-                    DebugLog.WriteLog(ex.StackTrace);
-                    return (object)null;
-                }
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog("Exception: " + ex.Message);
+                DebugLog.WriteLog(ex.StackTrace);
+                return (object)null;
             }
         }
 
