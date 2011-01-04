@@ -1,0 +1,235 @@
+<Configuration>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XHelpers.cs" caret="795" fromTop="24" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XRequestState.cs" caret="371" fromTop="12" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XDelegates.cs" caret="170" fromTop="4" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:Media/f:Album.cs" caret="237" fromTop="10" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:Media/f:Episode.cs" caret="161" fromTop="7" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:Media/f:Movie.cs" caret="305" fromTop="11" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:Media/f:Song.cs" caret="224" fromTop="9" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:Media/f:Sort.cs" caret="183" fromTop="7" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:Media/f:TvShow.cs" caret="264" fromTop="4" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:Media/f:XbmcMediaItem.cs" caret="172" fromTop="7" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:Player/f:XAudioPlayer.cs" caret="0" fromTop="0" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XVirtualRemote.cs" caret="104" fromTop="5" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XSettings.cs" caret="0" fromTop="0" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XConnection.cs" caret="404" fromTop="12" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XEventListenerSocketState.cs" caret="261" fromTop="8" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XClient.cs" caret="0" fromTop="0" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:Library/f:XAudioLibrary.cs" caret="0" fromTop="0" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:Library/f:XVideoLibrary.cs" caret="4674" fromTop="11" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:Media/f:Artist.cs" caret="0" fromTop="0" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:Media/f:Season.cs" caret="0" fromTop="0" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XEventListener.cs" caret="3930" fromTop="61" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XEventListener.cs" caret="1904" fromTop="25" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XEventListener.cs" caret="1942" fromTop="22" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XEventListener.cs" caret="194" fromTop="9" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XEventListener.cs" caret="5173" fromTop="34" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XEventListener.cs" caret="5103" fromTop="28" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XEventListener.cs" caret="4928" fromTop="32" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XEventListener.cs" caret="4383" fromTop="18" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XEventListenerSocketState.cs" caret="0" fromTop="0" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XEventListener.cs" caret="13" fromTop="0" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XEventListener.cs" caret="1126" fromTop="23" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XEventListener.cs" caret="608" fromTop="11" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XEventListener.cs" caret="1291" fromTop="30" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XEventListener.cs" caret="1679" fromTop="34" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XEventListenerSocketState.cs" caret="261" fromTop="8" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XEventListener.cs" caret="4069" fromTop="23" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XEventListener.cs" caret="4069" fromTop="19" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XEventListener.cs" caret="4069" fromTop="25" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XEventListener.cs" caret="4069" fromTop="11" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XEventListener.cs" caret="4069" fromTop="18" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XEventListener.cs" caret="4069" fromTop="13" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XEventListener.cs" caret="4069" fromTop="15" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XEventListener.cs" caret="2404" fromTop="15" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XEventListener.cs" caret="850" fromTop="15" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XEventListener.cs" caret="913" fromTop="19" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XEventListener.cs" caret="323" fromTop="3" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XEventListener.cs" caret="2255" fromTop="11" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XEventListener.cs" caret="3964" fromTop="1" />
+      <File id="09E5F520-ED5B-4A8D-993C-F6FD81D17B16/d:System/f:XEventListener.cs" caret="3561" fromTop="10" />
+    </RecentEdits>
+  </RecentFiles>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+  <UnitTestRunnerNUnit>
+    <NUnitInstallDir IsNull="False">
+    </NUnitInstallDir>
+    <UseAddins>Never</UseAddins>
+  </UnitTestRunnerNUnit>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Default">
+      <Item value="null" priority="8" />
+      <Item value="List" priority="0" />
+      <Item value="Song`0" priority="0" />
+      <Item value="actionCallback" priority="1" />
+      <Item value="internal" priority="0" />
+      <Item value="Action" priority="0" />
+      <Item value="TextReader`0" priority="0" />
+      <Item value="ThreadStaticAttribute`0" priority="1" />
+      <Item value="public" priority="8" />
+      <Item value="delegate" priority="0" />
+      <Item value="void" priority="3" />
+      <Item value="XGetArtistsResponse`0" priority="0" />
+      <Item value="int" priority="4" />
+      <Item value="string" priority="4" />
+      <Item value="XbmcMediaItem`0" priority="1" />
+      <Item value="if" priority="7" />
+      <Item value="postStream" priority="0" />
+      <Item value="XConnection`0" priority="0" />
+      <Item value="private" priority="3" />
+      <Item value="_ClientSocket" priority="6" />
+      <Item value="SocketAsyncEventArgs`0" priority="1" />
+      <Item value="new" priority="11" />
+      <Item value="SocketAsyncEventArgs" priority="0" />
+      <Item value="CLSCompliantAttribute`0" priority="0" />
+      <Item value="var" priority="8" />
+      <Item value="asyncEventArgs" priority="3" />
+      <Item value="const" priority="0" />
+      <Item value="Socket" priority="1" />
+      <Item value="settings" priority="0" />
+      <Item value="SocketType`0" priority="0" />
+      <Item value="ProtocolType`0" priority="0" />
+      <Item value="AddressFamily`0" priority="0" />
+      <Item value="System" priority="1" />
+      <Item value="using" priority="2" />
+      <Item value="Net" priority="0" />
+      <Item value="EndPoint`0" priority="2" />
+      <Item value="IPEndPoint`0" priority="0" />
+      <Item value="_Settings" priority="0" />
+      <Item value="ClientPort" priority="0" />
+      <Item value="IPAddress" priority="1" />
+      <Item value="Encoding`0" priority="0" />
+      <Item value="readonly" priority="0" />
+      <Item value="IpAddress" priority="4" />
+      <Item value="ipAddress" priority="1" />
+      <Item value="Port" priority="0" />
+      <Item value="port" priority="0" />
+      <Item value="e" priority="0" />
+      <Item value="IPAddress`0" priority="2" />
+      <Item value="long" priority="2" />
+      <Item value="Dns`0" priority="0" />
+      <Item value="endPoint" priority="0" />
+      <Item value="Connected`0" priority="0" />
+      <Item value="iar" priority="2" />
+      <Item value="thr" priority="0" />
+      <Item value="eventListenerSocketState" priority="0" />
+      <Item value="as" priority="0" />
+      <Item value="XEventListenerSocketState`0" priority="1" />
+      <Item value="socketState" priority="10" />
+      <Item value="None" priority="0" />
+      <Item value="ReceiveData`0" priority="0" />
+      <Item value="ParseAnnouncment`0" priority="0" />
+      <Item value="receivedDataJson" priority="3" />
+      <Item value="event" priority="2" />
+      <Item value="EventArgs`0" priority="0" />
+      <Item value="EventHandler`0" priority="2" />
+      <Item value="IDisposable`0" priority="0" />
+      <Item value="try" priority="2" />
+      <Item value="false" priority="1" />
+      <Item value="Newtonsoft.Json" priority="1" />
+      <Item value="Linq" priority="0" />
+      <Item value="JObject`0" priority="2" />
+      <Item value="JsonConvert`0" priority="0" />
+      <Item value="jsonAnnouncment" priority="0" />
+      <Item value="jObject" priority="1" />
+      <Item value="switch" priority="0" />
+      <Item value="message" priority="0" />
+      <Item value="default" priority="0" />
+      <Item value="break" priority="0" />
+      <Item value="case" priority="0" />
+      <Item value="PlaybackSeek" priority="0" />
+      <Item value="this" priority="2" />
+      <Item value="eventListener" priority="0" />
+      <Item value="MessageBox`0" priority="0" />
+      <Item value="enum" priority="0" />
+      <Item value="XbmcAnnouncement`0" priority="0" />
+      <Item value="SocketException`0" priority="0" />
+      <Item value="ConnectionFailed" priority="1" />
+      <Item value="bool" priority="0" />
+      <Item value="FullAnnouncementRecieved`0" priority="0" />
+      <Item value="else" priority="0" />
+      <Item value="return" priority="1" />
+      <Item value="Exception`0" priority="0" />
+      <Item value="exception" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Action`1">
+      <Item value="Invoke`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Net.Sockets.Socket">
+      <Item value="ConnectAsync`0" priority="0" />
+      <Item value="BeginConnect`0" priority="0" />
+      <Item value="EndConnect`0" priority="0" />
+      <Item value="EndReceive`0" priority="0" />
+      <Item value="Disconnect`0" priority="0" />
+      <Item value="Dispose`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Net.Sockets.SocketAsyncEventArgs">
+      <Item value="Completed" priority="0" />
+      <Item value="RemoteEndPoint" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:xbmc_json_async.System.XSettings">
+      <Item value="IpAddress" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Net.Sockets.SocketType">
+      <Item value="Raw" priority="0" />
+      <Item value="Stream" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Net.Sockets.ProtocolType">
+      <Item value="Tcp" priority="0" />
+      <Item value="IP" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Net.Sockets.AddressFamily">
+      <Item value="InterNetwork" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Text.Encoding">
+      <Item value="UTF8" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Text.Encoding">
+      <Item value="GetBytes`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Net.IPAddress">
+      <Item value="Parse`0" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.IAsyncResult">
+      <Item value="AsyncState" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:xbmc_json_async.System.XEventListenerSocketState">
+      <Item value="Buffer" priority="2" />
+      <Item value="Builder" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Newtonsoft.Json.Linq.JToken">
+      <Item value="Value`1" priority="0" />
+      <Item value="ToString`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:xbmc_json_async.System.XEventListener">
+      <Item value="PlaybackSeek" priority="0" />
+      <Item value="PlaybackStarted" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Windows.MessageBox">
+      <Item value="Show`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@xbmc_json_async.System.XEventListener+XbmcAnnouncement">
+      <Item value="PlaybackSeek" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Text.StringBuilder">
+      <Item value="Append`0" priority="1" />
+      <Item value="ToString`0" priority="0" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+</Configuration>

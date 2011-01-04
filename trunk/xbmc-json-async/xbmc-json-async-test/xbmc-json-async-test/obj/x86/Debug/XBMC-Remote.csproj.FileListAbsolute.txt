@@ -1,0 +1,17 @@
+c:\users\tyler\documents\visual studio 2010\Projects\XBMC-Remote\XBMC-Remote\bin\Debug\XBMC-Remote.exe
+c:\users\tyler\documents\visual studio 2010\Projects\XBMC-Remote\XBMC-Remote\bin\Debug\XBMC-Remote.pdb
+c:\users\tyler\documents\visual studio 2010\Projects\XBMC-Remote\XBMC-Remote\bin\Debug\Newtonsoft.Json.dll
+c:\users\tyler\documents\visual studio 2010\Projects\XBMC-Remote\XBMC-Remote\bin\Debug\xbmc-json-async.dll
+c:\users\tyler\documents\visual studio 2010\Projects\XBMC-Remote\XBMC-Remote\bin\Debug\Newtonsoft.Json.pdb
+c:\users\tyler\documents\visual studio 2010\Projects\XBMC-Remote\XBMC-Remote\bin\Debug\xbmc-json-async.pdb
+c:\users\tyler\documents\visual studio 2010\Projects\XBMC-Remote\XBMC-Remote\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\tyler\documents\visual studio 2010\Projects\XBMC-Remote\XBMC-Remote\obj\x86\Debug\MainWindow.baml
+c:\users\tyler\documents\visual studio 2010\Projects\XBMC-Remote\XBMC-Remote\obj\x86\Debug\MainWindow.g.cs
+c:\users\tyler\documents\visual studio 2010\Projects\XBMC-Remote\XBMC-Remote\obj\x86\Debug\App.g.cs
+c:\users\tyler\documents\visual studio 2010\Projects\XBMC-Remote\XBMC-Remote\obj\x86\Debug\XBMC-Remote_MarkupCompile.cache
+c:\users\tyler\documents\visual studio 2010\Projects\XBMC-Remote\XBMC-Remote\obj\x86\Debug\XBMC-Remote.g.resources
+c:\users\tyler\documents\visual studio 2010\Projects\XBMC-Remote\XBMC-Remote\obj\x86\Debug\XBMC_Remote.Properties.Resources.resources
+c:\users\tyler\documents\visual studio 2010\Projects\XBMC-Remote\XBMC-Remote\obj\x86\Debug\GenerateResource.read.1.tlog
+c:\users\tyler\documents\visual studio 2010\Projects\XBMC-Remote\XBMC-Remote\obj\x86\Debug\GenerateResource.write.1.tlog
+c:\users\tyler\documents\visual studio 2010\Projects\XBMC-Remote\XBMC-Remote\obj\x86\Debug\XBMC-Remote.exe
+c:\users\tyler\documents\visual studio 2010\Projects\XBMC-Remote\XBMC-Remote\obj\x86\Debug\XBMC-Remote.pdb
