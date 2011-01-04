@@ -1,2 +1,18 @@
 C:\Users\Tyler\Documents\Visual Studio 2010\Projects\xbmc-json-async-test\xbmc-json-async-test\obj\x86\Debug\XBMC-Remote.exe
 C:\Users\Tyler\Documents\Visual Studio 2010\Projects\xbmc-json-async-test\xbmc-json-async-test\obj\x86\Debug\XBMC-Remote.pdb
+C:\Users\Tyler\Desktop\td\xbmc-json-async\xbmc-json-async-test\xbmc-json-async-test\obj\x86\Debug\XBMC-Remote.exe
+C:\Users\Tyler\Desktop\td\xbmc-json-async\xbmc-json-async-test\xbmc-json-async-test\obj\x86\Debug\XBMC-Remote.pdb
+C:\Users\Tyler\Desktop\td\xbmc-json-async\xbmc-json-async-test\xbmc-json-async-test\bin\Debug\XBMC-Remote.exe
+C:\Users\Tyler\Desktop\td\xbmc-json-async\xbmc-json-async-test\xbmc-json-async-test\bin\Debug\XBMC-Remote.pdb
+C:\Users\Tyler\Desktop\td\xbmc-json-async\xbmc-json-async-test\xbmc-json-async-test\bin\Debug\xbmc-json-async.dll
+C:\Users\Tyler\Desktop\td\xbmc-json-async\xbmc-json-async-test\xbmc-json-async-test\bin\Debug\xbmc-json-async.pdb
+C:\Users\Tyler\Desktop\td\xbmc-json-async\xbmc-json-async-test\xbmc-json-async-test\bin\Debug\Newtonsoft.Json.pdb
+C:\Users\Tyler\Desktop\td\xbmc-json-async\xbmc-json-async-test\xbmc-json-async-test\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Tyler\Desktop\td\xbmc-json-async\xbmc-json-async-test\xbmc-json-async-test\obj\x86\Debug\MainWindow.baml
+C:\Users\Tyler\Desktop\td\xbmc-json-async\xbmc-json-async-test\xbmc-json-async-test\obj\x86\Debug\MainWindow.g.cs
+C:\Users\Tyler\Desktop\td\xbmc-json-async\xbmc-json-async-test\xbmc-json-async-test\obj\x86\Debug\App.g.cs
+C:\Users\Tyler\Desktop\td\xbmc-json-async\xbmc-json-async-test\xbmc-json-async-test\obj\x86\Debug\XBMC-Remote_MarkupCompile.cache
+C:\Users\Tyler\Desktop\td\xbmc-json-async\xbmc-json-async-test\xbmc-json-async-test\obj\x86\Debug\XBMC-Remote.g.resources
+C:\Users\Tyler\Desktop\td\xbmc-json-async\xbmc-json-async-test\xbmc-json-async-test\obj\x86\Debug\XBMC_Remote.Properties.Resources.resources
+C:\Users\Tyler\Desktop\td\xbmc-json-async\xbmc-json-async-test\xbmc-json-async-test\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Tyler\Desktop\td\xbmc-json-async\xbmc-json-async-test\xbmc-json-async-test\obj\x86\Debug\GenerateResource.write.1.tlog

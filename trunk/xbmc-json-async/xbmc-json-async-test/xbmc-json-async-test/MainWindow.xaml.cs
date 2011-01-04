@@ -9,6 +9,8 @@ namespace XBMC_Remote
 {
     public partial class MainWindow : Window
     {
+        private XConnection _Connection;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -16,10 +18,25 @@ namespace XBMC_Remote
 
         private void WindowLoaded(object sender, RoutedEventArgs e)
         {
-            var connection = new XConnection("192.168.1.30", 8080, "xbmc", "");
-            connection.AudioLibrary.GetArtists(null, GetArtistsCallback);
-            connection.VideoLibrary.GetMovies(null, GetMoviesCallback);
-            connection.VideoLibrary.GetTvShows(null, GetTvShowsCallback);
+            _Connection = new XConnection("192.168.1.30", 8080, "xbmc", "");
+            _Connection.AudioLibrary.GetArtists(null, GetArtistsCallback);
+            _Connection.VideoLibrary.GetMovies(null, GetMoviesCallback);
+            _Connection.VideoLibrary.GetTvShows(null, GetTvShowsCallback);
+
+            var eventListener = new XEventListener("192.168.1.30", 9090);
+            eventListener.PlaybackStarted += EventListenerPlaybackStarted;
+            eventListener.PlaybackSeek += EventListenerPlaybackSeek;
+            eventListener.Connect();
+        }
+
+        static void EventListenerPlaybackSeek(object sender, EventArgs e)
+        {
+            MessageBox.Show("Playback seek");
+        }
+
+        static void EventListenerPlaybackStarted(object sender, EventArgs e)
+        {
+            MessageBox.Show("Playback started");
         }
 
         private void GetArtistsCallback(object responseData)
@@ -62,6 +79,16 @@ namespace XBMC_Remote
                            }
                        )
                  );
+        }
+
+        private void ButtonHomeClick(object sender, RoutedEventArgs e)
+        {
+            _Connection.VirtualRemote.SendExec(XVirtualRemote.Home);
+        }
+
+        private void ButtonBackClick(object sender, RoutedEventArgs e)
+        {
+            _Connection.VirtualRemote.SendAction(XVirtualRemote.KeyCode.Back);
         }
     }
 }
