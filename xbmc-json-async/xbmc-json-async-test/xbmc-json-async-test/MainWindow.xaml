@@ -19,6 +19,12 @@
                     <TreeView Height="360" HorizontalAlignment="Left" Margin="6,6,0,0" Name="TreeViewTvShows" VerticalAlignment="Top" Width="235" />
                 </Grid>
             </TabItem>
+            <TabItem Header="Remote" Name="tabItem1">
+                <Grid>
+                    <Button Content="Home" Height="23" HorizontalAlignment="Left" Margin="40,57,0,0" Name="ButtonHome" VerticalAlignment="Top" Width="75" Click="ButtonHomeClick" />
+                    <Button Content="Back" Height="23" HorizontalAlignment="Left" Margin="138,60,0,0" Name="ButtonBack" VerticalAlignment="Top" Width="75" Click="ButtonBackClick" />
+                </Grid>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>

@@ -4,3 +4,9 @@ c:\users\tyler\documents\visual studio 2010\Projects\xbmc-json-async\xbmc-json-a
 c:\users\tyler\documents\visual studio 2010\Projects\xbmc-json-async\xbmc-json-async\bin\Debug\Newtonsoft.Json.pdb
 c:\users\tyler\documents\visual studio 2010\Projects\xbmc-json-async\xbmc-json-async\obj\Debug\xbmc-json-async.dll
 c:\users\tyler\documents\visual studio 2010\Projects\xbmc-json-async\xbmc-json-async\obj\Debug\xbmc-json-async.pdb
+C:\Users\Tyler\Desktop\td\xbmc-json-async\xbmc-json-async\bin\Debug\xbmc-json-async.dll
+C:\Users\Tyler\Desktop\td\xbmc-json-async\xbmc-json-async\bin\Debug\xbmc-json-async.pdb
+C:\Users\Tyler\Desktop\td\xbmc-json-async\xbmc-json-async\bin\Debug\Newtonsoft.Json.pdb
+C:\Users\Tyler\Desktop\td\xbmc-json-async\xbmc-json-async\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Tyler\Desktop\td\xbmc-json-async\xbmc-json-async\obj\Debug\xbmc-json-async.dll
+C:\Users\Tyler\Desktop\td\xbmc-json-async\xbmc-json-async\obj\Debug\xbmc-json-async.pdb
