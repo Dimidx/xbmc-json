@@ -1,0 +1,6 @@
+c:\users\tyler\documents\visual studio 2010\Projects\xbmc-json-async\xbmc-json-async\obj\Debug\ResolveAssemblyReference.cache
+c:\users\tyler\documents\visual studio 2010\Projects\xbmc-json-async\xbmc-json-async\bin\Debug\xbmc-json-async.dll
+c:\users\tyler\documents\visual studio 2010\Projects\xbmc-json-async\xbmc-json-async\bin\Debug\xbmc-json-async.pdb
+c:\users\tyler\documents\visual studio 2010\Projects\xbmc-json-async\xbmc-json-async\bin\Debug\Newtonsoft.Json.pdb
+c:\users\tyler\documents\visual studio 2010\Projects\xbmc-json-async\xbmc-json-async\obj\Debug\xbmc-json-async.dll
+c:\users\tyler\documents\visual studio 2010\Projects\xbmc-json-async\xbmc-json-async\obj\Debug\xbmc-json-async.pdb

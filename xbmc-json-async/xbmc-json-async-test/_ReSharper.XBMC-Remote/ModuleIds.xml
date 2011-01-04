@@ -1,0 +1,4 @@
+<Modules>
+  <Module PersistentId="F18189AD-F888-46B3-8240-3EB33490CA96" ModuleId="XBMC-Remote" />
+  <Module PersistentId="xbmc-json-async, Version=1.0.0.0, Culture=neutral" ModuleId="xbmc-json-async" />
+</Modules>

@@ -1,0 +1,2 @@
+C:\Users\Tyler\Documents\Visual Studio 2010\Projects\xbmc-json-async-test\xbmc-json-async-test\obj\x86\Debug\XBMC-Remote.exe
+C:\Users\Tyler\Documents\Visual Studio 2010\Projects\xbmc-json-async-test\xbmc-json-async-test\obj\x86\Debug\XBMC-Remote.pdb

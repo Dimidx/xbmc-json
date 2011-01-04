@@ -1,0 +1,24 @@
+﻿<Window x:Class="XBMC_Remote.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="467" Width="697" Loaded="WindowLoaded">
+    <Grid>
+        <TabControl Height="404" HorizontalAlignment="Left" Margin="12,12,0,0" Name="tabControl1" VerticalAlignment="Top" Width="651">
+            <TabItem Header="Music" Name="TabItemMusic">
+                <Grid>
+                    <ListBox Height="360" HorizontalAlignment="Left" Margin="6,6,0,0" Name="ListBoxMusic" VerticalAlignment="Top" Width="246" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Movies" Name="TabItemMovies">
+                <Grid>
+                    <ListBox Height="356" HorizontalAlignment="Left" Margin="10,10,0,0" Name="ListBoxMovies" VerticalAlignment="Top" Width="286" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="TV Shows" Name="TabItemTv">
+                <Grid>
+                    <TreeView Height="360" HorizontalAlignment="Left" Margin="6,6,0,0" Name="TreeViewTvShows" VerticalAlignment="Top" Width="235" />
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
