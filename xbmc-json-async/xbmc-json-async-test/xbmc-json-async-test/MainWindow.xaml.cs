@@ -24,19 +24,13 @@ namespace XBMC_Remote
             _Connection.VideoLibrary.GetTvShows(null, GetTvShowsCallback);
 
             var eventListener = new XEventListener("127.0.0.1", 9090);
-            //eventListener.PlaybackStarted += EventListenerPlaybackStarted;
-            //eventListener.PlaybackSeek += EventListenerPlaybackSeek;
+            eventListener.OnXEventReceived += new XEventReceivedEventHandler(eventListener_OnXEventReceived);
             eventListener.Connect();
         }
 
-        static void EventListenerPlaybackSeek(object sender, EventArgs e)
+        void eventListener_OnXEventReceived(object sender, XEventType type, Dictionary<string, string> parameters)
         {
-            MessageBox.Show("Playback seek");
-        }
-
-        static void EventListenerPlaybackStarted(object sender, EventArgs e)
-        {
-            MessageBox.Show("Playback started");
+           MessageBox.Show("EventListener captured event : " + type.ToString());
         }
 
         private void GetArtistsCallback(object responseData)
