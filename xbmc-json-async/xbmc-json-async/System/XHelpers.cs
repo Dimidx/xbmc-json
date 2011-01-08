@@ -11,7 +11,7 @@ namespace xbmc_json_async.System
 
         public static Uri ThumbnailUri(string thumbnail)
         {
-            return new Uri("http://" + Settings.IpAddress + ":" + Settings.Port + "/vfs/" + thumbnail); 
+           return new Uri(String.Format("http://{0}:{1}/vfs/{2}", Settings.IpAddress, Settings.Port, thumbnail)); 
         }
 
         public static Image GetImageFromThumbnail(String thumbnail)

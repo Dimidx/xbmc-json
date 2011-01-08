@@ -7,155 +7,156 @@ using System.Collections.Generic;
 
 namespace xbmc_json_async.System
 {
- 
-    public class XEventListener : IDisposable
-    {
-        private readonly string _IpAddress;
-        private readonly int _Port;
-        private readonly Socket _ClientSocket;
 
-        public event XEventReceivedEventHandler OnXEventReceived;
+   public class XEventListener : IDisposable
+   {
+      private readonly string _IpAddress;
+      private readonly int _Port;
+      private readonly Socket _ClientSocket;
 
-        public XEventListener(string ipAddress, int port)
-        {
-            _IpAddress = ipAddress;
-            _Port = port;
-            _ClientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
-        }
-        
-        public void Connect()
-        {
-            var endPoint = new IPEndPoint(IPAddress.Parse(_IpAddress), _Port);
+      public event XEventReceivedEventHandler OnXEventReceived;
 
-            try
+      public XEventListener(string ipAddress, int port)
+      {
+         _IpAddress = ipAddress;
+         _Port = port;
+         _ClientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
+      }
+
+      public void Connect()
+      {
+         var endPoint = new IPEndPoint(IPAddress.Parse(_IpAddress), _Port);
+
+         try
+         {
+            _ClientSocket.BeginConnect(endPoint, Connected, new XEventListenerSocketState());
+         }
+         catch (SocketException)
+         {
+            ThrowXEvent(XEventType.ConnectionFailed, null);
+         }
+      }
+
+      private void Connected(IAsyncResult asyncResult)
+      {
+         var socketState = asyncResult.AsyncState as XEventListenerSocketState;
+
+         
+         if (socketState != null)
+         {
+            _ClientSocket.EndConnect(asyncResult);
+
+            ThrowXEvent(XEventType.ConnectionSuccessful, null);
+
+            _ClientSocket.BeginReceive(socketState.Buffer, 0, XEventListenerSocketState.BufferSize, SocketFlags.None,
+                                       ReceivedData, socketState);
+         }
+      }
+
+      void ReceivedData(IAsyncResult asyncResult)
+      {
+         var socketState = asyncResult.AsyncState as XEventListenerSocketState;
+
+         if (socketState != null)
+         {
+            var receivedDataLength = _ClientSocket.EndReceive(asyncResult);
+            var receivedDataJson = Encoding.UTF8.GetString(socketState.Buffer, 0, receivedDataLength);
+
+            socketState.Builder.Append(receivedDataJson);
+
+            // Did we receive a full announcement in this buffer?
+            if (FullAnnouncementReceived(socketState.Builder.ToString()))
             {
-                _ClientSocket.BeginConnect(endPoint, Connected, new XEventListenerSocketState());
+               // Yes - Parse the announcement and begin listening for new announcements with a fresh state object
+               ParseAnnouncement(socketState.Builder.ToString());
+
+               var freshSocketState = new XEventListenerSocketState();
+
+               _ClientSocket.BeginReceive(freshSocketState.Buffer, 0, XEventListenerSocketState.BufferSize, SocketFlags.None,
+                      ReceivedData, freshSocketState);
             }
-            catch (SocketException)
+            else
             {
-               ThrowXEvent(XEventType.ConnectionFailed, null);   
-            } 
-        }
-
-        private void Connected(IAsyncResult asyncResult)
-        {
-            var socketState = asyncResult.AsyncState as XEventListenerSocketState;
-
-            if (socketState != null)
-            {
-                _ClientSocket.EndConnect(asyncResult);
-
-                ThrowXEvent(XEventType.ConnectionSuccessful, null); 
-
-                _ClientSocket.BeginReceive(socketState.Buffer, 0, XEventListenerSocketState.BufferSize, SocketFlags.None,
-                                           ReceivedData, socketState);
+               // No - Begin listening for remainder of announcement using same socket state
+               _ClientSocket.BeginReceive(socketState.Buffer, 0, XEventListenerSocketState.BufferSize, SocketFlags.None,
+                      ReceivedData, socketState);
             }
-        }
+         }
 
-        void ReceivedData(IAsyncResult asyncResult)
-        {
-            var socketState = asyncResult.AsyncState as XEventListenerSocketState;
+         // TODO: What do we do if we receive a full announcement as well as the beginning of a second announcement
+      }
 
-            if (socketState != null)
+      static bool FullAnnouncementReceived(string announcementJson)
+      {
+         // If we cannot parse the json to a valid jObject then it is incomplete
+         try
+         {
+            var jObject = JObject.Parse(announcementJson);
+         }
+         catch (Exception exception)
+         {
+            return false;
+         }
+
+         return true;
+      }
+
+      void ParseAnnouncement(string jsonannouncement)
+      {
+         var jObject = JObject.Parse(jsonannouncement);
+
+         if (jObject["method"] != null)
+         {
+            if ((string)jObject["method"] == "Announcement")
             {
-                var receivedDataLength = _ClientSocket.EndReceive(asyncResult);
-                var receivedDataJson = Encoding.UTF8.GetString(socketState.Buffer, 0, receivedDataLength);
+               var message = (string)jObject["params"]["message"];
 
-                socketState.Builder.Append(receivedDataJson);
+               switch (message)
+               {
+                  case "PlaybackSeek":
+                     ThrowXEvent(XEventType.PlaybackSeek, null);
+                     break;
 
-                // Did we receive a full announcement in this buffer?
-                if(FullAnnouncementReceived(socketState.Builder.ToString()))
-                {
-                    // Yes - Parse the announcement and begin listening for new announcements with a fresh state object
-                    ParseAnnouncement(socketState.Builder.ToString());
+                  case "PlaybackStarted":
+                     ThrowXEvent(XEventType.PlaybackStarted, null);
+                     break;
 
-                    var freshSocketState = new XEventListenerSocketState();
+                  case "PlaybackSpeedChanged":
+                     ThrowXEvent(XEventType.PlaybackSpeedChanged, null);
+                     break;
 
-                    _ClientSocket.BeginReceive(freshSocketState.Buffer, 0, XEventListenerSocketState.BufferSize, SocketFlags.None,
-                           ReceivedData, freshSocketState);
-                }
-                else
-                {
-                    // No - Begin listening for remainder of announcement using same socket state
-                    _ClientSocket.BeginReceive(socketState.Buffer, 0, XEventListenerSocketState.BufferSize, SocketFlags.None,
-                           ReceivedData, socketState);
-                }
+                  case "PlaybackStopped":
+                     ThrowXEvent(XEventType.PlaybackStopped, null);
+                     break;
+
+                  case "PlaybackPaused":
+                     ThrowXEvent(XEventType.PlaybackPaused, null);
+                     break;
+
+                  case "PlaybackResumed":
+                     ThrowXEvent(XEventType.PlaybackResumed, null);
+                     break;
+
+                  default:
+
+                     throw new NotImplementedException("Please implement message type " + message);
+               }
             }
+         }
+      }
 
-            // TODO: What do we do if we receive a full announcement as well as the beginning of a second announcement
-        }
+      private void ThrowXEvent(XEventType eventType, Dictionary<string, string> parameters)
+      {
+         if (OnXEventReceived != null)
+         {
+            OnXEventReceived(this, eventType, parameters);
+         }
+      }
 
-        static bool FullAnnouncementReceived(string announcementJson)
-        {
-            // If we cannot parse the json to a valid jObject then it is incomplete
-            try
-            {
-                var jObject = JObject.Parse(announcementJson);
-            }
-            catch (Exception exception)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        void ParseAnnouncement(string jsonannouncement)
-        {
-            var jObject = JObject.Parse(jsonannouncement);
-
-            if(jObject["method"] != null)
-            {
-                if((string)jObject["method"] == "Announcement")
-                {
-                    var message = (string) jObject["params"]["message"];
-
-                    switch (message)
-                    {
-                        case "PlaybackSeek":
-                          ThrowXEvent(XEventType.PlaybackSeek, null); 
-                            break;
-
-                        case "PlaybackStarted":
-                            ThrowXEvent(XEventType.PlaybackStarted, null); 
-                            break;
-
-                        case "PlaybackSpeedChanged":
-                            ThrowXEvent(XEventType.PlaybackSpeedChanged, null); 
-                            break;
-
-                        case "PlaybackStopped":
-                            ThrowXEvent(XEventType.PlaybackStopped, null);
-                            break;
-
-                        case "PlaybackPaused":
-                            ThrowXEvent(XEventType.PlaybackPaused, null);
-                            break;
-
-                        case "PlaybackResumed":
-                            ThrowXEvent(XEventType.PlaybackResumed, null);
-                            break;
-
-                       default:
-                          
-                            throw new NotImplementedException("Please implement message type " + message);                            
-                    }
-                }
-            }
-        }
-
-        private void ThrowXEvent(XEventType eventType, Dictionary<string, string> parameters)
-        {
-           if (OnXEventReceived != null)
-           {
-              OnXEventReceived(this, eventType, parameters);
-           }
-        }
-
-        public void Dispose()
-        {
-            _ClientSocket.Disconnect(false);
-            _ClientSocket.Dispose();
-        }
-    }
+      public void Dispose()
+      {
+         _ClientSocket.Disconnect(false);
+         _ClientSocket.Dispose();
+      }
+   }
 }

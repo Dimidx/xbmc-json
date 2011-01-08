@@ -17,8 +17,8 @@ namespace xbmc_json_async.System
             Port = port;
             UserName = userName;
             Password = password;
-            XJsonInterfaceAddress = new Uri("http://" + ipAddress + ":" + port + "/jsonrpc");
-            BaseAddress = new Uri("http://" + ipAddress + ":" + port);
+            XJsonInterfaceAddress = new Uri(String.Format("http://{0}:{1}/jsonrpc", ipAddress, port));
+            BaseAddress = new Uri(String.Format("http://{0}:{1}", ipAddress, port));
         }
     }
 }

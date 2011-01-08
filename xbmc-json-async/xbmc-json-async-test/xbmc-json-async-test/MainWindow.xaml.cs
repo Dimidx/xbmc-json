@@ -18,8 +18,8 @@ namespace XBMC_Remote
 
         private void WindowLoaded(object sender, RoutedEventArgs e)
         {
-            _Connection = new XConnection("127.0.0.1", 80, "marcel", "brimstone");
-            //_Connection.AudioLibrary.GetArtists(null, GetArtistsCallback);
+            _Connection = new XConnection("127.0.0.1", 8080, "xbmc", "");
+            _Connection.AudioLibrary.GetArtists(null, GetArtistsCallback);
             _Connection.VideoLibrary.GetMovies(null, GetMoviesCallback);
             _Connection.VideoLibrary.GetTvShows(null, GetTvShowsCallback);
 
