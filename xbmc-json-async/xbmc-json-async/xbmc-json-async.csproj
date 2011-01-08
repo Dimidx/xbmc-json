@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\..\Desktop\New folder (7)\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json.Net35">
+      <HintPath>..\..\Newtonsoft.Json.Net35.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -61,6 +61,7 @@
     <Compile Include="System\XDelegates.cs" />
     <Compile Include="System\XEventListener.cs" />
     <Compile Include="System\XEventListenerSocketState.cs" />
+    <Compile Include="System\XEventType.cs" />
     <Compile Include="System\XHelpers.cs" />
     <Compile Include="System\XRequestState.cs" />
     <Compile Include="System\XSettings.cs" />
