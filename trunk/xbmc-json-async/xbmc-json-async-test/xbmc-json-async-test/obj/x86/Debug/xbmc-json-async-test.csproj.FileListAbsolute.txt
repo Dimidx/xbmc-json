@@ -16,3 +16,21 @@ C:\Users\Tyler\Desktop\td\xbmc-json-async\xbmc-json-async-test\xbmc-json-async-t
 C:\Users\Tyler\Desktop\td\xbmc-json-async\xbmc-json-async-test\xbmc-json-async-test\obj\x86\Debug\XBMC_Remote.Properties.Resources.resources
 C:\Users\Tyler\Desktop\td\xbmc-json-async\xbmc-json-async-test\xbmc-json-async-test\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\Users\Tyler\Desktop\td\xbmc-json-async\xbmc-json-async-test\xbmc-json-async-test\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\GoogleCode Root\XBMC-JSON\xbmc-json-async-test\xbmc-json-async-test\obj\x86\Debug\XBMC-Remote.exe
+D:\GoogleCode Root\XBMC-JSON\xbmc-json-async-test\xbmc-json-async-test\obj\x86\Debug\XBMC-Remote.pdb
+D:\GoogleCode Root\XBMC-JSON\xbmc-json-async-test\xbmc-json-async-test\bin\Debug\XBMC-Remote.exe
+D:\GoogleCode Root\XBMC-JSON\xbmc-json-async-test\xbmc-json-async-test\bin\Debug\XBMC-Remote.pdb
+D:\GoogleCode Root\XBMC-JSON\xbmc-json-async-test\xbmc-json-async-test\bin\Debug\xbmc-json-async.dll
+D:\GoogleCode Root\XBMC-JSON\xbmc-json-async-test\xbmc-json-async-test\bin\Debug\Newtonsoft.Json.Net35.dll
+D:\GoogleCode Root\XBMC-JSON\xbmc-json-async-test\xbmc-json-async-test\bin\Debug\xbmc-json-async.pdb
+D:\GoogleCode Root\XBMC-JSON\xbmc-json-async-test\xbmc-json-async-test\bin\Debug\Newtonsoft.Json.Net35.pdb
+D:\GoogleCode Root\XBMC-JSON\xbmc-json-async-test\xbmc-json-async-test\bin\Debug\Newtonsoft.Json.Net35.xml
+D:\GoogleCode Root\XBMC-JSON\xbmc-json-async-test\xbmc-json-async-test\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\GoogleCode Root\XBMC-JSON\xbmc-json-async-test\xbmc-json-async-test\obj\x86\Debug\MainWindow.baml
+D:\GoogleCode Root\XBMC-JSON\xbmc-json-async-test\xbmc-json-async-test\obj\x86\Debug\MainWindow.g.cs
+D:\GoogleCode Root\XBMC-JSON\xbmc-json-async-test\xbmc-json-async-test\obj\x86\Debug\App.g.cs
+D:\GoogleCode Root\XBMC-JSON\xbmc-json-async-test\xbmc-json-async-test\obj\x86\Debug\XBMC-Remote_MarkupCompile.cache
+D:\GoogleCode Root\XBMC-JSON\xbmc-json-async-test\xbmc-json-async-test\obj\x86\Debug\XBMC-Remote.g.resources
+D:\GoogleCode Root\XBMC-JSON\xbmc-json-async-test\xbmc-json-async-test\obj\x86\Debug\XBMC_Remote.Properties.Resources.resources
+D:\GoogleCode Root\XBMC-JSON\xbmc-json-async-test\xbmc-json-async-test\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\GoogleCode Root\XBMC-JSON\xbmc-json-async-test\xbmc-json-async-test\obj\x86\Debug\GenerateResource.write.1.tlog

@@ -10,3 +10,11 @@ C:\Users\Tyler\Desktop\td\xbmc-json-async\xbmc-json-async\bin\Debug\Newtonsoft.J
 C:\Users\Tyler\Desktop\td\xbmc-json-async\xbmc-json-async\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Tyler\Desktop\td\xbmc-json-async\xbmc-json-async\obj\Debug\xbmc-json-async.dll
 C:\Users\Tyler\Desktop\td\xbmc-json-async\xbmc-json-async\obj\Debug\xbmc-json-async.pdb
+D:\GoogleCode Root\XBMC-JSON\xbmc-json-async\bin\Debug\xbmc-json-async.dll
+D:\GoogleCode Root\XBMC-JSON\xbmc-json-async\bin\Debug\xbmc-json-async.pdb
+D:\GoogleCode Root\XBMC-JSON\xbmc-json-async\bin\Debug\Newtonsoft.Json.Net35.dll
+D:\GoogleCode Root\XBMC-JSON\xbmc-json-async\bin\Debug\Newtonsoft.Json.Net35.pdb
+D:\GoogleCode Root\XBMC-JSON\xbmc-json-async\bin\Debug\Newtonsoft.Json.Net35.xml
+D:\GoogleCode Root\XBMC-JSON\xbmc-json-async\obj\Debug\ResolveAssemblyReference.cache
+D:\GoogleCode Root\XBMC-JSON\xbmc-json-async\obj\Debug\xbmc-json-async.dll
+D:\GoogleCode Root\XBMC-JSON\xbmc-json-async\obj\Debug\xbmc-json-async.pdb

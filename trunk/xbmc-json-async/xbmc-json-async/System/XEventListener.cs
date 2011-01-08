@@ -3,20 +3,18 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 
 namespace xbmc_json_async.System
 {
+ 
     public class XEventListener : IDisposable
     {
         private readonly string _IpAddress;
         private readonly int _Port;
         private readonly Socket _ClientSocket;
-        
-        public event EventHandler PlaybackStarted;
-        public event EventHandler PlaybackSpeedChanged;
-        public event EventHandler PlaybackSeek;
-        public event EventHandler ConnectionFailed;
-        public event EventHandler ConnectionSuccessful;
+
+        public event XEventReceivedEventHandler OnXEventReceived;
 
         public XEventListener(string ipAddress, int port)
         {
@@ -35,8 +33,7 @@ namespace xbmc_json_async.System
             }
             catch (SocketException)
             {
-                if (ConnectionFailed != null)
-                    ConnectionFailed(this, null);
+               ThrowXEvent(XEventType.ConnectionFailed, null);   
             } 
         }
 
@@ -48,8 +45,7 @@ namespace xbmc_json_async.System
             {
                 _ClientSocket.EndConnect(asyncResult);
 
-                if (ConnectionSuccessful != null)
-                    ConnectionSuccessful(this, null);
+                ThrowXEvent(XEventType.ConnectionSuccessful, null); 
 
                 _ClientSocket.BeginReceive(socketState.Buffer, 0, XEventListenerSocketState.BufferSize, SocketFlags.None,
                                            ReceivedData, socketState);
@@ -117,22 +113,43 @@ namespace xbmc_json_async.System
                     switch (message)
                     {
                         case "PlaybackSeek":
-                            if (PlaybackSeek != null)
-                                PlaybackSeek(this, null);
+                          ThrowXEvent(XEventType.PlaybackSeek, null); 
                             break;
 
                         case "PlaybackStarted":
-                            if (PlaybackStarted != null)
-                                PlaybackStarted(this, null);
+                            ThrowXEvent(XEventType.PlaybackStarted, null); 
                             break;
 
                         case "PlaybackSpeedChanged":
-                            if (PlaybackSpeedChanged != null)
-                                PlaybackSpeedChanged(this, null);
+                            ThrowXEvent(XEventType.PlaybackSpeedChanged, null); 
                             break;
+
+                        case "PlaybackStopped":
+                            ThrowXEvent(XEventType.PlaybackStopped, null);
+                            break;
+
+                        case "PlaybackPaused":
+                            ThrowXEvent(XEventType.PlaybackPaused, null);
+                            break;
+
+                        case "PlaybackResumed":
+                            ThrowXEvent(XEventType.PlaybackResumed, null);
+                            break;
+
+                       default:
+                          
+                            throw new NotImplementedException("Please implement message type " + message);                            
                     }
                 }
             }
+        }
+
+        private void ThrowXEvent(XEventType eventType, Dictionary<string, string> parameters)
+        {
+           if (OnXEventReceived != null)
+           {
+              OnXEventReceived(this, eventType, parameters);
+           }
         }
 
         public void Dispose()
