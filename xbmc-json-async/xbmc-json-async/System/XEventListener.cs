@@ -40,16 +40,22 @@ namespace xbmc_json_async.System
       private void Connected(IAsyncResult asyncResult)
       {
          var socketState = asyncResult.AsyncState as XEventListenerSocketState;
-
          
          if (socketState != null)
          {
-            _ClientSocket.EndConnect(asyncResult);
+            try
+            {
+               _ClientSocket.EndConnect(asyncResult);
 
-            ThrowXEvent(XEventType.ConnectionSuccessful, null);
+               ThrowXEvent(XEventType.ConnectionSuccessful, null);
 
-            _ClientSocket.BeginReceive(socketState.Buffer, 0, XEventListenerSocketState.BufferSize, SocketFlags.None,
-                                       ReceivedData, socketState);
+               _ClientSocket.BeginReceive(socketState.Buffer, 0, XEventListenerSocketState.BufferSize, SocketFlags.None,
+                                          ReceivedData, socketState);
+            }
+            catch (SocketException ex)
+            {               
+                  ThrowXEvent(XEventType.ConnectionFailed, new Dictionary<string,string>() { { "reason", ex.Message } });
+            }            
          }
       }
 

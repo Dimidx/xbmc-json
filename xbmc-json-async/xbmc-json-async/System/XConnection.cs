@@ -8,6 +8,7 @@ namespace xbmc_json_async.System
         public XAudioLibrary AudioLibrary;
         public XVideoLibrary VideoLibrary;
         public XAudioPlayer AudioPlayer;
+        public XSystem System;
         public XVirtualRemote VirtualRemote;
 
         public XConnection(string ipAddress, int port, string userName, string password)
@@ -20,5 +21,7 @@ namespace xbmc_json_async.System
             AudioPlayer = new XAudioPlayer(client);
             VirtualRemote = new XVirtualRemote(settings);
         }
+
+       
     }
 }
