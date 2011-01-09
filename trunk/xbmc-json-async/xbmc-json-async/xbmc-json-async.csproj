@@ -49,6 +49,12 @@
     <Compile Include="Media\Episode.cs" />
     <Compile Include="Media\Movie.cs" />
     <Compile Include="Media\XbmcMediaItem.cs" />
+    <Compile Include="Player\XPicturePlayer.cs" />
+    <Compile Include="Player\XPlayer.cs" />
+    <Compile Include="Player\XPlayerType.cs" />
+    <Compile Include="Player\XVideoPlayer.cs" />
+    <Compile Include="Playlist\XPlaylist.cs" />
+    <Compile Include="Playlist\XPlaylistType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Media\Season.cs" />
     <Compile Include="Media\Song.cs" />
@@ -63,14 +69,14 @@
     <Compile Include="System\XEventListenerSocketState.cs" />
     <Compile Include="System\XEventType.cs" />
     <Compile Include="System\XHelpers.cs" />
+    <Compile Include="System\XLogLevel.cs" />
     <Compile Include="System\XRequestState.cs" />
     <Compile Include="System\XSettings.cs" />
     <Compile Include="Library\XVideoLibrary.cs" />
+    <Compile Include="System\XSystem.cs" />
     <Compile Include="System\XVirtualRemote.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Playlist\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

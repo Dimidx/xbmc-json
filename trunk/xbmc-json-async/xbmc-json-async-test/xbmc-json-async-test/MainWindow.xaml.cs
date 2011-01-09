@@ -18,12 +18,12 @@ namespace XBMC_Remote
 
         private void WindowLoaded(object sender, RoutedEventArgs e)
         {
-            _Connection = new XConnection("127.0.0.1", 8080, "xbmc", "");
+            _Connection = new XConnection("192.168.1.105", 8080, "xbmc", "test");
             _Connection.AudioLibrary.GetArtists(null, GetArtistsCallback);
             _Connection.VideoLibrary.GetMovies(null, GetMoviesCallback);
             _Connection.VideoLibrary.GetTvShows(null, GetTvShowsCallback);
 
-            var eventListener = new XEventListener("127.0.0.1", 9090);
+            var eventListener = new XEventListener("192.168.1.105", 9090);
             eventListener.OnXEventReceived += new XEventReceivedEventHandler(eventListener_OnXEventReceived);
             eventListener.Connect();
         }
